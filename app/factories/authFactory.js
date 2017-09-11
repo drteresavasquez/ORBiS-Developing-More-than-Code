@@ -1,6 +1,6 @@
 "use strict";
 
-// console.log("auth.factory");
+// console.log("authfactory, yo!");
 
 app.factory("authFactory", function ($q, $http, FBCreds, $window) {
     let currentUser = null;
@@ -10,7 +10,7 @@ app.factory("authFactory", function ($q, $http, FBCreds, $window) {
             firebase.auth().onAuthStateChanged((user) => {
                 if (user) {
                     currentUser = user.uid;
-                    console.log("currentUser", currentUser);
+                    // console.log("currentUser", currentUser);
                     resolve(true);
                 } else {
                     resolve(false);

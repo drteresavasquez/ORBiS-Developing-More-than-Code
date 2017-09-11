@@ -1,6 +1,6 @@
 "use strict";
 
-app.controller("userProfileController", function ($scope, $window, gitHubFactory, authFactory, getUserInfo) {
+app.controller("userProfileController", function ($scope, $window, gitHubFactory, authFactory, getUserInfo, $http) {
 
     let currentUser = authFactory.getCurrentUser();
     console.log("CURRENT USERERRRR", currentUser);
@@ -12,17 +12,17 @@ app.controller("userProfileController", function ($scope, $window, gitHubFactory
             });
     };
 
+    ///when I initiate the getEventsFactory, I get REDDDD!
     $scope.events = () => {
-        getEventsFactory.getAllEvents()
-            .then((data) => {
-                $scope.allEvents = data;
+        $http.get(`https://front-end-capstone-ce3ec.firebaseio.com/submitted-events.json`)
+            .then((events) => {
+                $scope.allEvents = events.data;
                 console.log($scope.allEvents);
             });
     };
 
-    
     getUserInfo.getUserDetails(currentUser)
-        .then((results)=>{
+        .then((results) => {
             let userProfileStuff = [];
             // console.log(results);
             let details = Object.keys(results);
@@ -33,18 +33,20 @@ app.controller("userProfileController", function ($scope, $window, gitHubFactory
             $scope.deets = userProfileStuff;
         });
 
-        $scope.tab = 1;
-        
-            $scope.setTab = function(newTab){
-              $scope.tab = newTab;
-            };
-        
-            $scope.isSet = function(tabNum){
-              return $scope.tab === tabNum;
-            };
+    $scope.tab = 1;
 
-    
-//IF GITHUB API DOES"T TIME OUT
+    $scope.setTab = function (newTab) {
+        $scope.tab = newTab;
+    };
+
+    $scope.isSet = function (tabNum) {
+        return $scope.tab === tabNum;
+    };
+
+$scope.milestones();
+$scope.events();
+
+    //IF GITHUB API DOES"T TIME OUT
     // $scope.milestoneTwo = () => {
     //     gitHubFactory.getMilestoneTwo()
     //         .then((data) => {
@@ -71,5 +73,4 @@ app.controller("userProfileController", function ($scope, $window, gitHubFactory
     //         });
     // };
 
-    $scope.milestones();
 });

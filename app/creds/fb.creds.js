@@ -1,5 +1,5 @@
 "use strict";
-console.log("FB Creds Yo!");
+// console.log("FB Creds Yo!");
 
 // var firebase = require('../lib/node_modules/firebase');
 

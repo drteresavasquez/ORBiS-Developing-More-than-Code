@@ -1,5 +1,5 @@
 "use strict";
-console.log("gitHubFactory");
+// console.log("gitHubFactory, yo!");
 
 app.factory("gitHubFactory", function($q, $http){
 

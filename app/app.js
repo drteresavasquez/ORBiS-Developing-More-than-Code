@@ -1,14 +1,14 @@
 "use strict";
-console.log("App, yo!");
+// console.log("App, yo!");
 
 const app = angular.module("ReadtheRoom", ["ngRoute"]);
 
 let isAuth = (authFactory) => new Promise((resolve, reject) => {
-    console.log("authFactory is", authFactory);
+    // console.log("authFactory is", authFactory);
     authFactory.isAuthenticated()
         .then((userExists) => {
             if (userExists) {
-                console.log("Authenticated, go ahead");
+                // console.log("Authenticated, go ahead");
                 resolve();
             } else {
                 console.log("Authentication reject, GO AWAY");

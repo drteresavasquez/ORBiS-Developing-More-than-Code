@@ -18,7 +18,7 @@
                 <a href ng-click="setTab(1)" class="nav-link dropdown-toggle active" data-toggle="dropdown" role="button" aria-haspopup="true"
                     aria-expanded="false">All Exercises</a>
                 <div class="dropdown-menu" ng-model="milestone">
-                    <a class="dropdown-item"  href ng-model="milestone" value=1>Milestone 1</a>
+                    <a class="dropdown-item" href ng-model="milestone" value=1>Milestone 1</a>
                     <a class="dropdown-item" href="#" ng-model="milestone" value=2>Milestone 2</a>
                     <a class="dropdown-item" href="#" ng-model="milestone" value=3>Milestone 3</a>
                     <a class="dropdown-item" href="#" ng-model="milestone">Milestone 4</a>
@@ -35,234 +35,149 @@
                 <a class="nav-link" href ng-click="setTab(4)">Group Projects</a>
             </li>
         </ul>
-        </div>
-
-        <!-- TAB 1 -->
-        <div ng-show="isSet(1)">
-                <input type="search" ng-model="query" class="form-control search" aria-describedby="search" placeholder="Search Exercises" autofocus><br>
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th><i class="fa fa-plus-square" aria-hidden="true"></i></th>
-                        <th>Exercise Name</th>
-                        <th>Milestone</th>
-                        <th><i class="fa fa-info-circle" aria-hidden="true"></i></th>
-                    </tr>
-                </thead>
-                <tbody ng-repeat="item in allExercises | filter:query | orderBy: 'milestone'">
-                    <tr>
-                        <th scope="row"><i class="fa fa-plus-square" aria-hidden="true"></i></th>
-                        <td>{{item.name}}</td>
-                        <td>{{item.milestone}}</td>
-                        <td><a href="{{item.html_url}}" target="_blank">Details</a></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <!-- TAB 2 -->
-        <div ng-show="isSet(2)">
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th>FUN</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Username</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td colspan="2">Larry the Bird</td>
-                        <td>@twitter</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td colspan="2">Larry the Bird</td>
-                        <td>@twitter</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td colspan="2">Larry the Bird</td>
-                        <td>@twitter</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td colspan="2">Larry the Bird</td>
-                        <td>@twitter</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td colspan="2">Larry the Bird</td>
-                        <td>@twitter</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td colspan="2">Larry the Bird</td>
-                        <td>@twitter</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td colspan="2">Larry the Bird</td>
-                        <td>@twitter</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td colspan="2">Larry the Bird</td>
-                        <td>@twitter</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-
-        <!-- TAB 3 -->
-        <div ng-show="isSet(3)">
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th>Add</th>
-                        <th>Exercise Name</th>
-                        <th>Milestone</th>
-                        <th>Details</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td colspan="2">Larry the Bird</td>
-                        <td>@twitter</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td colspan="2">Larry the Bird</td>
-                        <td>@twitter</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td colspan="2">Larry the Bird</td>
-                        <td>@twitter</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td colspan="2">Larry the Bird</td>
-                        <td>@twitter</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td colspan="2">Larry the Bird</td>
-                        <td>@twitter</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td colspan="2">Larry the Bird</td>
-                        <td>@twitter</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td colspan="2">Larry the Bird</td>
-                        <td>@twitter</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td colspan="2">Larry the Bird</td>
-                        <td>@twitter</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <!-- TAB 4 -->
-        <div ng-show="isSet(4)">
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th>Points</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Username</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td colspan="2">Larry the Bird</td>
-                        <td>@twitter</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td colspan="2">Larry the Bird</td>
-                        <td>@twitter</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td colspan="2">Larry the Bird</td>
-                        <td>@twitter</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td colspan="2">Larry the Bird</td>
-                        <td>@twitter</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td colspan="2">Larry the Bird</td>
-                        <td>@twitter</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td colspan="2">Larry the Bird</td>
-                        <td>@twitter</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td colspan="2">Larry the Bird</td>
-                        <td>@twitter</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td colspan="2">Larry the Bird</td>
-                        <td>@twitter</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
     </div>
+
+    <!-- TAB 1 -->
+    <div ng-show="isSet(1)">
+        <input type="search" ng-model="query" class="form-control search" aria-describedby="search" placeholder="Search Exercises"
+            autofocus><br>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th><i class="fa fa-plus-square" aria-hidden="true"></i></th>
+                    <th>Exercise Name</th>
+                    <th>Milestone</th>
+                    <th><i class="fa fa-info-circle" aria-hidden="true"></i></th>
+                </tr>
+            </thead>
+            <tbody ng-repeat="item in allExercises | filter:query | orderBy: 'milestone'">
+                <tr>
+                    <th scope="row"><i class="fa fa-plus-square" aria-hidden="true"></i></th>
+                    <td>{{item.name}}</td>
+                    <td>{{item.milestone}}</td>
+                    <td><a href="{{item.html_url}}" target="_blank">Details</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- TAB 2 -->
+    <div ng-show="isSet(2)">
+        <input type="search" ng-model="queryMine" class="form-control search" aria-describedby="search" placeholder="Search Exercises"
+            autofocus><br>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>FUN</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Username</th>
+                </tr>
+            </thead>
+            <tbody ng-repeat="item in allExercises | filter:queryMine | orderBy: 'milestone'">
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+    <!-- TAB 3 -->
+    <div ng-show="isSet(3)">
+        <input type="search" ng-model="queryEvents" class="form-control search" aria-describedby="search" placeholder="Search Events"
+            autofocus><br>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Add</th>
+                    <th>Date</th>
+                    <th>Event Name</th>
+                    <th>Location</th>
+                    <th>Details</th>
+                </tr>
+            </thead>
+            <tbody ng-repeat="item in allEvents | filter:queryEvents | orderBy: 'begDate'">
+                <tr>
+                    <th scope="row">+</th>
+                    <td>{{item.begDate}} | {{item.startTime}}</td>
+                    <td>{{item.eventTitle}}</td>
+                    <td>{{item.locationName}}: {{item.locationAddy}}</td>
+                    <td><a href="{{item.eventLink}}" target="_blank">Details</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- TAB 4 -->
+    <div ng-show="isSet(4)">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Points</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Username</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                </tr>
+                <tr>
+                    <th scope="row">3</th>
+                    <td colspan="2">Larry the Bird</td>
+                    <td>@twitter</td>
+                </tr>
+                <tr>
+                    <th scope="row">3</th>
+                    <td colspan="2">Larry the Bird</td>
+                    <td>@twitter</td>
+                </tr>
+                <tr>
+                    <th scope="row">3</th>
+                    <td colspan="2">Larry the Bird</td>
+                    <td>@twitter</td>
+                </tr>
+                <tr>
+                    <th scope="row">3</th>
+                    <td colspan="2">Larry the Bird</td>
+                    <td>@twitter</td>
+                </tr>
+                <tr>
+                    <th scope="row">3</th>
+                    <td colspan="2">Larry the Bird</td>
+                    <td>@twitter</td>
+                </tr>
+                <tr>
+                    <th scope="row">3</th>
+                    <td colspan="2">Larry the Bird</td>
+                    <td>@twitter</td>
+                </tr>
+                <tr>
+                    <th scope="row">3</th>
+                    <td colspan="2">Larry the Bird</td>
+                    <td>@twitter</td>
+                </tr>
+                <tr>
+                    <th scope="row">3</th>
+                    <td colspan="2">Larry the Bird</td>
+                    <td>@twitter</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
