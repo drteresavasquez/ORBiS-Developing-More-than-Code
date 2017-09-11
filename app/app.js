@@ -20,8 +20,8 @@ let isAuth = (authFactory) => new Promise((resolve, reject) => {
 app.config(($routeProvider) => {
     $routeProvider
         .when('/', {
-            templateUrl: 'app/login-view/loginForm.html',
-            controller: 'userCtrl',
+            templateUrl: 'app/user-profile-view/userProfile.html',
+            controller: 'userProfileController',
             resolve: {isAuth}
         })
         .when('/login', {
