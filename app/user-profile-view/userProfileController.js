@@ -12,6 +12,14 @@ app.controller("userProfileController", function ($scope, $window, gitHubFactory
             });
     };
 
+    $scope.events = () => {
+        getEventsFactory.getAllEvents()
+            .then((data) => {
+                $scope.allEvents = data;
+                console.log($scope.allEvents);
+            });
+    };
+
     
     getUserInfo.getUserDetails(currentUser)
         .then((results)=>{
