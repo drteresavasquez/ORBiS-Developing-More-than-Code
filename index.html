@@ -18,11 +18,10 @@
     <div ng-show="isLoggedIn" ng-include="'app/navigation/header.html'"></div>
     <!-- HEADER NAV END -->
     <!-- ///////////CONTAINER START/////////// -->
-    <main>
         <div class="container" >
             <div ng-view></div>
         </div>
-    </main>
+
     <!-- ///////////CONTAINER END/////////// -->
 
     <!-- ///////////FOOTER START/////////// -->
@@ -53,11 +52,16 @@
     <!-- FACTORIES -->
     <!-- <script src="./app/factories/LINK.js"></script> -->
     <script src="app/factories/authFactory.js"></script>
+    <script src="app/factories/getEventsFactory.js"></script>
+    <script src="app/factories/getGroupsFactory.js"></script>
+    <script src="app/factories/getUserInfoFactory.js"></script>
+    <script src="app/factories/gitHubPullFactory.js"></script>
 
     <!-- CONTROLLERS -->
     <!-- <script src="app/controllers/LINK.js"></script> -->
     <script src="app/login-view/authController.js"></script>
     <script src="app/navigation/navController.js"></script>
+    <script src="app/user-profile-view/userProfileController.js"></script>
     <!-- ///////////END SCRIPTS/////////// -->
 </body>
 

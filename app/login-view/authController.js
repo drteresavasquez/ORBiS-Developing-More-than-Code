@@ -11,7 +11,7 @@ app.controller("userCtrl", function ($scope, $window, authFactory, $location, $h
         authFactory.logIn($scope.account)
         .then(() => {
             //add isTeacher logic here
-            $window.location.href = "#!/profile-view";
+            $window.location.href = "#!/";
         });
     };
 });

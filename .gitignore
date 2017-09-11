@@ -1,4 +1,5 @@
-DS_Store
+.DS_Store
 css/*
 lib/node_modules
 creds/*
+notes
