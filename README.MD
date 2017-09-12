@@ -1,5 +1,5 @@
 # Read the Room: 
-##Developing More Than Code
+## Developing More Than Code
 
 What if you could measure more than coding expertise from your experience at NSS? Teamwork and organizations more than ever need developers with more than the ability to code. This is why if someone knows you personally, regardless of skills other than the minimum necessary to perform the job, you are more likely to be hired to their organization if the opportunity presents itself.
 The deal is if you want to be successful, you can’t only be either all code focused or social focused; there has to be balance between the two. Read the Room gives users the ability to balance both aspects while learning also about what makes a great teammate by focusing on their own communication and conflict styles and then on those they work with through tech exercises and events.
@@ -15,8 +15,8 @@ Read the Room takes off the initial shell shock of the environment by including 
 - GitHub Integration: A lot of time is wasted searching through repos for exercise completion, grading, and it can be hard to keep up with the amount of exercises that are completed. Nevermind to option to get feedback on exercises and acknowledgement they have been reviewed.
 - Tips to get started with GitHub
 - Teacher-Student-Peer Communication: There are two ways students and teachers receive and give feedback. 
-  - -  When a student completes an exercise they “submit it” to the teacher and await points and feedback. 
-  - - After a group presentation, points are awarded based on group feedback (forms), teacher feedback  and student goals. (Teacher awards points)
+  - When a student completes an exercise they “submit it” to the teacher and await points and feedback. 
+  - After a group presentation, points are awarded based on group feedback (forms), teacher feedback  and student goals. (Teacher awards points)
 - Leaderboards: Showing the WEEKLY points for the house, cohort, and school and the students rank within those groups.
 - Social Styles/Conflict Res building: By answering the initial questionnaire, students are placed in a “House” that represents their personality type. They also have access to information regarding the styles of others they will encounter. A key element is the ability to know what style others are and communicate accordingly, which will be reflected in their group feedback assessments.
 - Skills Lists: Teachers give skills based on completed assignments and what skills were gained through its completion, which gives students an accurate assessment of the skills they have gained over the program.
