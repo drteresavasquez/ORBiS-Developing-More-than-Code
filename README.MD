@@ -1,5 +1,5 @@
-# Read the Room: 
-###Developing More Than Code
+# Read the Room: Developing More Than Code
+
 What if you could measure more than coding expertise from your experience at NSS? Teamwork and organizations more than ever need developers with more than the ability to code. This is why if someone knows you personally, regardless of skills other than the minimum necessary to perform the job, you are more likely to be hired to their organization if the opportunity presents itself.
 The deal is if you want to be successful, you can’t only be either all code focused or social focused; there has to be balance between the two. Read the Room gives users the ability to balance both aspects while learning also about what makes a great teammate by focusing on their own communication and conflict styles and then on those they work with through tech exercises and events.
 ## The Problem:
@@ -8,14 +8,23 @@ However, perhaps you are like many other people, you like people and people like
 
 Read the Room takes off the initial shell shock of the environment by including students in personality houses, cohorts, and exercises in a simple and fun way. Read the Room also equips teachers with the ability to provide valuable feedback to students. Teachers also have the ability to group teams based on more than skills or exercises completed. They can see what students’ tech and social goals are, what skills they have acquired so not too many with the same skillset or social goals are grouped together all the time.
 
+### Qualitative Impact:
+- Social Validity
+- Student sense of belonging
+
+### Quantitative Impact:
+- Points based focus that takes into account various measures that contribute to a student's success (i.e. exercise completion, group participation, networking, and personality style mentorship)
+- The ability to take a snapshot of a student's progress compared to expected academic standards
+- The ability to guide students in need of help in a specific area of student success.
+
 ### Features
 - Gamification: A points based system where all activities are weighted evenly: completed exercises, group/team feedback, event attendance, and other admin at NSS.
 
 - GitHub Integration: A lot of time is wasted searching through repos for exercise completion, grading, and it can be hard to keep up with the amount of exercises that are completed. Nevermind to option to get feedback on exercises and acknowledgement they have been reviewed.
 - Tips to get started with GitHub
 - Teacher-Student-Peer Communication: There are two ways students and teachers receive and give feedback. 
-- -  When a student completes an exercise they “submit it” to the teacher and await points and feedback. 
-- - After a group presentation, points are awarded based on group feedback (forms), teacher feedback  and student goals. (Teacher awards points)
+  - When a student completes an exercise they “submit it” to the teacher and await points and feedback. 
+  - After a group presentation, points are awarded based on group feedback (forms), teacher feedback  and student goals. (Teacher awards points)
 - Leaderboards: Showing the WEEKLY points for the house, cohort, and school and the students rank within those groups.
 - Social Styles/Conflict Res building: By answering the initial questionnaire, students are placed in a “House” that represents their personality type. They also have access to information regarding the styles of others they will encounter. A key element is the ability to know what style others are and communicate accordingly, which will be reflected in their group feedback assessments.
 - Skills Lists: Teachers give skills based on completed assignments and what skills were gained through its completion, which gives students an accurate assessment of the skills they have gained over the program.
@@ -28,7 +37,7 @@ Read the Room takes off the initial shell shock of the environment by including 
 - Javascript/JQuery
 - GitHub API
 - HTML/CSS
-- Materialize or Bootstrap (I haven’t decided yet)
+- Bootstrap
 - Firebase
 - Adobe Acrobat Pro
 - Adobe Photoshop
@@ -48,6 +57,7 @@ Gain more tech project management skills.
 
 Trello Board:
 https://trello.com/b/ah8fv9tX
+
 Mock-up:
 https://app.moqups.com/dr.terry2013@gmail.com/k3cOhIfkXp/view/page/ad64222d5
 
