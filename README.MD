@@ -1,5 +1,4 @@
-# Read the Room: 
-## Developing More Than Code
+# Read the Room: Developing More Than Code
 
 What if you could measure more than coding expertise from your experience at NSS? Teamwork and organizations more than ever need developers with more than the ability to code. This is why if someone knows you personally, regardless of skills other than the minimum necessary to perform the job, you are more likely to be hired to their organization if the opportunity presents itself.
 The deal is if you want to be successful, you can’t only be either all code focused or social focused; there has to be balance between the two. Read the Room gives users the ability to balance both aspects while learning also about what makes a great teammate by focusing on their own communication and conflict styles and then on those they work with through tech exercises and events.
