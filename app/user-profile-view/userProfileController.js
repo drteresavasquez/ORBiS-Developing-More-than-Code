@@ -1,9 +1,8 @@
 "use strict";
 
-app.controller("userProfileController", function ($scope, $window, gitHubFactory, authFactory, getUserInfo, $http, FBCreds, pushUserStuffFactory) {
+app.controller("userProfileController", function ($scope, $window, gitHubFactory, authFactory, getUserInfo, $http, FBCreds, $q, pushUserStuffFactory, $route) {
 
     let currentUser = authFactory.getCurrentUser();
-    console.log("CURRENT USERERRRR", currentUser);
 
     $scope.milestones = () => {
         gitHubFactory.getMilestones()
@@ -12,13 +11,10 @@ app.controller("userProfileController", function ($scope, $window, gitHubFactory
             });
     };
 
-    $scope.milestonesList = [1,2,3,4,5];
-
     $scope.events = () => {
         $http.get(`${FBCreds.databaseURL}/submitted-events.json`)
             .then((events) => {
                 $scope.allEvents = events.data;
-                console.log($scope.allEvents);
             });
     };
 
@@ -26,60 +22,29 @@ app.controller("userProfileController", function ($scope, $window, gitHubFactory
         $http.get(`${FBCreds.databaseURL}/submitted-group-projects.json`)
             .then((projects) => {
                 $scope.allGroupProjects = projects.data;
-                console.log($scope.allGroupProjects);
             });
     };
 
     getUserInfo.getUserExercises(currentUser)
         .then((exercises) => {
-            let userExerciseStuff = [];
-            // console.log(exercises);
-            let exDetails = Object.keys(exercises);
-            exDetails.forEach((item) => {
-                userExerciseStuff.push(exercises[item]);
-            });
-            console.log("userExerciseStuff", userExerciseStuff);
-            $scope.exerciseDeets = userExerciseStuff;
+            $scope.exerciseDeets = getUserInfo.showUserExercises(exercises);
         });
-
 
     getUserInfo.getUserDetails(currentUser)
-        .then((results) => {
-            let userProfileStuff = [];
-            // console.log(results);
-            let details = Object.keys(results);
-            details.forEach((item) => {
-                userProfileStuff.push(results[item]);
-            });
-            console.log("userProfileStuff", userProfileStuff);
-            $scope.deets = userProfileStuff;
-        });
-
-
+    .then((userDeets)=>{
+        $scope.deets = getUserInfo.showUserDetails(userDeets);
+        // console.log($scope.deets);
+    });
+  
     getUserInfo.getUserEvents(currentUser)
-        .then((results) => {
-            let userEventStuff = [];
-            // console.log(results);
-            let details = Object.keys(results);
-            details.forEach((item) => {
-                userEventStuff.push(results[item]);
-            });
-            console.log("userEventStuff", userEventStuff);
-            $scope.userEventDeets = userEventStuff;
-        });
-    
-    getUserInfo.getUserGroups(currentUser)
-        .then((results) => {
-            let userGroupStuff = [];
-            // console.log(results);
-            let details = Object.keys(results);
-            details.forEach((item) => {
-                userGroupStuff.push(results[item]);
-            });
-            console.log("userGroupStuff", userGroupStuff);
-            $scope.userGroupDeets = userGroupStuff;
+        .then((allUserEvents) => {
+            $scope.userEventDeets = getUserInfo.showUserEvents(allUserEvents);
         });
 
+    getUserInfo.getUserGroups(currentUser)
+        .then((allUserGroups) => {
+            $scope.userGroupDeets = getUserInfo.showUserGroups(allUserGroups);
+        });
 
     $scope.tab = 1;
 

@@ -8,7 +8,7 @@ app.factory("gitHubFactory", function($q, $http){
             $http.get("app/data/exercises.json")
             .then((results)=>{
                 let allExercises = results.data;
-                // console.log(allExercises);
+                // console.log("allExercises", allExercises);
                 resolve(allExercises);
             });
         });

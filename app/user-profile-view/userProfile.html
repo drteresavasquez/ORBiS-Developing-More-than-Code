@@ -2,14 +2,13 @@
     <div class="row" ng-repeat="item in deets">
         <div class="col">
             <img ng-src="{{item.profileImg}}"><br> 
-            <a href="{{item.gitHubLink}}">GitHub Link</a>
-            <a href="#!/edit-profile">Edit Your Profile</a>
         </div>
         <div class="col">
-            <h3>Hello, {{item.first_name}}!</h3>
+            <h3>Hello, {{item.first_name}}! <a href="#!/edit-profile"><i class="fa fa-pencil" aria-hidden="true"></i></a></h3>
             <b>Cohort:</b> {{item.cohort}}
             <br> <b>House:</b> {{item.house}}
-            <br> <b>Points:</b> {{item.points}}
+            <br> <b>Points:</b> {{item.points}}<br>
+            <a href="{{item.gitHubLink}}"><i class="fa fa-github fa-2x" aria-hidden="true"></i></a>
         </div>
         <div class="col">
             Possible House Crest/Animal

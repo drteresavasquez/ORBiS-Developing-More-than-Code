@@ -10,8 +10,22 @@ app.factory("getUserInfo", function ($q, $http, FBCreds) {
                     resolve(userDeets);
                 });
         });
-        //make call to firebase to get the user's profile info
     };
+
+    const showUserDetails = function (userDeets){
+            var userProfileStuff = [];
+            var details = Object.keys(userDeets);
+            details.forEach((item) => {
+                userProfileStuff.push(userDeets[item]);
+            });
+            console.log("userProfileStuff", userProfileStuff);
+            return(userProfileStuff);
+    };
+
+    const showUserPoints = function(){
+
+    };
+
 
     const getUserExercises = function (currentUser) {
         return $q((resolve, reject) => {
@@ -21,7 +35,15 @@ app.factory("getUserInfo", function ($q, $http, FBCreds) {
                     resolve(allUserExercises);
                 });
         });
-        //make call to firebase to get the user's profile info
+    };
+
+    const showUserExercises = function(allUserExercises){
+        let userExerciseStuff = [];
+        let exDetails = Object.keys(allUserExercises);
+        exDetails.forEach((item) => {
+            userExerciseStuff.push(allUserExercises[item]);
+        });
+        return(userExerciseStuff);
     };
 
     const getUserEvents = function (currentUser) {
@@ -32,7 +54,19 @@ app.factory("getUserInfo", function ($q, $http, FBCreds) {
                     resolve(allUserEvents);
                 });
         });
-        //make call to firebase to get the user's profile info
+    };
+
+    const showUserEvents = function(allUserEvents){
+        let userEventStuff = [];
+        let details = Object.keys(allUserEvents);
+        details.forEach((item) => {
+            userEventStuff.push(allUserEvents[item]);
+        });
+        return(userEventStuff);
+    };
+
+    const getPoints = (allUserEvents)=>{
+
     };
 
     const getUserGroups = function (currentUser) {
@@ -46,10 +80,23 @@ app.factory("getUserInfo", function ($q, $http, FBCreds) {
         //make call to firebase to get the user's profile info
     };
 
+    const showUserGroups = function(allUserGroups){
+        let userGroupStuff = [];
+        let details = Object.keys(allUserGroups);
+        details.forEach((item) => {
+            userGroupStuff.push(allUserGroups[item]);
+        });
+        return(userGroupStuff);
+    };
+
     return {
         getUserDetails,
         getUserExercises,
         getUserEvents,
-        getUserGroups
+        getUserGroups,
+        showUserDetails,
+        showUserExercises,
+        showUserEvents,
+        showUserGroups
     };
 });
