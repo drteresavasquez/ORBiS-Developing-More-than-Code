@@ -8,10 +8,10 @@ app.controller("userCtrl", function ($scope, $window, authFactory, $location, $h
     };
 
     $scope.logIn = () => {
-        authFactory.logIn($scope.account)
-        .then(() => {
-            //add isTeacher logic here
-            $window.location.href = "#!/";
-        });
+        authFactory.logIn($scope.account);
+        // .then(() => {
+        //     //add isTeacher logic here
+        //     $window.location.href = "#!/";
+        // });
     };
 });

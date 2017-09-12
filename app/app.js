@@ -11,7 +11,7 @@ let isAuth = (authFactory) => new Promise((resolve, reject) => {
                 // console.log("Authenticated, go ahead");
                 resolve();
             } else {
-                console.log("Authentication reject, GO AWAY");
+                // console.log("Authentication reject, GO AWAY");
                 reject();
             }
         });
@@ -28,11 +28,16 @@ app.config(($routeProvider) => {
             templateUrl: 'app/login-view/loginForm.html',
             controller: 'userCtrl'
         })
-        // .when('/task-list', {
-        //     templateUrl: 'partials/list.html',
-        //     controller: 'listCtrl',
-        //     resolve: {isAuth}
-        // })
+        .when('/edit-profile', {
+            templateUrl: 'app/user-profile-view/form.html',
+            controller: 'editProfileController',
+            resolve: {isAuth}
+        })
+        .when('/new-user', {
+            templateUrl: 'app/user-profile-view/form.html',
+            controller: 'addUserController',
+            resolve: {isAuth}
+        })
         // .when('/item/newItem', {
         //     templateUrl: 'partials/form.html',
         //     controller: 'addTaskCtrl',

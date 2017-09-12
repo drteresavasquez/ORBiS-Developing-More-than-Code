@@ -1,7 +1,9 @@
 <div>
     <div class="row" ng-repeat="item in deets">
         <div class="col">
-            <img ng-src="{{item.profileImg}}"><br> {{item.gitHubLink}}
+            <img ng-src="{{item.profileImg}}"><br> 
+            <a href="{{item.gitHubLink}}">GitHub Link</a>
+            <a href="#!/edit-profile">Edit Your Profile</a>
         </div>
         <div class="col">
             Hello, {{item.first_name}}<br> {{item.cohort}}
@@ -14,19 +16,11 @@
     </div>
     <div>
         <ul class="nav nav-tabs">
-            <li class="nav-item dropdown" ng-class="{ active: isSet(1) }">
-                <a href ng-click="setTab(1)" class="nav-link dropdown-toggle active" data-toggle="dropdown" role="button" aria-haspopup="true"
-                    aria-expanded="false">All Exercises</a>
-                <div class="dropdown-menu" ng-model="milestone">
-                    <a class="dropdown-item" href ng-model="milestone" value=1>Milestone 1</a>
-                    <a class="dropdown-item" href="#" ng-model="milestone" value=2>Milestone 2</a>
-                    <a class="dropdown-item" href="#" ng-model="milestone" value=3>Milestone 3</a>
-                    <a class="dropdown-item" href="#" ng-model="milestone">Milestone 4</a>
-                    <a class="dropdown-item" href="#" ng-model="milestone">Milestone 5</a>
-                </div>
+            <li class="nav-item" ng-class="{ active: isSet(1) }">
+                <a class="nav-link active" href ng-click="setTab(1)">My Stuff</a>
             </li>
-            <li class="nav-item" ng-class="{ active: isSet(2) }">
-                <a class="nav-link" href ng-click="setTab(2)">My Exercises</a>
+            <li class="nav-item dropdown" ng-class="{ active: isSet(2) }">
+                <a href ng-click="setTab(2)" class="nav-link">All Exercises</a>
             </li>
             <li class="nav-item" ng-class="{ active: isSet(3) }">
                 <a class="nav-link" href ng-click="setTab(3)">Events</a>
@@ -38,8 +32,8 @@
     </div>
 
     <!-- TAB 1 -->
-    <div ng-show="isSet(1)">
-        <input type="search" ng-model="query" class="form-control search" aria-describedby="search" placeholder="Search Exercises"
+    <div ng-show="isSet(2)">
+        <input type="search" ng-model="queryAllEx" class="form-control search" aria-describedby="search" placeholder="Search Exercises"
             autofocus><br>
         <table class="table table-hover">
             <thead>
@@ -50,9 +44,9 @@
                     <th><i class="fa fa-info-circle" aria-hidden="true"></i></th>
                 </tr>
             </thead>
-            <tbody ng-repeat="item in allExercises | filter:query | orderBy: 'milestone'">
+            <tbody ng-repeat="item in allExercises | filter:queryAllEx | orderBy:'milestone'">
                 <tr>
-                    <th scope="row"><i class="fa fa-plus-square" aria-hidden="true"></i></th>
+                    <th scope="row"><a href ng-click="addExercise(item.sha)"><i class="fa fa-plus-square" aria-hidden="true"></i></a></th>
                     <td>{{item.name}}</td>
                     <td>{{item.milestone}}</td>
                     <td><a href="{{item.html_url}}" target="_blank">Details</a></td>
@@ -62,24 +56,49 @@
     </div>
 
     <!-- TAB 2 -->
-    <div ng-show="isSet(2)">
-        <input type="search" ng-model="queryMine" class="form-control search" aria-describedby="search" placeholder="Search Exercises"
+    <div ng-show="isSet(1)">
+        <input type="search" ng-model="queryMine" class="form-control search" aria-describedby="search" placeholder="Search My Stuff"
             autofocus><br>
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th>FUN</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Username</th>
+                    <th>Delete</th>
+                    <th>Item Name</th>
+                    <th>Milestone</th>
+                    <th>Type</th>
+                    <th>Location</th>
+                    <th>Status</th>
+                    <th>Points</th>
                 </tr>
             </thead>
-            <tbody ng-repeat="item in allExercises | filter:queryMine | orderBy: 'milestone'">
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
+            <tbody>
+                <tr ng-repeat="item in exerciseDeets | filter:queryMine | orderBy: 'milestone'">
+                    <td scope="row">-</td>
+                    <td><a href="{{item.exURL}}" target="_blank">{{item.exName}}</a></td>
+                    <td>{{item.milestone}}</td>
+                    <td>Exercise</td>
+                    <td>N/A</td>
+                    <td>Status</td>
+                    <td>{{item.points}}</td>
+                </tr>
+                <tr ng-repeat="item in userEventDeets | filter:queryMine">
+                    <td scope="row">-</td>
+                    <td><a href="{{item.eventLink}}" target="_blank">{{item.eventTitle}}</a></td>
+                    <td>N/A</td>
+                    <td>Events</td>
+                    <td>{{item.locationName}} | {{item.locationAddy}}</td>
+                    <td>Status</td>
+                    <td>{{item.points}}</td>
+                </tr>
+                <tr ng-repeat="item in userGroupDeets | filter:queryMine">
+                    <td scope="row">-</td>
+                    <td>{{item.projectName}}</a>
+                    </td>
+                    <td>N/A</td>
+                    <td>Group Project</td>
+                    <td>N/A</td>
+                    <td>Status</td>
+                    <td>{{item.points}}</td>
                 </tr>
             </tbody>
         </table>
@@ -114,67 +133,32 @@
 
     <!-- TAB 4 -->
     <div ng-show="isSet(4)">
+        <input type="search" ng-model="queryGroup" class="form-control search" aria-describedby="search" placeholder="Search Group Projects"
+            autofocus> Filter by Cohort: <select ng-model="cohort">
+                <option value=19>Cohort 19</option>
+                <option value=20>Cohort 20</option>
+                <option value=21>Cohort 21</option>
+                <option value=22>Cohort 22</option>
+            </select>
+        <!-- <input type="radio" ng-model="cohort" value=19> Cohort 19<br>
+        <input type="radio" ng-model="cohort" value=20> Cohort 20 -->
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th>Points</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Username</th>
+                    <th>Add</th>
+                    <th>Group Project Name</th>
+                    <th>Cohort</th>
+                    <th>Repo Link</th>
+                    <th>Possible Points</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody ng-repeat="item in allGroupProjects | filter:queryGroup | filter:cohort | orderBy: 'cohort'">
                 <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td colspan="2">Larry the Bird</td>
-                    <td>@twitter</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td colspan="2">Larry the Bird</td>
-                    <td>@twitter</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td colspan="2">Larry the Bird</td>
-                    <td>@twitter</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td colspan="2">Larry the Bird</td>
-                    <td>@twitter</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td colspan="2">Larry the Bird</td>
-                    <td>@twitter</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td colspan="2">Larry the Bird</td>
-                    <td>@twitter</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td colspan="2">Larry the Bird</td>
-                    <td>@twitter</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td colspan="2">Larry the Bird</td>
-                    <td>@twitter</td>
+                    <th scope="row">+</th>
+                    <td>{{item.projectName}}</td>
+                    <td>{{item.cohort}}</td>
+                    <td><a href="{{item.linktoRepo}}" target="_blank">Link</a></td>
+                    <td>{{item.points}}</td>
                 </tr>
             </tbody>
         </table>
