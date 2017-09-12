@@ -8,6 +8,15 @@ However, perhaps you are like many other people, you like people and people like
 
 Read the Room takes off the initial shell shock of the environment by including students in personality houses, cohorts, and exercises in a simple and fun way. Read the Room also equips teachers with the ability to provide valuable feedback to students. Teachers also have the ability to group teams based on more than skills or exercises completed. They can see what students’ tech and social goals are, what skills they have acquired so not too many with the same skillset or social goals are grouped together all the time.
 
+### Qualitative Impact:
+- Social Validity
+- Student sense of belonging
+
+### Quantitative Impact:
+- Points based focus that takes into account various measures that contribute to a student's success (i.e. exercise completion, group participation, networking, and personality style mentorship)
+- The ability to take a snapshot of a student's progress compared to expected academic standards
+- The ability to guide students in need of help in a specific area of student success.
+
 ### Features
 - Gamification: A points based system where all activities are weighted evenly: completed exercises, group/team feedback, event attendance, and other admin at NSS.
 
