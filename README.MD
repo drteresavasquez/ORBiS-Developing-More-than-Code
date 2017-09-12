@@ -48,6 +48,7 @@ Gain more tech project management skills.
 
 Trello Board:
 https://trello.com/b/ah8fv9tX
+
 Mock-up:
 https://app.moqups.com/dr.terry2013@gmail.com/k3cOhIfkXp/view/page/ad64222d5
 
