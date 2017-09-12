@@ -46,6 +46,7 @@ app.controller("userProfileController", function ($scope, $window, gitHubFactory
             $scope.userGroupDeets = getUserInfo.showUserGroups(allUserGroups);
         });
 
+    $scope.UserPoints = getUserInfo.getUserPoints(currentUser);
     $scope.tab = 1;
 
     $scope.setTab = function (newTab) {
@@ -63,12 +64,12 @@ app.controller("userProfileController", function ($scope, $window, gitHubFactory
             
         });
     };
-    
+
     $scope.milestones();
     $scope.events();
     $scope.groupProjects();
 
-    //IF GITHUB API DOES"T TIME OUT
+    //IF GITHUB API DOESN'T TIME OUT
     // $scope.milestoneTwo = () => {
     //     gitHubFactory.getMilestoneTwo()
     //         .then((data) => {
