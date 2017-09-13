@@ -12,9 +12,18 @@ app.controller("userProfileController", function ($scope, $window, gitHubFactory
     };
 
     $scope.events = () => {
+        let allEvents = [];
         $http.get(`${FBCreds.databaseURL}/submitted-events.json`)
             .then((events) => {
-                $scope.allEvents = events.data;
+                allEvents.push(events.data);
+                $scope.allEvents.id = Object.keys(events.data);
+                // eventDetails.forEach((item) => {
+                //     events[item].id = item;
+                //     allEvents.push(events[item]);
+                // });
+                console.log("allEvents", allEvents);
+                return(allEvents);
+                
             });
     };
 
@@ -28,7 +37,7 @@ app.controller("userProfileController", function ($scope, $window, gitHubFactory
     getUserInfo.getUserExercises(currentUser)
         .then((exercises) => {
             $scope.exerciseDeets = getUserInfo.showUserExercises(exercises);
-            console.log("$scope.exercises", $scope.exerciseDeets);
+            // console.log("$scope.exercises", $scope.exerciseDeets);
         });
 
     getUserInfo.getUserDetails(currentUser)
@@ -60,6 +69,10 @@ app.controller("userProfileController", function ($scope, $window, gitHubFactory
 
     $scope.addExercise = function(exerciseId){
         pushUserStuffFactory.addUserExercise(exerciseId);
+    };
+
+    $scope.addEvent = function(eventId){
+        pushUserStuffFactory.addUserEvent(eventId);
     };
 
     $scope.milestones();

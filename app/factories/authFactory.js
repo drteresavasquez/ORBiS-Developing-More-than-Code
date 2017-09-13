@@ -4,13 +4,14 @@
 
 app.factory("authFactory", function ($q, $http, FBCreds, $window, $location) {
     let currentUser = null;
+    let currentUserName = null;
 
     const isAuthenticated = function () {
         return new Promise((resolve, reject) => {
             firebase.auth().onAuthStateChanged((user) => {
                 if (user) {
                     currentUser = user.uid;
-                    // console.log("currentUser", currentUser);
+                    console.log("currentUser", currentUser);
                     resolve(true);
                 } else {
                     resolve(false);
@@ -61,7 +62,7 @@ app.factory("authFactory", function ($q, $http, FBCreds, $window, $location) {
     };
 
     const editUser = function (obj) {
-        console.log("object", obj);
+        // console.log("object", obj);
         let currentUser = getCurrentUser();
         return $q((resolve, reject) => {
             $http.get(`${FBCreds.databaseURL}/users.json?orderBy="uid"&equalTo="${currentUser}"`)
@@ -72,7 +73,7 @@ app.factory("authFactory", function ($q, $http, FBCreds, $window, $location) {
                 })
                 .then((resultID) => {
                     let newObj = JSON.stringify(obj);
-                    console.log(newObj);
+                    // console.log(newObj);
                     $http.patch(`${FBCreds.databaseURL}/users/${resultID}.json`, newObj).then((data) => {
                             $location.url("#/");
                             resolve(data);

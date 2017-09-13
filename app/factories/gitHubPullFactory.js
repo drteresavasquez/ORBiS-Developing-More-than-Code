@@ -13,7 +13,7 @@ app.factory("gitHubFactory", function($q, $http, authFactory, FBCreds){
             .then((results)=>{
                 let allExercises = results.data;
                 let gitHubkeys = Object.keys(results.data);
-                console.log("allExercises", allExercises);
+                // console.log("allExercises", allExercises);
                 resolve(allExercises);
                 // $http.get(`${FBCreds.databaseURL}/user-exercises.json?orderBy="uid"&equalTo="${currentUser}"`)
                 // .then((userExercises)=>{

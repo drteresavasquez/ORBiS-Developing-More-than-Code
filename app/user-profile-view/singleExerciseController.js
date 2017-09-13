@@ -3,10 +3,12 @@
 app.controller("singleExercise", function ($scope, $routeParams, getUserInfo, $location, pushUserStuffFactory) {
 
     $scope.title = "Submit Your Exercise";
+    $scope.adminTitle = "Score this Exercise";
     $scope.submitButtonText = "Submit";
     
     $scope.exerciseSubmit = {
-        dateScored: "N/A",
+        userName:"",
+        dateScored: "",
         exName:"",
         exURL:"",
         exerciseId: "",

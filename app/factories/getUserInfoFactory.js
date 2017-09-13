@@ -18,7 +18,7 @@ app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route) {
             details.forEach((item) => {
                 userProfileStuff.push(userDeets[item]);
             });
-            console.log("userProfileStuff", userProfileStuff);
+            // console.log("userProfileStuff", userProfileStuff);
             return(userProfileStuff);
     };
 
@@ -105,40 +105,40 @@ app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route) {
         let groupPoints = [0];
     getUserExercises(currentUser)
         .then((allUserExercises)=>{
-            console.log("allUserExercises", allUserExercises);
+            // console.log("allUserExercises", allUserExercises);
             let exDetails = Object.keys(allUserExercises);
             exDetails.forEach((item) => {
-                exercisePoints.push(allUserExercises[item].points);
+                exercisePoints.push(Number(allUserExercises[item].points));
             });
         })
         .then(()=>{
             getUserGroups(currentUser)
                 .then((allUserGroups)=>{
-                    console.log("allUserGroups", allUserGroups);
+                    // console.log("allUserGroups", allUserGroups);
                     let exDetails = Object.keys(allUserGroups);
                     exDetails.forEach((item) => {
-                        groupPoints.push(allUserGroups[item].points);
+                        groupPoints.push(Number(allUserGroups[item].points));
                     });
             });
         })
         .then(()=>{
             getUserEvents(currentUser)
             .then((allUserEvents)=>{
-                console.log("allUserEvents", allUserEvents);
+                // console.log("allUserEvents", allUserEvents);
                 let exDetails = Object.keys(allUserEvents);
                 exDetails.forEach((item) => {
-                    eventPoints.push(allUserEvents[item].points);
+                    eventPoints.push(Number(allUserEvents[item].points));
                 });
             });
         })
         .then(()=>{
-            console.log("FINALLLLLLL eventPoints", eventPoints);
+            // console.log("FINALLLLLLL eventPoints", eventPoints);
             pointsArray.push(exercisePoints.reduce((a,b)=>a + b));
             pointsArray.push(groupPoints.reduce((a,b)=>a + b));
             pointsArray.push(eventPoints.reduce((a,b)=>a + b));
         })
         .then(()=>{
-            let pointsTotal = pointsArray.reduce((a,b)=>a + b);
+            let pointsTotal = pointsArray.reduce((a,b)=>a + b, 0);
             console.log("pointsTotal", pointsTotal);
             let tempObj = {
                 points: pointsTotal
