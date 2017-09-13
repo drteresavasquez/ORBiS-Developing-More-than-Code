@@ -75,6 +75,7 @@
                             <option value="In Progress">In Progress</option>
                             <option value="Submitted">Submitted</option>
                             <option value="Scored">Scored</option>
+                            <option value="Going">Going</option>
                         </select>
             </div>
         </div>
@@ -83,7 +84,7 @@
             <thead>
                 <tr>
                     <th>Item Name</th>
-                    <th>Milestone</th>
+                    <th>Info</th>
                     <th>Type</th>
                     <th>Status</th>
                     <th>Points</th>
@@ -92,24 +93,24 @@
             <tbody>
                 <tr ng-repeat="item in exerciseDeets | filter:queryMine | filter:status | orderBy: 'milestone'">
                     <td scope="row"><a ng-href="#!/exercise/{{item.id}}">{{item.exName}}</a></td>
-                    <td>{{item.milestone}}</td>
-                    <td>Exercise</td>
+                    <td>Milestone {{item.milestone}}</td>
+                    <td>{{item.type}}</td>
                     <td>{{item.status}}</td>
                     <td>{{item.points}}</td>
                 </tr>
-                <tr ng-repeat="item in userEventDeets | filter:queryMine">
-                    <td scope="row"><a href="{{item.id}}">{{item.eventTitle}}</a></td>
-                    <td>N/A</td>
-                    <td>Events</td>
-                    <td>Status</td>
+                <tr ng-repeat="item in userEventDeets | filter:queryMine | filter:status">
+                    <td scope="row"><a href="{{item.eventLink}}">{{item.eventTitle}} | {{item.eventDate}} | {{item.startTime}}</a></td>
+                    <td>Location: {{item.locationName}}</td>
+                    <td>{{item.type}}</td>
+                    <td>{{item.status}}</td>
                     <td>{{item.points}}</td>
                 </tr>
-                <tr ng-repeat="item in userGroupDeets | filter:queryMine">
+                <tr ng-repeat="item in userGroupDeets | filter:queryMine | filter:status">
                     <td scope="row">{{item.projectName}}</a>
                     </td>
-                    <td>N/A</td>
-                    <td>Group Project</td>
-                    <td>Status</td>
+                    <td><a ng-href="{{item.linktoRepo}}">Repo Link</a></td>
+                    <td>{{item.type}}</td>
+                    <td>{{item.status}}</td>
                     <td>{{item.points}}</td>
                 </tr>
             </tbody>
@@ -168,7 +169,7 @@
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th>Add</th>
+                    <th scope="row"><i class="fa fa-plus-square" aria-hidden="true"></i></th>
                     <th>Group Project Name</th>
                     <th>Cohort</th>
                     <th>Repo Link</th>
@@ -177,7 +178,7 @@
             </thead>
             <tbody ng-repeat="item in allGroupProjects | filter:queryGroup | filter:cohort | orderBy: 'cohort'">
                 <tr>
-                    <th scope="row">+</th>
+                    <th scope="row"><a href ng-click="addGroupProject(item.id)"><i class="fa fa-plus-square" aria-hidden="true"></i></a></th>
                     <td>{{item.projectName}}</td>
                     <td>{{item.cohort}}</td>
                     <td><a href="{{item.linktoRepo}}" target="_blank">Link</a></td>

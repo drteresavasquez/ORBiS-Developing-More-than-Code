@@ -20,7 +20,7 @@ app.controller("singleExercise", function ($scope, $routeParams, getUserInfo, $l
         techSkills:""
     };
     
-    $scope.singleExerciseDeet = [];
+    // $scope.singleExerciseDeet = [];
     console.log("itemId", $routeParams.itemId);
     const showExercise = function () {
         getUserInfo.getSingleExercise($routeParams.itemId)
