@@ -44,7 +44,7 @@ app.config(($routeProvider) => {
         //     resolve: {isAuth}
         // })
         // //: tells it that what's coming is dynamic
-        .when('#!/exercise/:itemId', {
+        .when('/exercise/:itemId', {
             templateUrl: 'app/user-profile-view/exerciseDetails.html',
             controller: 'singleExercise',
             resolve: {isAuth}

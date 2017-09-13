@@ -36,6 +36,7 @@ app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route) {
         let userExerciseStuff = [];
         let exDetails = Object.keys(allUserExercises);
         exDetails.forEach((item) => {
+            allUserExercises[item].id = item;
             userExerciseStuff.push(allUserExercises[item]);
         });
         return(userExerciseStuff);
