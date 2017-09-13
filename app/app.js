@@ -44,11 +44,11 @@ app.config(($routeProvider) => {
         //     resolve: {isAuth}
         // })
         // //: tells it that what's coming is dynamic
-        // .when('/task/:itemId', {
-        //     templateUrl: 'partials/details.html',
-        //     controller: 'detailTaskCtrl',
-        //     resolve: {isAuth}
-        // })
+        .when('#!/exercise/:itemId', {
+            templateUrl: 'app/user-profile-view/exerciseDetails.html',
+            controller: 'singleExercise',
+            resolve: {isAuth}
+        })
         // .when('/task/:itemId/edit', {
         //     templateUrl: 'partials/form.html',
         //     controller: 'editTaskCtrl',

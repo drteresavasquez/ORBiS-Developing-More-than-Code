@@ -1,15 +1,38 @@
 "use strict";
 // console.log("gitHubFactory, yo!");
 
-app.factory("gitHubFactory", function($q, $http){
+app.factory("gitHubFactory", function($q, $http, authFactory, FBCreds){
+
+    let currentUser = authFactory.getCurrentUser();
 
     const getMilestones = function(){
+        let noStatusExercises = [];
+        let userKeys = [];
         return $q((resolve, reject) => {
             $http.get("app/data/exercises.json")
             .then((results)=>{
                 let allExercises = results.data;
-                // console.log("allExercises", allExercises);
+                let gitHubkeys = Object.keys(results.data);
+                console.log("allExercises", allExercises);
                 resolve(allExercises);
+                // $http.get(`${FBCreds.databaseURL}/user-exercises.json?orderBy="uid"&equalTo="${currentUser}"`)
+                // .then((userExercises)=>{
+                //     let exKeys = Object.keys(userExercises.data);
+                //     exKeys.forEach((item)=>{
+                //         userKeys.push(userExercises.data[item].exerciseId);
+                //     });
+                // gitHubkeys.forEach((item)=>{
+                //     // console.log("results.data[item].exerciseId", results.data[item].sha);
+                //     if (results.data[item].sha == userKeys[item]){
+                //         console.log("worked!");
+                //     }else{
+                //         noStatusExercises.push(results.data[item]);
+                //     }
+                // });
+                // console.log("noStatusExercises", noStatusExercises);
+                    
+                // });
+                
             });
         });
     };

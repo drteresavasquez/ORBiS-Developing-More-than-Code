@@ -20,7 +20,7 @@
                 <a class="nav-link active" href ng-click="setTab(1)">My Stuff</a>
             </li>
             <li class="nav-item dropdown" ng-class="{ active: isSet(2) }">
-                <a href ng-click="setTab(2)" class="nav-link">All Exercises</a>
+                <a href ng-click="setTab(2)" class="nav-link">Available Exercises</a>
             </li>
             <li class="nav-item" ng-class="{ active: isSet(3) }">
                 <a class="nav-link" href ng-click="setTab(3)">Events</a>
@@ -62,41 +62,33 @@
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th>Delete</th>
                     <th>Item Name</th>
                     <th>Milestone</th>
                     <th>Type</th>
-                    <th>Location</th>
                     <th>Status</th>
                     <th>Points</th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="item in exerciseDeets | filter:queryMine | orderBy: 'milestone'">
-                    <td scope="row">-</td>
-                    <td><a href="{{item.exURL}}" target="_blank">{{item.exName}}</a></td>
+                    <td scope="row"><a ng-href="#!/exercise/{{item.id}}">{{item.exName}}</a></td>
                     <td>{{item.milestone}}</td>
                     <td>Exercise</td>
-                    <td>N/A</td>
-                    <td>Status</td>
+                    <td>{{item.status}}</td>
                     <td>{{item.points}}</td>
                 </tr>
                 <tr ng-repeat="item in userEventDeets | filter:queryMine">
-                    <td scope="row">-</td>
-                    <td><a href="{{item.eventLink}}" target="_blank">{{item.eventTitle}}</a></td>
+                    <td scope="row"><a href="{{item.eventLink}}">{{item.eventTitle}}</a></td>
                     <td>N/A</td>
                     <td>Events</td>
-                    <td>{{item.locationName}} | {{item.locationAddy}}</td>
                     <td>Status</td>
                     <td>{{item.points}}</td>
                 </tr>
                 <tr ng-repeat="item in userGroupDeets | filter:queryMine">
-                    <td scope="row">-</td>
-                    <td>{{item.projectName}}</a>
+                    <td scope="row">{{item.projectName}}</a>
                     </td>
                     <td>N/A</td>
                     <td>Group Project</td>
-                    <td>N/A</td>
                     <td>Status</td>
                     <td>{{item.points}}</td>
                 </tr>

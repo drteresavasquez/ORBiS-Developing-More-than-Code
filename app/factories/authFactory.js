@@ -48,7 +48,7 @@ app.factory("authFactory", function ($q, $http, FBCreds, $window, $location) {
 
     const addBrandNewUser = function (addNewUser) {
         let newObj = JSON.stringify(addNewUser);
-        return $http.post(`${FBCreds.databaseURL}/users.json?`, newObj)
+        return $http.post(`${FBCreds.databaseURL}/users.json`, newObj)
             .then((data) => {
                 console.log("data", data);
                 $location.url("#/");

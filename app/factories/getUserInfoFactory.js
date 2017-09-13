@@ -41,6 +41,18 @@ app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route) {
         return(userExerciseStuff);
     };
 
+    const getSingleExercise = function (itemId) {
+        return $q((resolve, reject) => {
+            $http.get(`${FBCreds.databaseURL}/user-exercises/${itemId}.json`)
+                .then((itemObj) => {
+                    resolve(itemObj.data);
+                })
+                .catch((error) => {
+                    reject(error);
+                });
+        });
+    };
+
     const getUserEvents = function (currentUser) {
         return $q((resolve, reject) => {
             $http.get(`${FBCreds.databaseURL}/user-events.json?orderBy="uid"&equalTo="${currentUser}"`)
@@ -86,17 +98,16 @@ app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route) {
 
     const getUserPoints = function(currentUser){
         console.log("currentUser", currentUser);
-        let pointsArray = [];
-        let exercisePoints = [];        
-        let eventPoints = [];
-        let groupPoints = [];
+        let pointsArray = [0];
+        let exercisePoints = [0];        
+        let eventPoints = [0];
+        let groupPoints = [0];
     getUserExercises(currentUser)
         .then((allUserExercises)=>{
             console.log("allUserExercises", allUserExercises);
             let exDetails = Object.keys(allUserExercises);
             exDetails.forEach((item) => {
                 exercisePoints.push(allUserExercises[item].points);
-                pointsArray.push(exercisePoints.reduce((a,b)=>a + b));
             });
         })
         .then(()=>{
@@ -106,9 +117,7 @@ app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route) {
                     let exDetails = Object.keys(allUserGroups);
                     exDetails.forEach((item) => {
                         groupPoints.push(allUserGroups[item].points);
-                        pointsArray.push(groupPoints.reduce((a,b)=>a + b));
                     });
-                console.log("pointsArray", pointsArray);
             });
         })
         .then(()=>{
@@ -118,15 +127,16 @@ app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route) {
                 let exDetails = Object.keys(allUserEvents);
                 exDetails.forEach((item) => {
                     eventPoints.push(allUserEvents[item].points);
-                    pointsArray.push(eventPoints.reduce((a,b)=>a + b));
-                    console.log("pointsArray", pointsArray);
-                    // let pointsTotal = pointsArray.reduce((a,b)=>a + b);
-                    // console.log("pointsTotal", pointsTotal);
                 });
             });
         })
         .then(()=>{
-            console.log("FINALLLLLLL pointsArray", pointsArray);
+            console.log("FINALLLLLLL eventPoints", eventPoints);
+            pointsArray.push(exercisePoints.reduce((a,b)=>a + b));
+            pointsArray.push(groupPoints.reduce((a,b)=>a + b));
+            pointsArray.push(eventPoints.reduce((a,b)=>a + b));
+        })
+        .then(()=>{
             let pointsTotal = pointsArray.reduce((a,b)=>a + b);
             console.log("pointsTotal", pointsTotal);
             let tempObj = {
@@ -134,15 +144,13 @@ app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route) {
             };
             authFactory.editUser(tempObj)
                 .then(() => {
-                    console.log("then is updated");
+                    let pointsArray = [];
+                    console.log("Points are updated");
                 });
-        }); 
+        });
+        
         
     };
-
-    // const showUserPoints = function(pointsTotal){
-    //     console.log(pointsTotal);
-    // };
 
     return {
         getUserDetails,
@@ -154,6 +162,6 @@ app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route) {
         showUserExercises,
         showUserEvents,
         showUserGroups,
-        // showUserPoints
+        getSingleExercise
     };
 });

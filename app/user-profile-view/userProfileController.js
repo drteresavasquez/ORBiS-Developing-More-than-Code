@@ -1,13 +1,13 @@
 "use strict";
 
-app.controller("userProfileController", function ($scope, $window, gitHubFactory, authFactory, getUserInfo, $http, FBCreds, $q, pushUserStuffFactory, $route) {
+app.controller("userProfileController", function ($scope, $window, gitHubFactory, authFactory, getUserInfo, $http, FBCreds, $q, pushUserStuffFactory, $route, $routeParams) {
 
     let currentUser = authFactory.getCurrentUser();
 
     $scope.milestones = () => {
         gitHubFactory.getMilestones()
-            .then((data) => {
-                $scope.allExercises = data;
+            .then((allExercises) => {
+                $scope.allExercises = allExercises;
             });
     };
 
@@ -28,6 +28,7 @@ app.controller("userProfileController", function ($scope, $window, gitHubFactory
     getUserInfo.getUserExercises(currentUser)
         .then((exercises) => {
             $scope.exerciseDeets = getUserInfo.showUserExercises(exercises);
+            $scope.exerciseDeets.id = $routeParams.itemId;
         });
 
     getUserInfo.getUserDetails(currentUser)
@@ -58,11 +59,7 @@ app.controller("userProfileController", function ($scope, $window, gitHubFactory
     };
 
     $scope.addExercise = function(exerciseId){
-        pushUserStuffFactory.addUserExercise(exerciseId)
-        .then((results)=>{
-            console.log("RESULTS FROM CLICK", results);
-            
-        });
+        pushUserStuffFactory.addUserExercise(exerciseId);
     };
 
     $scope.milestones();
