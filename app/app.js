@@ -65,9 +65,14 @@ app.config(($routeProvider) => {
             controller: 'userGroupSubmission',
             resolve: {isAuth}
         })
-        .when('/admin/add-event', {
+        .when('/admin/addEvent', {
             templateUrl: 'app/admin-view/adminAddEventsForm.html',
             controller: 'adminAddEvents',
+            resolve: {isAuth}
+        })
+        .when('/admin/addGroup', {
+            templateUrl: 'app/admin-view/adminAddGroupForm.html',
+            controller: 'adminAddGroup',
             resolve: {isAuth}
         })
         .when('/admin/groupsevents', {

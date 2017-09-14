@@ -23,6 +23,8 @@ app.controller("adminAddEvents", function ($scope, $location, adminAddFactory, a
                     $location.url("/admin/groupsevents");
                 });
         };
-    });
+
+});
+
 
     
