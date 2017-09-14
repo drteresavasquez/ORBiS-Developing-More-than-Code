@@ -56,10 +56,6 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
         });
     };
 
-
-
-
-
     const addUserExercise = (exerciseId)=>{
         $http.get(`${FBCreds.databaseURL}/user-exercises.json?orderBy="uid"&equalTo="${currentUser}"`)
         .then((results)=>{
@@ -135,10 +131,8 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
         .then((results)=>{
             let throwAwayArray = [];
             let key = Object.keys(results.data);
-            
-            key.forEach((item)=>{
-                // console.log("results.data[item].eventId", results.data[item].eventId);
-                if(results.data[item].eventId == passedId){
+            key.forEach((key)=>{
+                if(results.data[key] == passedId){
                     throwAwayArray.push(results.data[key]);
                     console.log("EVENT Already Exists!");
                 }else{
@@ -150,16 +144,19 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
                 return $q((resolve, reject) => {
                     $http.get(`https://front-end-capstone-ce3ec.firebaseio.com/submitted-events.json`)
                     .then((results)=>{
-                        let keys = Object.keys(results.data);
-                        keys.forEach((item, index)=>{
-                        if(results.data[item].id == passedId){
-                            singleUserEvent.push(results.data[item]);
+                        let eventCollection = results.data;
+                        console.log("eventCollection", eventCollection);
+                        Object.keys(eventCollection).forEach((key) => {
+                            eventCollection[key].id = key;
+                        if(results.data[key].id == passedId){
+                            singleUserEvent.push(eventCollection[key]);
                         }
                         });
-                    return(singleUserEvent);
+                        console.log("singleUserEvent", singleUserEvent);
+                        return(singleUserEvent);
                      })
                      .then((singleUserEvent)=>{
-                        console.log(singleUserEvent[0].id);
+                        // console.log(singleUserEvent[0].id);
                         let newEvent = {
                             userName: "",
                             type:"Event",
@@ -168,7 +165,7 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
                             eventDate: singleUserEvent[0].begDate,
                             eventLink : singleUserEvent[0].eventLink,
                             eventTitle : singleUserEvent[0].eventTitle,
-                            eventId : singleUserEvent[0].id,
+                            // eventId : singleUserEvent[0].id,
                             points : 0,
                             locationAddy : singleUserEvent[0].locationAddy,
                             locationName: singleUserEvent[0].locationName,
@@ -220,16 +217,17 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
                 return $q((resolve, reject) => {
                     $http.get(`https://front-end-capstone-ce3ec.firebaseio.com/submitted-group-projects.json`)
                     .then((results)=>{
-                        let groupKeys = Object.keys(results.data);
-                        console.log("results.data", results.data);
-                        groupKeys.forEach((item)=>{
-                            
-                        if(results.data[item].id == projectId){
-                            singleGroupProject.push(results.data[item]);
+                        let groupCollection = results.data;
+                            console.log("groupCollection", groupCollection);
+                            Object.keys(groupCollection).forEach((key) => {
+                            groupCollection[key].id = key;
+                        if(results.data[key].id == projectId){
+                            singleGroupProject.push(groupCollection[key]);
                         }
                         });
-                    return(singleGroupProject);
-                     })
+                        console.log("singleGroupProject", singleGroupProject);
+                        return(singleGroupProject);
+                    })                   
                      .then((singleGroupProject)=>{
                         console.log(singleGroupProject);
                         let newGroupProject = {
@@ -269,8 +267,6 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
                 }
         });
     };
-
-
 
     return{addUserExercise, updateExerciseStu, addUserEvent, addUserGroupProject, updateEventStu, updateGroupStu};
 });

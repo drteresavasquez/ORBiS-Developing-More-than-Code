@@ -176,6 +176,46 @@ app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route) {
         });   
     };
 
+
+    const getAllEvents = function () {
+        let events = [];
+        return $q((resolve, reject) => {
+            $http.get(`${FBCreds.databaseURL}/submitted-events.json`)
+                .then((itemObject) => {
+                    let itemCollection = itemObject.data;
+                    console.log("itemCollection", itemCollection);
+                    Object.keys(itemCollection).forEach((key) => {
+                        itemCollection[key].id = key;
+                        events.push(itemCollection[key]);
+                    });
+                    resolve(events);
+                })
+                .catch((error) => {
+                    reject(error);
+                });
+        });
+    };
+
+
+    const getAllGroupProjs = function () {
+        let groupProjs = [];
+        return $q((resolve, reject) => {
+            $http.get(`${FBCreds.databaseURL}/submitted-group-projects.json`)
+                .then((itemObject) => {
+                    let itemCollection = itemObject.data;
+                    console.log("itemCollection", itemCollection);
+                    Object.keys(itemCollection).forEach((key) => {
+                        itemCollection[key].id = key;
+                        groupProjs.push(itemCollection[key]);
+                    });
+                    resolve(groupProjs);
+                })
+                .catch((error) => {
+                    reject(error);
+                });
+        });
+    };
+
     return {
         getUserDetails,
         getUserExercises,
@@ -188,6 +228,8 @@ app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route) {
         showUserGroups,
         getSingleExercise,
         getSingleEvent,
-        getSingleGroup
+        getSingleGroup,
+        getAllEvents,
+        getAllGroupProjs
     };
 });

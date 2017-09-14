@@ -1,6 +1,6 @@
 "use strict";
 
-app.controller("userProfileController", function ($scope, $window, gitHubFactory, authFactory, getUserInfo, $http, FBCreds, $q, pushUserStuffFactory, $route, $routeParams) {
+app.controller("userProfileController", function ($scope, $window, gitHubFactory, authFactory, getUserInfo, $http, FBCreds, $q, pushUserStuffFactory, $route, $routeParams, theDeleteFactory) {
 
     let currentUser = authFactory.getCurrentUser();
 
@@ -11,19 +11,19 @@ app.controller("userProfileController", function ($scope, $window, gitHubFactory
             });
     };
 
-    $scope.events = () => {
-        let eventsArray =[];
-        $http.get(`${FBCreds.databaseURL}/submitted-events.json`)
+    $scope.showAllEvents = function () {
+        getUserInfo.getAllEvents()
             .then((events) => {
-                $scope.allEvents = events.data;
+                // console.log("getAllEvents", events);
+                $scope.allEvents = events;
             });
     };
 
-    $scope.groupProjects = () => {
-        $http.get(`${FBCreds.databaseURL}/submitted-group-projects.json`)
+    $scope.showGroupProjects = function () {
+        getUserInfo.getAllGroupProjs()
             .then((projects) => {
-                $scope.allGroupProjects = projects.data;
-                // console.log("$scope.allGroupProjects", $scope.allGroupProjects);
+                // console.log("getAllGroupProjs", projects);
+                $scope.allGroupProjects = projects;
             });
     };
 
@@ -73,9 +73,24 @@ app.controller("userProfileController", function ($scope, $window, gitHubFactory
         // console.log(projectId);
     };
 
+///////////START DELETING//////////////
+    $scope.deleteSingleEvent = function (id) {
+        theDeleteFactory.deleteEvent(id)
+            .then(() => {
+                $scope.showAllEvents();
+            });
+    };
+
+    $scope.deleteSingleGroupProj = function (id) {
+        theDeleteFactory.deleteGroupProject(id)
+            .then(() => {
+                $scope.showGroupProjects();
+            });
+    };
+
     $scope.milestones();
-    $scope.events();
-    $scope.groupProjects();
+    $scope.showGroupProjects();
+    $scope.showAllEvents();
 
     //IF GITHUB API DOESN'T TIME OUT
     // $scope.milestoneTwo = () => {
