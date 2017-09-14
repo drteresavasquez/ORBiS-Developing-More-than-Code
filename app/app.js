@@ -70,9 +70,19 @@ app.config(($routeProvider) => {
             controller: 'adminAddEvents',
             resolve: {isAuth}
         })
+        .when('/admin/addEvent/:itemId', {
+            templateUrl: 'app/admin-view/adminAddEventsForm.html',
+            controller: 'adminEditEvents',
+            resolve: {isAuth}
+        })
         .when('/admin/addGroup', {
             templateUrl: 'app/admin-view/adminAddGroupForm.html',
             controller: 'adminAddGroup',
+            resolve: {isAuth}
+        })
+        .when('/admin/addGroup/:itemId', {
+            templateUrl: 'app/admin-view/adminAddGroupForm.html',
+            controller: 'adminEditGroup',
             resolve: {isAuth}
         })
         .when('/admin/groupsevents', {

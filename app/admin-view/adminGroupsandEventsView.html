@@ -1,19 +1,5 @@
 <div>
-    <h1>Admin Add New Groups and Events</h1>
-    <!-- <div class="row" ng-repeat="item in deets">
-            <div class="col">
-                <img ng-src="{{item.profileImg}}"><br>
-            </div>
-            <div class="col">
-                <h3>Hello, Admin {{item.first_name}}! <a href="#!/edit-profile"><i class="fa fa-pencil" aria-hidden="true"></i></a></h3>
-                <b>Cohort:</b> {{item.cohort}}
-                <br> <b>House:</b> {{item.house}}
-                <br> <b>Points:</b> {{item.points}}<br>
-                <a href="{{item.gitHubLink}}" target="_blank"><i class="fa fa-github fa-2x" aria-hidden="true"></i></a>
-            </div> -->
-    <!-- <div class="col">
-                Possible House Crest/Animal
-            </div> -->
+    <h1>Admin View/Add/Edit New Groups and Events</h1>
 </div>
 
 <!-- EVENTS -->
@@ -38,7 +24,7 @@
 <table class="table table-hover">
     <thead>
         <tr>
-            <th>Delete</th>
+            <th></th>
             <th>Date</th>
             <th>Event Name</th>
             <th>Location</th>
@@ -47,9 +33,10 @@
     </thead>
     <tbody ng-repeat="item in allEvents | filter:queryEvents | orderBy: 'begDate'">
         <tr>
-            <th scope="row"><a href=""><i ng-click="deleteSingleEvent(item.id)" class="fa fa-trash-o" aria-hidden="true"></i></a></th>
+            <th scope="row"><a href=""><i ng-click="deleteSingleEvent(item.id)" class="fa fa-trash-o" aria-hidden="true"></i></a> / <a ng-href="#!/admin/addEvent/{{item.id}}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+            </th>
             <td>{{item.begDate}} | {{item.startTime}}</td>
-            <td>{{item.eventTitle}}</td>
+            <td><a ng-href="#!/admin/addEvent/{{item.id}}">{{item.eventTitle}}</a></td>
             <td>{{item.locationName}}: {{item.locationAddy}}</td>
             <td><a href="{{item.eventLink}}" target="_blank">Details</a></td>
         </tr>
@@ -86,7 +73,7 @@
 <table class="table table-hover">
     <thead>
         <tr>
-            <th scope="row">Delete</th>
+            <th scope="row"></th>
             <th>Group Project Name</th>
             <th>Cohort</th>
             <th>Repo Link</th>
@@ -95,9 +82,9 @@
     </thead>
     <tbody ng-repeat="item in allGroupProjects | filter:queryGroup | filter:cohort | orderBy: 'cohort'">
         <tr>
-            <th scope="row"><a href=""><i ng-click="deleteSingleGroupProj(item.id)" class="fa fa-trash-o" aria-hidden="true"></i></a>
+            <th scope="row"><a href=""><i ng-click="deleteSingleGroupProj(item.id)" class="fa fa-trash-o" aria-hidden="true"></i></a> / <a ng-href="#!/admin/addGroup/{{item.id}}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
             </th>
-            <td>{{item.projectName}}</td>
+            <td><a ng-href="#!/admin/addGroup/{{item.id}}">{{item.projectName}}</a></td>
             <td>{{item.cohort}}</td>
             <td><a href="{{item.linktoRepo}}" target="_blank">Link</a></td>
             <td>{{item.points}}</td>
