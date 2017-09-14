@@ -88,6 +88,30 @@ app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route) {
         });
     };
 
+    const getBIGSubmittedEvent = (itemId)=>{
+        return $q((resolve, reject) => {
+            $http.get(`${FBCreds.databaseURL}/submitted-events/${itemId}.json`)
+                .then((itemObj) => {
+                    resolve(itemObj.data);
+                })
+                .catch((error) => {
+                    reject(error);
+                });
+        });
+    };
+
+    const getBIGSubmittedGroup = (itemId)=>{
+        return $q((resolve, reject) => {
+            $http.get(`${FBCreds.databaseURL}/submitted-group-projects/${itemId}.json`)
+                .then((itemObj) => {
+                    resolve(itemObj.data);
+                })
+                .catch((error) => {
+                    reject(error);
+                });
+        });
+    };
+
     const getSingleGroup = (itemId)=>{
         return $q((resolve, reject) => {
             $http.get(`${FBCreds.databaseURL}/user-group-projects/${itemId}.json`)
@@ -230,6 +254,8 @@ app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route) {
         getSingleEvent,
         getSingleGroup,
         getAllEvents,
-        getAllGroupProjs
+        getAllGroupProjs,
+        getBIGSubmittedEvent,
+        getBIGSubmittedGroup
     };
 });
