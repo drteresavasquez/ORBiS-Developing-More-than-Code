@@ -50,7 +50,7 @@ At the basic core, Read the Room is a todo list with the ability to complete exe
 
 Based in years of research, the central theme of Read the Room is a sense of belonging identified by Maslow’s hierarchy of needs and human development. 
 
-It is both difficult and unmanageable to foster a learning environment that is warm to EVERY student. Read the Room helps facilitate the process by giving students access to people who share their personality style through the use of  “houses," which are made up of other students at NSS so students, new and old, can share their experiences by jumping in and learn to Read the Room!
+It is both difficult and unmanageable to foster a learning environment that is warm to EVERY student. Read the Room helps facilitate the process by giving students access to people who share their personality style through the use of  “houses," which are made up of other students at NSS so students, new and old, can share their experiences by jumping in and learning to Read the Room!
 
 ### My Goals
 Solve a problem with data compilation and visualization
