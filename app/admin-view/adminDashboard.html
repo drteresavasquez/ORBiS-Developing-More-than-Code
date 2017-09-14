@@ -20,20 +20,31 @@
         <thead>
           <tr>
             <th>Status</th>
-            <th>Cohort</th>
-            <th>Exercise</th>
+            <th>Name</th>
+            <th>Type</th>
             <th>Student</th>
-            <th>Milestone</th>
+            <th>Cohort</th>
+            <th>Info</th>
           </tr>
         </thead>
         <tbody>
           <tr ng-repeat="item in allUserExercises | filter: {'status': 'Submitted'} | filter:queryStudents | filter:cohort">
             <th scope="row">{{item.teacherStatus}}</th>
-            <th>{{item.cohort}}</th>
-            <td><a ng-href="#!/admin/{{item.id}}">{{item.exName}}</a></td>
+            <td><a ng-href="#!/admin/exercise/{{item.id}}">{{item.exName}}</a></td>
+            <td>{{item.type}}</td>
             <td>{{item.userName}}</td>
-            <td>{{item.milestone}}</td>
+            <td>{{item.cohort}}</td>
+            <td>Milestone {{item.milestone}}</td>
           </tr>
+
+          <tr ng-repeat="item in allUserEvents | filter: {'status': 'Submitted'} | filter:queryStudents | filter:cohort">
+              <th scope="row">{{item.teacherStatus}}</th>
+              <td><a ng-href="#!/admin/event/{{item.id}}">{{item.eventTitle}}</a></td>
+              <td>{{item.type}}</td>
+              <td>{{item.userName}}</td>
+              <td>{{item.cohort}}</td>
+              <td>Location: {{item.locationName}}</td>
+            </tr>
         </tbody>
       </table>
 

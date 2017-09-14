@@ -23,6 +23,7 @@ app.controller("userProfileController", function ($scope, $window, gitHubFactory
         $http.get(`${FBCreds.databaseURL}/submitted-group-projects.json`)
             .then((projects) => {
                 $scope.allGroupProjects = projects.data;
+                // console.log("$scope.allGroupProjects", $scope.allGroupProjects);
             });
     };
 
@@ -64,12 +65,12 @@ app.controller("userProfileController", function ($scope, $window, gitHubFactory
 
     $scope.addEvent = function(eventId){
         pushUserStuffFactory.addUserEvent(eventId);
-        console.log(eventId);
+        // console.log(eventId);
     };
 
     $scope.addGroupProject = function(projectId){
         pushUserStuffFactory.addUserGroupProject(projectId);
-        console.log(projectId);
+        // console.log(projectId);
     };
 
     $scope.milestones();

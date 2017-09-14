@@ -45,9 +45,14 @@ app.config(($routeProvider) => {
             controller: 'addUserController',
             resolve: {isAuth}
         })
-        .when('/admin/:itemId', {
+        .when('/admin/exercise/:itemId', {
             templateUrl: 'app/admin-view/exerciseScoring.html',
             controller: 'singleExercise',
+            resolve: {isAuth}
+        })
+        .when('/admin/event/:itemId', {
+            templateUrl: 'app/admin-view/adminEventScoring.html',
+            controller: 'userEventSubmission',
             resolve: {isAuth}
         })
         .when('/admin', {

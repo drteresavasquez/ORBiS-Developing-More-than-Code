@@ -35,10 +35,23 @@ app.factory("adminPullFactory", function($q, $http, FBCreds){
         });
     };
 
-    const getAllSubmittedExercises = ()=>{
-        
+    const getAllUserEvents = ()=>{
+        return $q((resolve, reject) => {
+            let userEventsArray = [];
+            $http.get(`${FBCreds.databaseURL}/user-events.json`)
+                .then((userStuff) => {
+                    let keys = Object.keys(userStuff.data);
+                    console.log("keys", keys);
+                    keys.forEach((item)=>{
+                        userEventsArray.push(userStuff.data[item]);
+                    });
+                    console.log("userEventsArray", userEventsArray);
+                    resolve(userEventsArray);
+                });
+        });
     };
+
     
-    return{getAllUserExercises, getAllUsers};
+    return{getAllUserExercises, getAllUsers, getAllUserEvents};
 
 });

@@ -31,16 +31,69 @@
         </ul>
     </div>
 
+     <!-- TAB 2 -->
+     <div ng-show="isSet(1)">
+            <div class="row">
+                <div class="col-8">
+                    <input type="search" ng-model="queryMine" class="form-control" aria-describedby="search" placeholder="Search My Stuff" autofocus>
+                </div>
+                <div class="col-4">
+                    Filter by Status: <select class="custom-select" ng-model="status">
+                                <option value="">View All</option>
+                                <option value="Come See Us">Come See Us</option>
+                                <option value="In Progress">In Progress</option>
+                                <option value="Submitted">Submitted</option>
+                                <option value="Scored">Scored</option>
+                                <option value="Going">Going</option>
+                            </select>
+                </div>
+            </div>
+    
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Item Name</th>
+                        <th>Info</th>
+                        <th>Type</th>
+                        <th>Status</th>
+                        <th>Points</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="item in exerciseDeets | filter:queryMine | filter:status | orderBy: 'milestone'">
+                        <td scope="row"><a ng-href="#!/exercise/{{item.id}}">{{item.exName}}</a></td>
+                        <td>Milestone {{item.milestone}}</td>
+                        <td>{{item.type}}</td>
+                        <td>{{item.status}}</td>
+                        <td>{{item.points}}</td>
+                    </tr>
+                    <tr ng-repeat="item in userEventDeets | filter:queryMine | filter:status">
+                        <td scope="row"><a ng-href="#!/event/{{item.id}}">{{item.eventTitle}} | {{item.eventDate}} | {{item.startTime}}</a></td>
+                        <td>Location: {{item.locationName}}</td>
+                        <td>{{item.type}}</td>
+                        <td>{{item.status}}</td>
+                        <td>{{item.points}}</td>
+                    </tr>
+                    <tr ng-repeat="item in userGroupDeets | filter:queryMine | filter:status">
+                        <td scope="row">{{item.projectName}}</a>
+                        </td>
+                        <td><a ng-href="{{item.linktoRepo}}">Repo Link</a></td>
+                        <td>{{item.type}}</td>
+                        <td>{{item.status}}</td>
+                        <td>{{item.points}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
     <!-- TAB 1 -->
     <div ng-show="isSet(2)">
-
         <div class="row">
             <div class="col-8">
                 <input type="search" ng-model="queryAllEx" class="form-control" aria-describedby="search" placeholder="Search Exercises"
                     autofocus>
             </div>
-            <div class="col-4">
-            </div>
+            <div class="col-4"></div>
         </div>
         <table class="table table-hover">
             <thead>
@@ -61,62 +114,6 @@
             </tbody>
         </table>
     </div>
-
-    <!-- TAB 2 -->
-    <div ng-show="isSet(1)">
-        <div class="row">
-            <div class="col-8">
-                <input type="search" ng-model="queryMine" class="form-control" aria-describedby="search" placeholder="Search My Stuff" autofocus>
-            </div>
-            <div class="col-4">
-                Filter by Status: <select class="custom-select" ng-model="status">
-                            <option value="">View All</option>
-                            <option value="Come See Us">Come See Us</option>
-                            <option value="In Progress">In Progress</option>
-                            <option value="Submitted">Submitted</option>
-                            <option value="Scored">Scored</option>
-                            <option value="Going">Going</option>
-                        </select>
-            </div>
-        </div>
-
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th>Item Name</th>
-                    <th>Info</th>
-                    <th>Type</th>
-                    <th>Status</th>
-                    <th>Points</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="item in exerciseDeets | filter:queryMine | filter:status | orderBy: 'milestone'">
-                    <td scope="row"><a ng-href="#!/exercise/{{item.id}}">{{item.exName}}</a></td>
-                    <td>Milestone {{item.milestone}}</td>
-                    <td>{{item.type}}</td>
-                    <td>{{item.status}}</td>
-                    <td>{{item.points}}</td>
-                </tr>
-                <tr ng-repeat="item in userEventDeets | filter:queryMine | filter:status">
-                    <td scope="row"><a ng-href="#!/event/{{item.id}}">{{item.eventTitle}} | {{item.eventDate}} | {{item.startTime}}</a></td>
-                    <td>Location: {{item.locationName}}</td>
-                    <td>{{item.type}}</td>
-                    <td>{{item.status}}</td>
-                    <td>{{item.points}}</td>
-                </tr>
-                <tr ng-repeat="item in userGroupDeets | filter:queryMine | filter:status">
-                    <td scope="row">{{item.projectName}}</a>
-                    </td>
-                    <td><a ng-href="{{item.linktoRepo}}">Repo Link</a></td>
-                    <td>{{item.type}}</td>
-                    <td>{{item.status}}</td>
-                    <td>{{item.points}}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-
 
     <!-- TAB 3 -->
     <div ng-show="isSet(3)">
@@ -178,7 +175,7 @@
             </thead>
             <tbody ng-repeat="item in allGroupProjects | filter:queryGroup | filter:cohort | orderBy: 'cohort'">
                 <tr>
-                    <th scope="row"><a href ng-click="addGroupProject(item.id)"><i class="fa fa-plus-square" aria-hidden="true"></i></a></th>
+                        <th scope="row"><a href ng-click="addGroupProject(item.id)"><i class="fa fa-plus-square" aria-hidden="true"></i></a></th>
                     <td>{{item.projectName}}</td>
                     <td>{{item.cohort}}</td>
                     <td><a href="{{item.linktoRepo}}" target="_blank">Link</a></td>

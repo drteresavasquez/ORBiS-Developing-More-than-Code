@@ -10,6 +10,14 @@ app.controller("adminViews", function($scope, adminPullFactory, FBCreds){
         });
     };
 
+    $scope.showAllUserEvents = ()=>{
+        adminPullFactory.getAllUserEvents()
+        .then((data)=>{
+            // console.log("BIGGGGG data",data);
+            $scope.allUserEvents = data;
+        });
+    };
+
     $scope.showAllUsers = () =>{
         adminPullFactory.getAllUsers()
         .then((data)=>{
@@ -21,4 +29,5 @@ app.controller("adminViews", function($scope, adminPullFactory, FBCreds){
     
 $scope.showAllUserExercise();
 $scope.showAllUsers();
+$scope.showAllUserEvents();
 });

@@ -42,9 +42,43 @@ app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route) {
         return(userExerciseStuff);
     };
 
+    const showUserEvents = function(allUserEvents){
+        let userEventStuff = [];
+        let details = Object.keys(allUserEvents);
+        details.forEach((item) => {
+            allUserEvents[item].id = item;
+            // console.log("Event item", item);
+            userEventStuff.push(allUserEvents[item]);
+            // console.log("userEventStuff", userEventStuff);
+        });
+        return(userEventStuff);
+    };
+
+    const showUserGroups = function(allUserGroups){
+        let userGroupStuff = [];
+        let details = Object.keys(allUserGroups);
+        details.forEach((item) => {
+            allUserGroups[item].id = item;
+            userGroupStuff.push(allUserGroups[item]);
+        });
+        return(userGroupStuff);
+    };
+
     const getSingleExercise = function (itemId) {
         return $q((resolve, reject) => {
             $http.get(`${FBCreds.databaseURL}/user-exercises/${itemId}.json`)
+                .then((itemObj) => {
+                    resolve(itemObj.data);
+                })
+                .catch((error) => {
+                    reject(error);
+                });
+        });
+    };
+
+    const getSingleEvent = (itemId)=>{
+        return $q((resolve, reject) => {
+            $http.get(`${FBCreds.databaseURL}/user-events/${itemId}.json`)
                 .then((itemObj) => {
                     resolve(itemObj.data);
                 })
@@ -64,14 +98,6 @@ app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route) {
         });
     };
 
-    const showUserEvents = function(allUserEvents){
-        let userEventStuff = [];
-        let details = Object.keys(allUserEvents);
-        details.forEach((item) => {
-            userEventStuff.push(allUserEvents[item]);
-        });
-        return(userEventStuff);
-    };
 
     const getUserGroups = function (currentUser) {
         return $q((resolve, reject) => {
@@ -82,15 +108,6 @@ app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route) {
                 });
         });
         //make call to firebase to get the user's profile info
-    };
-
-    const showUserGroups = function(allUserGroups){
-        let userGroupStuff = [];
-        let details = Object.keys(allUserGroups);
-        details.forEach((item) => {
-            userGroupStuff.push(allUserGroups[item]);
-        });
-        return(userGroupStuff);
     };
 
     const getUserPoints = function(currentUser){
@@ -157,6 +174,7 @@ app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route) {
         showUserExercises,
         showUserEvents,
         showUserGroups,
-        getSingleExercise
+        getSingleExercise,
+        getSingleEvent
     };
 });

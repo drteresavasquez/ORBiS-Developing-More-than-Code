@@ -24,18 +24,18 @@ app.controller("userEventSubmission", function ($scope, $routeParams, getUserInf
     
     console.log("itemId", $routeParams.itemId);
     const showEvent = function () {
-        pushUserStuffFactory.getSingleEvent($routeParams.itemId)
+        getUserInfo.getSingleEvent($routeParams.itemId)
             .then((data) => {
                 $scope.eventSubmit = data;
                 $scope.eventSubmit.id = $routeParams.itemId;
-                console.log("$scope.eventSubmit", $scope.eventSubmit);
+                // console.log("$scope.eventSubmit", $scope.eventSubmit);
             });
     };
 
     showEvent();
 
     $scope.submitEvent = ()=>{
-        pushUserStuffFactory.updateEventsStu($scope.exerciseSubmit);
+        pushUserStuffFactory.updateEventStu($scope.eventSubmit);
     };
     
 });
