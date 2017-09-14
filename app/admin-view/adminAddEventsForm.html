@@ -1,0 +1,51 @@
+<h2>{{newEventTitle}}</h2>
+<form>
+    <div class="form-group">
+        <label for="title">Event Title</label>
+        <input type="text" ng-model="event.eventTitle" class="form-control" id="title" placeholder="Add an Event Title">
+    </div>
+
+    <div class="form-group">
+        <label for="title">Event Link</label>
+        <input type="text" ng-model="event.eventLink" class="form-control" id="title" placeholder="Add a link to the event info (e.g. Eventbrite)">
+    </div>
+
+    <div class="form-group">
+            <label for="title">Event Date</label>
+            <input type="text" ng-model="event.begDate" class="form-control" id="title" placeholder="Event Date">
+        </div>
+
+        <div class="form-group">
+                <label for="title">Event Location Name</label>
+                <input type="text" ng-model="event.locationName" class="form-control" id="title" placeholder="Add a link to the event info (e.g. Eventbrite)">
+            </div>
+
+            <div class="form-group">
+                    <label for="title">Event Location Address</label>
+                    <input type="text" ng-model="event.locationAddy" class="form-control" id="title" placeholder="Add a location address">
+                </div>
+                <div class="form-group">
+                        <label for="title">Points Possible</label>
+                        <input type="text" ng-model="event.points" class="form-control" id="title" placeholder="How many points can a student get for attending?">
+                    </div>
+
+    <div class="text-center">
+            <button class="btn btn-default" ng-click="submitNewEvent()" onclick="myFunction()">{{submitButtonText}}</button>
+        </div>
+    </form>
+    
+    
+    <div id="snackbar">Your Event Has Been Added</div>
+    
+    <script>
+       function myFunction() {
+        // Get the snackbar DIV
+        var x = document.getElementById("snackbar")
+    
+        // Add the "show" class to DIV
+        x.className = "show";
+    
+        // After 3 seconds, remove the show class from DIV
+        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+    }
+    </script>

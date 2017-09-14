@@ -1,0 +1,60 @@
+<div>
+<h2>Welcome!</h2> 
+<h3>Here are the students awaiting feedback...</h3><br>
+<div class="row">
+        <div class="col-8">
+                <input type="search" ng-model="queryStudents" class="form-control" aria-describedby="search" placeholder="Search Students Stuff"
+                autofocus>
+        </div>
+        <div class="col-4">
+                Filter by Cohort: <select class="custom-select" ng-model="cohort">
+                        <option value="">View All</option>
+                        <option value="20">20</option>
+                        <option value="21">21</option>
+                        <option value="22">22</option>
+                        <option value="23">23</option>
+                    </select>
+        </div>
+      </div><br>
+<table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Status</th>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Student</th>
+            <th>Cohort</th>
+            <th>Info</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="item in allUserExercises | filter: {'status': 'Submitted'} | filter:queryStudents | filter:cohort">
+            <th scope="row">{{item.teacherStatus}}</th>
+            <td><a ng-href="#!/admin/exercise/{{item.id}}">{{item.exName}}</a></td>
+            <td>{{item.type}}</td>
+            <td>{{item.userName}}</td>
+            <td>{{item.cohort}}</td>
+            <td>Milestone {{item.milestone}}</td>
+          </tr>
+
+          <tr ng-repeat="item in allUserEvents | filter: {'status': 'Submitted'} | filter:queryStudents | filter:cohort">
+              <th scope="row">{{item.teacherStatus}}</th>
+              <td><a ng-href="#!/admin/event/{{item.id}}">{{item.eventTitle}}</a></td>
+              <td>{{item.type}}</td>
+              <td>{{item.userName}}</td>
+              <td>{{item.cohort}}</td>
+              <td>Location: {{item.locationName}}</td>
+            </tr>
+
+
+            <tr ng-repeat="item in allGroupUsers | filter: {'status': 'Submitted'} | filter:queryStudents | filter:cohort">
+                <th scope="row">{{item.teacherStatus}}</th>
+                <td><a ng-href="#!/admin/groups/{{item.id}}">{{item.projectName}}</a></td>
+                <td>{{item.type}}</td>
+                <td>{{item.userName}}</td>
+                <td>{{item.cohort}}</td>
+                <td>N/A</td>
+              </tr>
+        </tbody>
+      </table>
+</div>

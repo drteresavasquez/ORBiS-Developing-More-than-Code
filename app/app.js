@@ -4,14 +4,11 @@
 const app = angular.module("ReadtheRoom", ["ngRoute"]);
 
 let isAuth = (authFactory) => new Promise((resolve, reject) => {
-    // console.log("authFactory is", authFactory);
     authFactory.isAuthenticated()
         .then((userExists) => {
             if (userExists) {
-                // console.log("Authenticated, go ahead");
                 resolve();
             } else {
-                // console.log("Authentication reject, GO AWAY");
                 reject();
             }
         });
@@ -33,30 +30,64 @@ app.config(($routeProvider) => {
             controller: 'editProfileController',
             resolve: {isAuth}
         })
+        .when('/exercise/:itemId', {
+            templateUrl: 'app/user-profile-view/exerciseDetails.html',
+            controller: 'singleExercise',
+            resolve: {isAuth}
+        })
+        .when('/event/:itemId', {
+            templateUrl: 'app/user-profile-view/userEventSubmission.html',
+            controller: 'userEventSubmission',
+            resolve: {isAuth}
+        })
+        .when('/groups/:itemId', {
+            templateUrl: 'app/user-profile-view/userGroupSubmission.html',
+            controller: 'userGroupSubmission',
+            resolve: {isAuth}
+        })
         .when('/new-user', {
             templateUrl: 'app/user-profile-view/form.html',
             controller: 'addUserController',
             resolve: {isAuth}
         })
-        // .when('/item/newItem', {
-        //     templateUrl: 'partials/form.html',
-        //     controller: 'addTaskCtrl',
-        //     resolve: {isAuth}
-        // })
-        // //: tells it that what's coming is dynamic
-        // .when('/task/:itemId', {
-        //     templateUrl: 'partials/details.html',
-        //     controller: 'detailTaskCtrl',
-        //     resolve: {isAuth}
-        // })
-        // .when('/task/:itemId/edit', {
-        //     templateUrl: 'partials/form.html',
-        //     controller: 'editTaskCtrl',
-        //     resolve: {isAuth}
-        // })
+        .when('/admin/exercise/:itemId', {
+            templateUrl: 'app/admin-view/exerciseScoring.html',
+            controller: 'singleExercise',
+            resolve: {isAuth}
+        })
+        .when('/admin/event/:itemId', {
+            templateUrl: 'app/admin-view/adminEventScoring.html',
+            controller: 'userEventSubmission',
+            resolve: {isAuth}
+        })
+        .when('/admin/groups/:itemId', {
+            templateUrl: 'app/admin-view/adminGroupScoring.html',
+            controller: 'userGroupSubmission',
+            resolve: {isAuth}
+        })
+        .when('/admin/addEvent', {
+            templateUrl: 'app/admin-view/adminAddEventsForm.html',
+            controller: 'adminAddEvents',
+            resolve: {isAuth}
+        })
+        .when('/admin/addGroup', {
+            templateUrl: 'app/admin-view/adminAddGroupForm.html',
+            controller: 'adminAddGroup',
+            resolve: {isAuth}
+        })
+        .when('/admin/groupsevents', {
+            templateUrl: 'app/admin-view/adminGroupsandEventsView.html',
+            controller: 'userProfileController',
+            resolve: {isAuth}
+        })
+        .when('/admin', {
+            templateUrl: 'app/admin-view/adminDashboard.html',
+            controller: 'adminViews',
+            resolve: {isAuth}
+            })
         .otherwise('/');
 });
-//forces something to run whenthe app initially starts up
+
 app.run(($location, FBCreds) => {
     let creds = FBCreds;
     let authConfig = {

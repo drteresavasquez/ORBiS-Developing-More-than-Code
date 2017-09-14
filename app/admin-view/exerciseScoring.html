@@ -1,0 +1,122 @@
+<h3>{{adminTitle}}</h3>
+<form>
+    Select an option before getting started (or select nothing if you're just checking it out):
+    <div class="form-check">
+            <label class="form-check-label">
+                <input class="form-check-input" type="radio" name="teacherStatus" ng-model="exerciseSubmit.teacherStatus" id="teacherStatus3" value="Open" checked>
+                Open
+            </label>
+        </div>
+    <div class="form-check">
+        <label class="form-check-label">
+            <input class="form-check-input" type="radio" name="teacherStatus" ng-model="exerciseSubmit.teacherStatus" id="teacherStatus1" value="Scoring" checked>
+            I'll score this one!
+        </label>
+    </div>
+    <div class="form-check">
+        <label class="form-check-label">
+            <input class="form-check-input" type="radio" name="teacherStatus" ng-model="exerciseSubmit.teacherStatus" id="teacherStatus2" value="Flagged">
+            Flag this Exercise
+        </label>
+    </div>
+    <div>
+            <button class="btn btn-default" ng-click="submitExercise()">Save</button>
+        </div>
+        <hr>
+    <div class="form-group row">
+        <div class="col-sm-12">
+            <input type="text" class="form-control" readonly id="staticEmail" value="Exercise Name: {{exerciseSubmit.exName}}">
+            <a ng-href="{{exerciseSubmit.exURL}}" target="_blank">Link to Exercise Details</a>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-sm-12">
+            <input type="text" class="form-control" readonly id="staticEmail" value="Milestone: {{exerciseSubmit.milestone}}">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="userName" class="col-sm-3 col-form-label"><b>Student Name:</b></label>
+        <div class="col-sm-9">
+            <input type="text" class="form-control" readonly ng-model="exerciseSubmit.userName" id="userName" placeholder="Student Name">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="Cohort" class="col-sm-3 col-form-label"><b>Cohort:</b></label>
+        <div class="col-sm-9">
+            <input type="text" class="form-control" readonly ng-model="exerciseSubmit.cohort" id="Cohort" placeholder="Cohort #">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="studentRepo" class="col-sm-3 col-form-label"><b>Student Repo:</b></label>
+        <div class="col-sm-9">
+            <a ng-href="{{exerciseSubmit.studentRepoLink}}" target="_blank">Link to {{exerciseSubmit.userName}}'s Repo</a>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="studentFeedback">Student Feedback/Notes</label>
+        <textarea class="form-control" readonly ng-model="exerciseSubmit.studentFeedback" id="studentFeedback" rows="10"></textarea>
+    </div>
+    <div class="form-group row">
+        <label for="exerciseStatus" class="col-sm-7 col-form-label"><b> Change Exercise Status: (Sends Notice to Student) </b></label>
+        <div class="col-sm-5">
+            <select class="custom-select" id="exerciseStatus" ng-model="exerciseSubmit.status">
+                <option selected>Open this select menu</option>
+                <option value="Submitted">Submitted</option>
+                <option value="Come See Us">Come See Us</option>
+                <option value="Scored">Scored</option>
+              </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="teacherFeedback">Teacher Feedback/Notes</label>
+        <textarea class="form-control" ng-model="exerciseSubmit.teacherFeedback" id="teacherFeedback" rows="10"></textarea>
+    </div>
+    <div class="form-group row">
+
+        <label for="date" class="col-sm-2 col-form-label"><b>Date Scored:</b></label>
+        <div class="col-sm-10">
+            <input id="date" type="text" ng-model="exerciseSubmit.dateScored">
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="techSkills" class="col-sm-2 col-form-label"><b>Skills Aquired:</b></label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" ng-model="exerciseSubmit.techSkills" id="techSkills" placeholder="Javascipt, Angular, CSS, etc.">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="points" class="col-sm-2 col-form-label"><b>Points Awarded:</b></label>
+        <div class="col-sm-10">
+            <input type="text" name="points" min="0" max="5" class="form-control" ng-model="exerciseSubmit.points" id="points" placeholder="SCORE!!">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="scoredBy" class="col-sm-2 col-form-label"><b>Scored By:</b></label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" ng-model="exerciseSubmit.scoredBy" id="scoredBy" placeholder="Give 'em what you've got, Score Master!">
+        </div>
+    </div>
+
+    <div class="text-center">
+        <button class="btn btn-default" ng-click="submitExercise()" onclick="myFunction()">{{submitButtonText}}</button>
+    </div>
+</form>
+
+
+<div id="snackbar">Your Score Has Been Recorded</div>
+
+<script>
+    function myFunction() {
+        // Get the snackbar DIV
+        var x = document.getElementById("snackbar")
+
+        // Add the "show" class to DIV
+        x.className = "show";
+
+        // After 3 seconds, remove the show class from DIV
+        setTimeout(function () {
+            x.className = x.className.replace("show", "");
+        }, 3000);
+    }
+</script>
