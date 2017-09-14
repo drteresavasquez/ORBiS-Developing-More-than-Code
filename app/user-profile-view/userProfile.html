@@ -99,7 +99,7 @@
                     <td>{{item.points}}</td>
                 </tr>
                 <tr ng-repeat="item in userEventDeets | filter:queryMine | filter:status">
-                    <td scope="row"><a href="{{item.eventLink}}">{{item.eventTitle}} | {{item.eventDate}} | {{item.startTime}}</a></td>
+                    <td scope="row"><a ng-href="#!/event/{{item.id}}">{{item.eventTitle}} | {{item.eventDate}} | {{item.startTime}}</a></td>
                     <td>Location: {{item.locationName}}</td>
                     <td>{{item.type}}</td>
                     <td>{{item.status}}</td>

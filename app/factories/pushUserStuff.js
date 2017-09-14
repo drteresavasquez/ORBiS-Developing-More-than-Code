@@ -50,7 +50,9 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
                             uid : currentUser,
                             inFB: true,
                             status:"In Progress",
-                            type:"Exercise"
+                            type:"Exercise",
+                            scoredBy: "",
+                            teacherStatus:"Open"
                         };
                         let newObj = JSON.stringify(newExercise);
                         return $http.post(`${FBCreds.databaseURL}/user-exercises.json`, newObj)
@@ -120,6 +122,7 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
                      .then((singleUserEvent)=>{
                         console.log(singleUserEvent);
                         let newEvent = {
+                            userName: "",
                             type:"Event",
                             cohort:"",
                             dateScored : "",
@@ -137,6 +140,8 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
                             studentFeedback: "",
                             studentLinktoProof:"",
                             teacherFeedback:"",
+                            scoredBy: "",
+                            teacherStatus:"Open"
                         };
                         let newObj = JSON.stringify(newEvent);
                         return $http.post(`${FBCreds.databaseURL}/user-events.json`, newObj)
@@ -189,6 +194,7 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
                      .then((singleGroupProject)=>{
                         console.log(singleGroupProject);
                         let newGroupProject = {
+                            userName:"",
                             type:"Group Project",
                             cohort:"",
                             dateScored : "",
@@ -201,7 +207,9 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
                             status:"In Progress",
                             studentFeedback: "",
                             studentLinktoRepo:"",
-                            teacherFeedback:""
+                            teacherFeedback:"",
+                            scoredBy:"",
+                            teacherStatus:"Open"
                         };
                         let newObj = JSON.stringify(newGroupProject);
                         return $http.post(`${FBCreds.databaseURL}//user-group-projects.json`, newObj)
@@ -223,6 +231,35 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
         });
     };
 
+    const getSingleEvent = (itemId)=>{
+        return $q((resolve, reject) => {
+            $http.get(`${FBCreds.databaseURL}/user-events/${itemId}.json`)
+                .then((itemObj) => {
+                    resolve(itemObj.data);
+                })
+                .catch((error) => {
+                    reject(error);
+                });
+        });
+    };
 
-    return{addUserExercise, updateExerciseStu, addUserEvent, addUserGroupProject};
+    const updateEventStu = (obj)=>{
+        console.log("PUSHING OBJECT", obj);
+        let eventID = $routeParams.itemId;
+        console.log("eventIDDDDDDDDDD", eventID);
+        let newObj = JSON.stringify(obj);
+        $http.patch(`${FBCreds.databaseURL}/user-events/${eventID}.json`, newObj)
+        .then((data) => {
+            console.log("data", data);
+            // $location.url("/");
+            return data;
+        }, (error) => {
+            let errorCode = error.code;
+            let errorMessage = error.message;
+            console.log("error", errorCode, errorMessage);
+        });
+    };
+
+
+    return{addUserExercise, updateExerciseStu, addUserEvent, addUserGroupProject, getSingleEvent, updateEventStu};
 });

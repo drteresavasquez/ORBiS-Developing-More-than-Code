@@ -29,7 +29,6 @@ app.controller("userProfileController", function ($scope, $window, gitHubFactory
     getUserInfo.getUserExercises(currentUser)
         .then((exercises) => {
             $scope.exerciseDeets = getUserInfo.showUserExercises(exercises);
-            // console.log("$scope.exercises", $scope.exerciseDeets);
         });
 
     getUserInfo.getUserDetails(currentUser)

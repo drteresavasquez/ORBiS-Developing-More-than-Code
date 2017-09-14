@@ -4,7 +4,7 @@ app.controller("singleExercise", function ($scope, $routeParams, getUserInfo, $l
 
     $scope.title = "Submit Your Exercise";
     $scope.adminTitle = "Score this Exercise";
-    $scope.submitButtonText = "Submit";
+    $scope.submitButtonText = "Save: It Feels Soooo Good!";
     
     $scope.exerciseSubmit = {
         userName:"",
@@ -17,10 +17,11 @@ app.controller("singleExercise", function ($scope, $routeParams, getUserInfo, $l
         studentFeedback:"",
         studentRepoLink: "",
         teacherFeedback:"",
-        techSkills:""
+        techSkills:"",
+        scoredBy:"",
+        
     };
     
-    // $scope.singleExerciseDeet = [];
     console.log("itemId", $routeParams.itemId);
     const showExercise = function () {
         getUserInfo.getSingleExercise($routeParams.itemId)

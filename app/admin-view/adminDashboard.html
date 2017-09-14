@@ -19,6 +19,7 @@
 <table class="table table-striped">
         <thead>
           <tr>
+            <th>Status</th>
             <th>Cohort</th>
             <th>Exercise</th>
             <th>Student</th>
@@ -27,7 +28,8 @@
         </thead>
         <tbody>
           <tr ng-repeat="item in allUserExercises | filter: {'status': 'Submitted'} | filter:queryStudents | filter:cohort">
-            <th scope="row">{{item.cohort}}</th>
+            <th scope="row">{{item.teacherStatus}}</th>
+            <th>{{item.cohort}}</th>
             <td><a ng-href="#!/admin/{{item.id}}">{{item.exName}}</a></td>
             <td>{{item.userName}}</td>
             <td>{{item.milestone}}</td>

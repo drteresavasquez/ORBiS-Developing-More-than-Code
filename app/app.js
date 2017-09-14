@@ -35,6 +35,11 @@ app.config(($routeProvider) => {
             controller: 'singleExercise',
             resolve: {isAuth}
         })
+        .when('/event/:itemId', {
+            templateUrl: 'app/user-profile-view/userEventSubmission.html',
+            controller: 'userEventSubmission',
+            resolve: {isAuth}
+        })
         .when('/new-user', {
             templateUrl: 'app/user-profile-view/form.html',
             controller: 'addUserController',

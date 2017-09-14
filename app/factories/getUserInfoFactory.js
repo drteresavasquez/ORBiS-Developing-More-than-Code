@@ -73,10 +73,6 @@ app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route) {
         return(userEventStuff);
     };
 
-    const getPoints = (allUserEvents)=>{
-
-    };
-
     const getUserGroups = function (currentUser) {
         return $q((resolve, reject) => {
             $http.get(`${FBCreds.databaseURL}/user-group-projects.json?orderBy="uid"&equalTo="${currentUser}"`)
@@ -148,9 +144,7 @@ app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route) {
                     let pointsArray = [];
                     console.log("Points are updated");
                 });
-        });
-        
-        
+        });   
     };
 
     return {
