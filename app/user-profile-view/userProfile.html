@@ -75,7 +75,7 @@
                         <td>{{item.points}}</td>
                     </tr>
                     <tr ng-repeat="item in userGroupDeets | filter:queryMine | filter:status">
-                        <td scope="row">{{item.projectName}}</a>
+                            <td scope="row"><a ng-href="#!/groups/{{item.id}}">{{item.projectName}}</a></td>
                         </td>
                         <td><a ng-href="{{item.linktoRepo}}">Repo Link</a></td>
                         <td>{{item.type}}</td>

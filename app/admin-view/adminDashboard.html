@@ -45,6 +45,16 @@
               <td>{{item.cohort}}</td>
               <td>Location: {{item.locationName}}</td>
             </tr>
+
+
+            <tr ng-repeat="item in allGroupUsers | filter: {'status': 'Submitted'} | filter:queryStudents | filter:cohort">
+                <th scope="row">{{item.teacherStatus}}</th>
+                <td><a ng-href="#!/admin/groups/{{item.id}}">{{item.projectName}}</a></td>
+                <td>{{item.type}}</td>
+                <td>{{item.userName}}</td>
+                <td>{{item.cohort}}</td>
+                <td>N/A</td>
+              </tr>
         </tbody>
       </table>
 

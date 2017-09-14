@@ -51,7 +51,23 @@ app.factory("adminPullFactory", function($q, $http, FBCreds){
         });
     };
 
+    const getAllUserGroups = ()=>{
+        return $q((resolve, reject) => {
+            let userGroupsArray = [];
+            $http.get(`${FBCreds.databaseURL}/user-group-projects.json`)
+                .then((userStuff) => {
+                    let keys = Object.keys(userStuff.data);
+                    console.log("keys", keys);
+                    keys.forEach((item)=>{
+                        userGroupsArray.push(userStuff.data[item]);
+                    });
+                    console.log("userGroupsArray", userGroupsArray);
+                    resolve(userGroupsArray);
+                });
+        });
+    };
+
     
-    return{getAllUserExercises, getAllUsers, getAllUserEvents};
+    return{getAllUserExercises, getAllUsers, getAllUserEvents, getAllUserGroups};
 
 });

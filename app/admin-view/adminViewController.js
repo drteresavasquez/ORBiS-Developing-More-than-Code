@@ -22,7 +22,16 @@ app.controller("adminViews", function($scope, adminPullFactory, FBCreds){
         adminPullFactory.getAllUsers()
         .then((data)=>{
             $scope.allUsers = data;
-            console.log("BIGGGGG data", data);
+            // console.log("BIGGGGG data", data);
+
+        });
+    };
+
+    $scope.showAllGroupings = () =>{
+        adminPullFactory.getAllUserGroups()
+        .then((data)=>{
+            $scope.allGroupUsers = data;
+            console.log("BIGGGGG GROUP data", data);
 
         });
     };
@@ -30,4 +39,5 @@ app.controller("adminViews", function($scope, adminPullFactory, FBCreds){
 $scope.showAllUserExercise();
 $scope.showAllUsers();
 $scope.showAllUserEvents();
+$scope.showAllGroupings();
 });

@@ -44,7 +44,7 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
         let groupID = $routeParams.itemId;
         console.log("groupIDDDDDDDDDD", groupID);
         let newObj = JSON.stringify(obj);
-        $http.patch(`${FBCreds.databaseURL}/user-events/${groupID}.json`, newObj)
+        $http.patch(`${FBCreds.databaseURL}/user-group-projects/${groupID}.json`, newObj)
         .then((data) => {
             console.log("data", data);
             // $location.url("/");
@@ -272,5 +272,5 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
 
 
 
-    return{addUserExercise, updateExerciseStu, addUserEvent, addUserGroupProject, updateEventStu};
+    return{addUserExercise, updateExerciseStu, addUserEvent, addUserGroupProject, updateEventStu, updateGroupStu};
 });

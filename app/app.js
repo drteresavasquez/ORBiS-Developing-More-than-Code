@@ -40,6 +40,11 @@ app.config(($routeProvider) => {
             controller: 'userEventSubmission',
             resolve: {isAuth}
         })
+        .when('/groups/:itemId', {
+            templateUrl: 'app/user-profile-view/userGroupSubmission.html',
+            controller: 'userGroupSubmission',
+            resolve: {isAuth}
+        })
         .when('/new-user', {
             templateUrl: 'app/user-profile-view/form.html',
             controller: 'addUserController',
@@ -53,6 +58,11 @@ app.config(($routeProvider) => {
         .when('/admin/event/:itemId', {
             templateUrl: 'app/admin-view/adminEventScoring.html',
             controller: 'userEventSubmission',
+            resolve: {isAuth}
+        })
+        .when('/admin/groups/:itemId', {
+            templateUrl: 'app/admin-view/adminGroupScoring.html',
+            controller: 'userGroupSubmission',
             resolve: {isAuth}
         })
         .when('/admin', {

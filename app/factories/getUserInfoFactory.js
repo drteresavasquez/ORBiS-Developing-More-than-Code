@@ -88,6 +88,18 @@ app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route) {
         });
     };
 
+    const getSingleGroup = (itemId)=>{
+        return $q((resolve, reject) => {
+            $http.get(`${FBCreds.databaseURL}/user-group-projects/${itemId}.json`)
+                .then((itemObj) => {
+                    resolve(itemObj.data);
+                })
+                .catch((error) => {
+                    reject(error);
+                });
+        });
+    };
+
     const getUserEvents = function (currentUser) {
         return $q((resolve, reject) => {
             $http.get(`${FBCreds.databaseURL}/user-events.json?orderBy="uid"&equalTo="${currentUser}"`)
@@ -175,6 +187,7 @@ app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route) {
         showUserEvents,
         showUserGroups,
         getSingleExercise,
-        getSingleEvent
+        getSingleEvent,
+        getSingleGroup
     };
 });
