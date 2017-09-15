@@ -12,7 +12,6 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
         $http.patch(`${FBCreds.databaseURL}/user-exercises/${exerciseID}.json`, newObj)
         .then((data) => {
             console.log("data", data);
-            $location.url("/");
             groupingPointsFactory.getBearPoints();
             groupingPointsFactory.getDeerPoints();
             groupingPointsFactory.getOwlPoints();
@@ -32,7 +31,6 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
         $http.patch(`${FBCreds.databaseURL}/user-events/${eventID}.json`, newObj)
         .then((data) => {
             console.log("data", data);
-            $location.url("/");
             groupingPointsFactory.getBearPoints();
             groupingPointsFactory.getDeerPoints();
             groupingPointsFactory.getOwlPoints();
@@ -52,7 +50,6 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
         $http.patch(`${FBCreds.databaseURL}/user-group-projects/${groupID}.json`, newObj)
         .then((data) => {
             console.log("data", data);
-            $location.url("/");
             groupingPointsFactory.getBearPoints();
             groupingPointsFactory.getDeerPoints();
             groupingPointsFactory.getOwlPoints();
