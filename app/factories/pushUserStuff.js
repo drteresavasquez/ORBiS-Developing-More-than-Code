@@ -1,9 +1,8 @@
 "use strict";
 
-app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $location, $routeParams, $route){
+app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $location, $routeParams, $route, groupingPointsFactory){
 
     let currentUser = authFactory.getCurrentUser();
-    // let exerciseId = "d1bf12f5de43feadc7dcc8162f5cd3354206a584";
 
     const updateExerciseStu = (obj)=>{
         console.log("PUSHING OBJECT", obj);
@@ -13,7 +12,8 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
         $http.patch(`${FBCreds.databaseURL}/user-exercises/${exerciseID}.json`, newObj)
         .then((data) => {
             console.log("data", data);
-            // $location.url("/");
+            $location.url("/");
+            groupingPointsFactory.getBearPoints();
             return data;
         }, (error) => {
             let errorCode = error.code;
@@ -30,7 +30,8 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
         $http.patch(`${FBCreds.databaseURL}/user-events/${eventID}.json`, newObj)
         .then((data) => {
             console.log("data", data);
-            // $location.url("/");
+            $location.url("/");
+            groupingPointsFactory.getBearPoints();
             return data;
         }, (error) => {
             let errorCode = error.code;
@@ -47,7 +48,8 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
         $http.patch(`${FBCreds.databaseURL}/user-group-projects/${groupID}.json`, newObj)
         .then((data) => {
             console.log("data", data);
-            // $location.url("/");
+            $location.url("/");
+            groupingPointsFactory.getBearPoints();
             return data;
         }, (error) => {
             let errorCode = error.code;

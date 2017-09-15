@@ -1,6 +1,6 @@
 "use strict";
 
-app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route, $timeout) {
+app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route, groupingPointsFactory) {
 
     const getUserDetails = function (currentUser) {
         return $q((resolve, reject) => {
@@ -134,7 +134,6 @@ app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route, $t
         });
     };
 
-
     const getUserGroups = function (currentUser) {
         return $q((resolve, reject) => {
             $http.get(`${FBCreds.databaseURL}/user-group-projects.json?orderBy="uid"&equalTo="${currentUser}"`)
@@ -157,13 +156,7 @@ app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route, $t
         return (points);
     };
 
-    const pointsArray = function(passedPoints){
-        let points = pushPoints(passedPoints);
-        pointsArray.push(points.reduce((a, b) => a + b));
-        // console.log("pointsArray", pointsArray);
-    };
-
-    const mySexyPoints = function(passedArray){
+    const mySexyPoints = function (passedArray) {
         let points = pushPoints(passedArray);
         let pointsArray = [0];
         pointsArray.push(points.reduce((a, b) => a + b));
@@ -181,27 +174,27 @@ app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route, $t
                 return $q((resolve, reject) => {
                     realPointsArray.push((mySexyPoints(allUserGroups)).reduce((a, b) => a + b));
                     resolve(realPointsArray);
-                });         
-            }).then((pointsArray)=>{
-                return $q((resolve, reject) => {
-                getUserExercises(currentUser)
-                    .then((allUserExercises) => {
-                        realPointsArray.push((mySexyPoints(allUserExercises)).reduce((a, b) => a + b));
-                        resolve(realPointsArray);
-                    });
                 });
-            }).then((pointsArray)=>{
+            }).then((realPointsArray) => {
+                return $q((resolve, reject) => {
+                    getUserExercises(currentUser)
+                        .then((allUserExercises) => {
+                            realPointsArray.push((mySexyPoints(allUserExercises)).reduce((a, b) => a + b));
+                            resolve(realPointsArray);
+                        });
+                });
+            }).then((realPointsArray) => {
                 return $q((resolve, reject) => {
                     getUserEvents(currentUser)
                         .then((allUserEvents) => {
                             realPointsArray.push((mySexyPoints(allUserEvents)).reduce((a, b) => a + b));
                             resolve(realPointsArray);
                             console.log("realPointsArray", realPointsArray);
-                    });
+                        });
                 });
             })
-            .then((pointsArray)=>{
-                let score = pointsArray.reduce((a, b) => a + b);
+            .then((realPointsArray) => {
+                let score = realPointsArray.reduce((a, b) => a + b);
                 console.log(score);
                 let tempObj = {
                     points: score
@@ -210,6 +203,7 @@ app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route, $t
                     .then(() => {
                         let pointsArray = [];
                         console.log("Points are updated");
+                        groupingPointsFactory.getBearPoints();
                     });
             });
 
