@@ -89,10 +89,11 @@ app.controller("userProfileController", function ($scope, $window, gitHubFactory
     };
 
     $scope.getAllHousePoints = function(){
-        groupingPointsFactory.getBearPoints();
-        groupingPointsFactory.getDeerPoints();
-        groupingPointsFactory.getOwlPoints();
-        groupingPointsFactory.getMonkeyPoints();
+        groupingPointsFactory.getHousePoints("Monkeys");
+        groupingPointsFactory.getHousePoints("Deer");
+        groupingPointsFactory.getHousePoints("Bears");
+        groupingPointsFactory.getHousePoints("Owls");
+        groupingPointsFactory.getCohortPoints(19);
     };
 
     $scope.getAllHousePoints();

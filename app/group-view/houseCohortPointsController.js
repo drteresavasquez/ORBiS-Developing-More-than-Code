@@ -3,7 +3,11 @@
 app.controller("groupPointsController", function($scope, groupingPointsFactory){
 
     const points = function(){
-        groupingPointsFactory.getBearPoints();
+        groupingPointsFactory.getHousePoints("Monkeys");
+        groupingPointsFactory.getHousePoints("Deer");
+        groupingPointsFactory.getHousePoints("Bears");
+        groupingPointsFactory.getHousePoints("Owls");
+        groupingPointsFactory.getCohortPoints(19);
     };
 
     points();
