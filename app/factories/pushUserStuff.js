@@ -14,6 +14,8 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
             console.log("data", data);
             $location.url("/");
             groupingPointsFactory.getBearPoints();
+            groupingPointsFactory.getDeerPoints();
+            groupingPointsFactory.getOwlPoints();
             return data;
         }, (error) => {
             let errorCode = error.code;
@@ -32,6 +34,8 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
             console.log("data", data);
             $location.url("/");
             groupingPointsFactory.getBearPoints();
+            groupingPointsFactory.getDeerPoints();
+            groupingPointsFactory.getOwlPoints();
             return data;
         }, (error) => {
             let errorCode = error.code;
@@ -50,6 +54,8 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
             console.log("data", data);
             $location.url("/");
             groupingPointsFactory.getBearPoints();
+            groupingPointsFactory.getDeerPoints();
+            groupingPointsFactory.getOwlPoints();
             return data;
         }, (error) => {
             let errorCode = error.code;

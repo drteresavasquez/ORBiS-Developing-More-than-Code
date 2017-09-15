@@ -1,6 +1,6 @@
 "use strict";
 
-app.controller("userProfileController", function ($scope, $window, gitHubFactory, authFactory, getUserInfo, $http, FBCreds, $q, pushUserStuffFactory, $route, $routeParams, theDeleteFactory) {
+app.controller("userProfileController", function ($scope, $window, gitHubFactory, authFactory, getUserInfo, $http, FBCreds, $q, pushUserStuffFactory, $route, $routeParams, theDeleteFactory, groupingPointsFactory) {
 
     let currentUser = authFactory.getCurrentUser();
 
@@ -88,6 +88,14 @@ app.controller("userProfileController", function ($scope, $window, gitHubFactory
             });
     };
 
+    $scope.getAllHousePoints = function(){
+        groupingPointsFactory.getBearPoints();
+        groupingPointsFactory.getDeerPoints();
+        groupingPointsFactory.getOwlPoints();
+        groupingPointsFactory.getMonkeyPoints();
+    };
+
+    $scope.getAllHousePoints();
     $scope.milestones();
     $scope.showGroupProjects();
     $scope.showAllEvents();
