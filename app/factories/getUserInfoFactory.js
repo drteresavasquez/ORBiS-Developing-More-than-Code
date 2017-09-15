@@ -1,6 +1,6 @@
 "use strict";
 
-app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route) {
+app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route, $timeout) {
 
     const getUserDetails = function (currentUser) {
         return $q((resolve, reject) => {
@@ -152,52 +152,60 @@ app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route) {
         let exercisePoints = [0];        
         let eventPoints = [0];
         let groupPoints = [0];
-    getUserExercises(currentUser)
-        .then((allUserExercises)=>{
-            // console.log("allUserExercises", allUserExercises);
-            let exDetails = Object.keys(allUserExercises);
+
+        getUserEvents(currentUser)
+        .then((allUserEvents)=>{
+            console.log("allUserEvents", allUserEvents);
+            let exDetails = Object.keys(allUserEvents);
             exDetails.forEach((item) => {
-                exercisePoints.push(Number(allUserExercises[item].points));
+                eventPoints.push(parseInt(allUserEvents[item].points));
+                console.log("eventPoints", eventPoints);
             });
         })
         .then(()=>{
+            getUserExercises(currentUser)
+            .then((allUserExercises)=>{
+                console.log("allUserExercises", allUserExercises);
+                let exDetails = Object.keys(allUserExercises);
+                exDetails.forEach((item) => {
+                exercisePoints.push(parseInt(allUserExercises[item].points));
+                    console.log("exercisePoints", exercisePoints);
+                });
+            });
+        }) 
+        .then(()=>{
             getUserGroups(currentUser)
                 .then((allUserGroups)=>{
-                    // console.log("allUserGroups", allUserGroups);
+                    console.log("allUserGroups", allUserGroups);
                     let exDetails = Object.keys(allUserGroups);
                     exDetails.forEach((item) => {
-                        groupPoints.push(Number(allUserGroups[item].points));
+                        groupPoints.push(parseInt(allUserGroups[item].points));
+                        console.log("groupPoints", groupPoints);
                     });
             });
         })
         .then(()=>{
-            getUserEvents(currentUser)
-            .then((allUserEvents)=>{
-                // console.log("allUserEvents", allUserEvents);
-                let exDetails = Object.keys(allUserEvents);
-                exDetails.forEach((item) => {
-                    eventPoints.push(Number(allUserEvents[item].points));
-                });
-            });
+            console.log("I am reading this!!!");
         })
         .then(()=>{
-            // console.log("FINALLLLLLL eventPoints", eventPoints);
+            pointsArray.push(eventPoints.reduce((a,b)=>a + b, 0));
             pointsArray.push(exercisePoints.reduce((a,b)=>a + b));
-            pointsArray.push(groupPoints.reduce((a,b)=>a + b));
-            pointsArray.push(eventPoints.reduce((a,b)=>a + b));
-        })
-        .then(()=>{
-            let pointsTotal = pointsArray.reduce((a,b)=>a + b, 0);
-            console.log("pointsTotal", pointsTotal);
-            let tempObj = {
-                points: pointsTotal
-            };
-            authFactory.editUser(tempObj)
-                .then(() => {
-                    let pointsArray = [];
-                    console.log("Points are updated");
-                });
-        });   
+            console.log("pointsArray", pointsArray); 
+            pointsArray.push(groupPoints.reduce((a,b)=>b + a, 0));
+            console.log("pointsArray", pointsArray);            
+        });
+        // .then(()=>{
+        //     let pointsTotal = pointsArray.reduce((a,b)=>a + b);
+        //     console.log("pointsTotal", pointsTotal);
+        //     let tempObj = {
+        //         points: pointsTotal
+        //     };
+        //     authFactory.editUser(tempObj)
+        //         .then(() => {
+        //             let pointsArray = [];
+        //             console.log("Points are updated");
+        //         });
+        // });   
     };
 
 
