@@ -160,12 +160,12 @@ app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route, gr
         let points = pushPoints(passedArray);
         let pointsArray = [0];
         pointsArray.push(points.reduce((a, b) => a + b));
-        console.log("pointsArray", pointsArray);
+        // console.log("pointsArray", pointsArray);
         return (pointsArray);
     };
 
     const getUserPoints = function (currentUser) {
-        console.log("currentUser", currentUser);
+        // console.log("currentUser", currentUser);
 
         let realPointsArray = [0];
 
@@ -189,13 +189,12 @@ app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route, gr
                         .then((allUserEvents) => {
                             realPointsArray.push((mySexyPoints(allUserEvents)).reduce((a, b) => a + b));
                             resolve(realPointsArray);
-                            console.log("realPointsArray", realPointsArray);
+                            // console.log("realPointsArray", realPointsArray);
                         });
                 });
             })
             .then((realPointsArray) => {
                 let score = realPointsArray.reduce((a, b) => a + b);
-                console.log(score);
                 let tempObj = {
                     points: score
                 };
@@ -203,7 +202,10 @@ app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route, gr
                     .then(() => {
                         let pointsArray = [];
                         console.log("Points are updated");
-                        groupingPointsFactory.getBearPoints();
+                        groupingPointsFactory.getHousePoints("Monkeys");
+                        groupingPointsFactory.getHousePoints("Deer");
+                        groupingPointsFactory.getHousePoints("Bears");
+                        groupingPointsFactory.getHousePoints("Owls");
                     });
             });
 
