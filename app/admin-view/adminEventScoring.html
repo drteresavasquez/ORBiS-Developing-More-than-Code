@@ -3,24 +3,24 @@
         Select an option before getting started (or select nothing if you're just checking it out):
         <div class="form-check">
                 <label class="form-check-label">
-                    <input class="form-check-input" type="radio" name="teacherStatus" ng-model="exerciseSubmit.teacherStatus" id="teacherStatus3" value="Open" checked>
+                    <input class="form-check-input" type="radio" name="teacherStatus" ng-model="eventSubmit.teacherStatus" id="teacherStatus3" value="Open" checked>
                     Open
                 </label>
             </div>
         <div class="form-check">
             <label class="form-check-label">
-                <input class="form-check-input" type="radio" name="teacherStatus" ng-model="exerciseSubmit.teacherStatus" id="teacherStatus1" value="Scoring" checked>
+                <input class="form-check-input" type="radio" name="teacherStatus" ng-model="eventSubmit.teacherStatus" id="teacherStatus1" value="Scoring" checked>
                 I'll score this one!
             </label>
         </div>
         <div class="form-check">
             <label class="form-check-label">
-                <input class="form-check-input" type="radio" name="teacherStatus" ng-model="exerciseSubmit.teacherStatus" id="teacherStatus2" value="Flagged">
+                <input class="form-check-input" type="radio" name="teacherStatus" ng-model="eventSubmit.teacherStatus" id="teacherStatus2" value="Flagged">
                 Flag this Event
             </label>
         </div>
         <div>
-                <button class="btn btn-default" ng-click="submitExercise()">Save</button>
+                <button class="btn btn-default" ng-click="submitEvent()">Save</button>
             </div>
             <hr>
     <div class="form-group row">
@@ -45,9 +45,10 @@
         <label for="eventStatus" class="col-sm-3 col-form-label"><b> Change Event Status: </b></label>
         <div class="col-sm-9">
             <select class="custom-select" id="eventStatus" ng-model="eventSubmit.status">
-            <option selected>Open this select menu</option>
-            <option value="Going">Come See Us</option>
-            <option value="Submitted">Scored</option>
+                    <option selected>Open this select menu</option>
+                    <option value="Submitted">Submitted</option>
+                    <option value="Come See Us">Come See Us</option>
+                    <option value="Scored">Scored</option>
           </select>
         </div>
     </div>

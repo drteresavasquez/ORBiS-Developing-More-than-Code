@@ -1,6 +1,6 @@
 "use strict";
 
-app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route) {
+app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route, groupingPointsFactory) {
 
     const getUserDetails = function (currentUser) {
         return $q((resolve, reject) => {
@@ -12,14 +12,14 @@ app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route) {
         });
     };
 
-    const showUserDetails = function (userDeets){
-            var userProfileStuff = [];
-            var details = Object.keys(userDeets);
-            details.forEach((item) => {
-                userProfileStuff.push(userDeets[item]);
-            });
-            // console.log("userProfileStuff", userProfileStuff);
-            return(userProfileStuff);
+    const showUserDetails = function (userDeets) {
+        var userProfileStuff = [];
+        var details = Object.keys(userDeets);
+        details.forEach((item) => {
+            userProfileStuff.push(userDeets[item]);
+        });
+        // console.log("userProfileStuff", userProfileStuff);
+        return (userProfileStuff);
     };
 
     const getUserExercises = function (currentUser) {
@@ -32,17 +32,17 @@ app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route) {
         });
     };
 
-    const showUserExercises = function(allUserExercises){
+    const showUserExercises = function (allUserExercises) {
         let userExerciseStuff = [];
         let exDetails = Object.keys(allUserExercises);
         exDetails.forEach((item) => {
             allUserExercises[item].id = item;
             userExerciseStuff.push(allUserExercises[item]);
         });
-        return(userExerciseStuff);
+        return (userExerciseStuff);
     };
 
-    const showUserEvents = function(allUserEvents){
+    const showUserEvents = function (allUserEvents) {
         let userEventStuff = [];
         let details = Object.keys(allUserEvents);
         details.forEach((item) => {
@@ -51,17 +51,17 @@ app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route) {
             userEventStuff.push(allUserEvents[item]);
             // console.log("userEventStuff", userEventStuff);
         });
-        return(userEventStuff);
+        return (userEventStuff);
     };
 
-    const showUserGroups = function(allUserGroups){
+    const showUserGroups = function (allUserGroups) {
         let userGroupStuff = [];
         let details = Object.keys(allUserGroups);
         details.forEach((item) => {
             allUserGroups[item].id = item;
             userGroupStuff.push(allUserGroups[item]);
         });
-        return(userGroupStuff);
+        return (userGroupStuff);
     };
 
     const getSingleExercise = function (itemId) {
@@ -76,7 +76,7 @@ app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route) {
         });
     };
 
-    const getSingleEvent = (itemId)=>{
+    const getSingleEvent = (itemId) => {
         return $q((resolve, reject) => {
             $http.get(`${FBCreds.databaseURL}/user-events/${itemId}.json`)
                 .then((itemObj) => {
@@ -88,7 +88,7 @@ app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route) {
         });
     };
 
-    const getBIGSubmittedEvent = (itemId)=>{
+    const getBIGSubmittedEvent = (itemId) => {
         return $q((resolve, reject) => {
             $http.get(`${FBCreds.databaseURL}/submitted-events/${itemId}.json`)
                 .then((itemObj) => {
@@ -100,7 +100,7 @@ app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route) {
         });
     };
 
-    const getBIGSubmittedGroup = (itemId)=>{
+    const getBIGSubmittedGroup = (itemId) => {
         return $q((resolve, reject) => {
             $http.get(`${FBCreds.databaseURL}/submitted-group-projects/${itemId}.json`)
                 .then((itemObj) => {
@@ -112,7 +112,7 @@ app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route) {
         });
     };
 
-    const getSingleGroup = (itemId)=>{
+    const getSingleGroup = (itemId) => {
         return $q((resolve, reject) => {
             $http.get(`${FBCreds.databaseURL}/user-group-projects/${itemId}.json`)
                 .then((itemObj) => {
@@ -134,7 +134,6 @@ app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route) {
         });
     };
 
-
     const getUserGroups = function (currentUser) {
         return $q((resolve, reject) => {
             $http.get(`${FBCreds.databaseURL}/user-group-projects.json?orderBy="uid"&equalTo="${currentUser}"`)
@@ -146,60 +145,69 @@ app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route) {
         //make call to firebase to get the user's profile info
     };
 
-    const getUserPoints = function(currentUser){
-        console.log("currentUser", currentUser);
-        let pointsArray = [0];
-        let exercisePoints = [0];        
-        let eventPoints = [0];
-        let groupPoints = [0];
-    getUserExercises(currentUser)
-        .then((allUserExercises)=>{
-            // console.log("allUserExercises", allUserExercises);
-            let exDetails = Object.keys(allUserExercises);
-            exDetails.forEach((item) => {
-                exercisePoints.push(Number(allUserExercises[item].points));
-            });
-        })
-        .then(()=>{
-            getUserGroups(currentUser)
-                .then((allUserGroups)=>{
-                    // console.log("allUserGroups", allUserGroups);
-                    let exDetails = Object.keys(allUserGroups);
-                    exDetails.forEach((item) => {
-                        groupPoints.push(Number(allUserGroups[item].points));
-                    });
-            });
-        })
-        .then(()=>{
-            getUserEvents(currentUser)
-            .then((allUserEvents)=>{
-                // console.log("allUserEvents", allUserEvents);
-                let exDetails = Object.keys(allUserEvents);
-                exDetails.forEach((item) => {
-                    eventPoints.push(Number(allUserEvents[item].points));
-                });
-            });
-        })
-        .then(()=>{
-            // console.log("FINALLLLLLL eventPoints", eventPoints);
-            pointsArray.push(exercisePoints.reduce((a,b)=>a + b));
-            pointsArray.push(groupPoints.reduce((a,b)=>a + b));
-            pointsArray.push(eventPoints.reduce((a,b)=>a + b));
-        })
-        .then(()=>{
-            let pointsTotal = pointsArray.reduce((a,b)=>a + b, 0);
-            console.log("pointsTotal", pointsTotal);
-            let tempObj = {
-                points: pointsTotal
-            };
-            authFactory.editUser(tempObj)
-                .then(() => {
-                    let pointsArray = [];
-                    console.log("Points are updated");
-                });
-        });   
+    const pushPoints = function (passedData) {
+        let points = [];
+        let details = Object.keys(passedData);
+        details.forEach((item) => {
+            // console.log("USER POINTS", passedData[item].points);
+            points.push(Number(passedData[item].points));
+        });
+        // console.log("points", points);
+        return (points);
     };
 
+    const mySexyPoints = function (passedArray) {
+        let points = pushPoints(passedArray);
+        let pointsArray = [0];
+        pointsArray.push(points.reduce((a, b) => a + b));
+        console.log("pointsArray", pointsArray);
+        return (pointsArray);
+    };
+
+    const getUserPoints = function (currentUser) {
+        console.log("currentUser", currentUser);
+
+        let realPointsArray = [0];
+
+        getUserGroups(currentUser)
+            .then((allUserGroups) => {
+                return $q((resolve, reject) => {
+                    realPointsArray.push((mySexyPoints(allUserGroups)).reduce((a, b) => a + b));
+                    resolve(realPointsArray);
+                });
+            }).then((realPointsArray) => {
+                return $q((resolve, reject) => {
+                    getUserExercises(currentUser)
+                        .then((allUserExercises) => {
+                            realPointsArray.push((mySexyPoints(allUserExercises)).reduce((a, b) => a + b));
+                            resolve(realPointsArray);
+                        });
+                });
+            }).then((realPointsArray) => {
+                return $q((resolve, reject) => {
+                    getUserEvents(currentUser)
+                        .then((allUserEvents) => {
+                            realPointsArray.push((mySexyPoints(allUserEvents)).reduce((a, b) => a + b));
+                            resolve(realPointsArray);
+                            console.log("realPointsArray", realPointsArray);
+                        });
+                });
+            })
+            .then((realPointsArray) => {
+                let score = realPointsArray.reduce((a, b) => a + b);
+                console.log(score);
+                let tempObj = {
+                    points: score
+                };
+                authFactory.editUser(tempObj)
+                    .then(() => {
+                        let pointsArray = [];
+                        console.log("Points are updated");
+                        groupingPointsFactory.getBearPoints();
+                    });
+            });
+
+    };
 
     const getAllEvents = function () {
         let events = [];
@@ -207,7 +215,7 @@ app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route) {
             $http.get(`${FBCreds.databaseURL}/submitted-events.json`)
                 .then((itemObject) => {
                     let itemCollection = itemObject.data;
-                    console.log("itemCollection", itemCollection);
+                    // console.log("itemCollection", itemCollection);
                     Object.keys(itemCollection).forEach((key) => {
                         itemCollection[key].id = key;
                         events.push(itemCollection[key]);
@@ -227,7 +235,7 @@ app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route) {
             $http.get(`${FBCreds.databaseURL}/submitted-group-projects.json`)
                 .then((itemObject) => {
                     let itemCollection = itemObject.data;
-                    console.log("itemCollection", itemCollection);
+                    // console.log("itemCollection", itemCollection);
                     Object.keys(itemCollection).forEach((key) => {
                         itemCollection[key].id = key;
                         groupProjs.push(itemCollection[key]);
@@ -256,6 +264,9 @@ app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route) {
         getAllEvents,
         getAllGroupProjs,
         getBIGSubmittedEvent,
-        getBIGSubmittedGroup
+        getBIGSubmittedGroup,
+        // pushPointsArray,
+        pushPoints,
+        mySexyPoints
     };
 });

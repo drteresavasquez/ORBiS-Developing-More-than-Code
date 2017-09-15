@@ -94,6 +94,11 @@ app.config(($routeProvider) => {
             templateUrl: 'app/admin-view/adminDashboard.html',
             controller: 'adminViews',
             resolve: {isAuth}
+        })
+        .when('/leaderboard', {
+            templateUrl: 'app/group-view/houseCohortPoints.html',
+            controller: 'groupPointsController',
+            resolve: {isAuth}
             })
         .otherwise('/');
 });
