@@ -158,7 +158,7 @@ app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route, $t
             console.log("allUserEvents", allUserEvents);
             let exDetails = Object.keys(allUserEvents);
             exDetails.forEach((item) => {
-                eventPoints.push(parseInt(allUserEvents[item].points));
+                eventPoints.push(Number(allUserEvents[item].points));
                 console.log("eventPoints", eventPoints);
             });
         })
@@ -168,7 +168,7 @@ app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route, $t
                 console.log("allUserExercises", allUserExercises);
                 let exDetails = Object.keys(allUserExercises);
                 exDetails.forEach((item) => {
-                exercisePoints.push(parseInt(allUserExercises[item].points));
+                exercisePoints.push(Number(allUserExercises[item].points));
                     console.log("exercisePoints", exercisePoints);
                 });
             });
@@ -179,7 +179,7 @@ app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route, $t
                     console.log("allUserGroups", allUserGroups);
                     let exDetails = Object.keys(allUserGroups);
                     exDetails.forEach((item) => {
-                        groupPoints.push(parseInt(allUserGroups[item].points));
+                        groupPoints.push(Number(allUserGroups[item].points));
                         console.log("groupPoints", groupPoints);
                     });
             });
@@ -188,10 +188,11 @@ app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route, $t
             console.log("I am reading this!!!");
         })
         .then(()=>{
-            pointsArray.push(eventPoints.reduce((a,b)=>a + b, 0));
+            pointsArray.push(eventPoints.reduce((a,b)=>a + b));
             pointsArray.push(exercisePoints.reduce((a,b)=>a + b));
-            console.log("pointsArray", pointsArray); 
-            pointsArray.push(groupPoints.reduce((a,b)=>b + a, 0));
+            pointsArray.push(exercisePoints.reduce((a,b)=>a + b));
+            console.log("exercisePoints", exercisePoints); 
+            pointsArray.push(groupPoints.reduce((a,b)=>b + a));
             console.log("pointsArray", pointsArray);            
         });
         // .then(()=>{
