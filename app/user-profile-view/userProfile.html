@@ -131,7 +131,7 @@
                     <th>Date</th>
                     <th>Event Name</th>
                     <th>Location</th>
-                    <th>Details</th>
+                    <th><i class="fa fa-info-circle" aria-hidden="true"></i></th>
                 </tr>
             </thead>
             <tbody ng-repeat="item in allEvents | filter:queryEvents | orderBy: 'begDate'">
@@ -156,6 +156,7 @@
             <div class="col-4">
                 Filter by Cohort: 
                 <select class="custom-select" ng-model="cohort">
+                    <option value="">View All</option>
                     <option value=19>Cohort 19</option>
                     <option value=20>Cohort 20</option>
                     <option value=21>Cohort 21</option>

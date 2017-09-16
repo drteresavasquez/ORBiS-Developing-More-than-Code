@@ -58,4 +58,19 @@ app.controller("editProfileController", function ($scope, $routeParams, $locatio
             console.log("userProfileStuff", userProfileStuff);
             $scope.deets = userProfileStuff;
         });
+
+        $scope.animalKingdom = function(){
+            let value1 = $('input[name="speed"]:checked').val();
+            let value2 = $('input[name="focus"]:checked').val();
+            let animalKingdomObj = {
+                "04": "Bears",
+                "21": "Deer",
+                "24": "Owls",
+                "01": "Monkeys"
+            };
+            for (let num in animalKingdomObj){
+                num = value1 + value2;
+                $scope.house = animalKingdomObj[num];
+            }
+        };
 });

@@ -15,7 +15,7 @@
     <div class="form-group">
         <label>Email Address</label>
         <input type="text" class="form-control" placeholder="What email can others use to contact you?" ng-model="profile.email"
-        required/>
+            required/>
     </div>
     <div class="form-group">
         <label>Your GitHub Link</label>
@@ -43,6 +43,7 @@
             <option value="Monkeys">Monkeys</option>
             <option value="No House">I'm a free agent</option>
         </select>
+        <button class="btn btn-default" onclick="document.getElementById('id01').style.display='block'">Get Sorted Into Your House</button>
     </div>
 
     <div class="form-group">
@@ -77,3 +78,54 @@
         <button class="btn btn-default" ng-click="submitUser()">{{submitButtonText}}</button>
     </div>
 </form>
+
+
+<!-- BEGIN MODAL -->
+<div id="id01" class="w3-modal">
+    <div class="w3-modal-content">
+        <div class="w3-container">
+            <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+            <h2>Get Sorted</h2>
+            <p>1. When beginning relationships or completing things, do you move quickly, or prefer to take your time and go
+                more slowly? NOTE: If you are still thinking about this...you should choose <i>"Slowly"</i></p>
+            <label class="custom-control custom-radio">
+                    <input id="radio1" name="speed" type="radio" value="0" class="custom-control-input">
+                    <span class="custom-control-indicator"></span>
+                    <span class="custom-control-description">Quickly</span>
+                </label>
+            <label class="custom-control custom-radio">
+                    <input id="radio2" name="speed" type="radio" value="2" class="custom-control-input">
+                    <span class="custom-control-indicator"></span>
+                    <span class="custom-control-description">Slowly</span>
+                </label><br>
+            <hr>
+            <p>2. When completing a task, do you prefer to work from a checklist and get stuff done (Task Oriented) or chill
+                with people while getting it done (People Oriented)?</p>
+            <label class="custom-control custom-radio">
+                        <input id="radio3" name="focus" type="radio" value="1" class="custom-control-input">
+                        <span class="custom-control-indicator"></span>
+                        <span class="custom-control-description">People Oriented</span>
+                    </label>
+            <label class="custom-control custom-radio">
+                        <input id="radio4" name="focus" type="radio" value="4" class="custom-control-input">
+                        <span class="custom-control-indicator"></span>
+                        <span class="custom-control-description">Task Oriented</span>
+                    </label>
+
+            <div id="House">
+                <center>
+                    <h1>{{house}}</h1>
+                </center>
+            </div>
+            <br>
+            <center>
+                <button type="submit" class="btn btn-primary" ng-click="animalKingdom()">Click to Get House!</button>
+                <br>
+                <small><a href="">Learn More About Houses</a></small>
+            </center>
+
+            <br><br>
+
+        </div>
+    </div>
+</div>

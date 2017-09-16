@@ -1,6 +1,6 @@
 "use strict";
 
-app.controller("userEventSubmission", function ($scope, $routeParams, getUserInfo, $location, pushUserStuffFactory) {
+app.controller("userEventSubmission", function ($scope, $routeParams, getUserInfo, $location, pushUserStuffFactory, $route) {
 
     $scope.title = "Submit This Event";
     $scope.adminTitle = "Score this Event";
@@ -36,6 +36,7 @@ app.controller("userEventSubmission", function ($scope, $routeParams, getUserInf
 
     $scope.submitEvent = ()=>{
         pushUserStuffFactory.updateEventStu($scope.eventSubmit);
+        $route.reload();
     };
     
 });

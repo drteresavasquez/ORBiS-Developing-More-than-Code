@@ -1,6 +1,6 @@
 "use strict";
 
-app.controller("userGroupSubmission", function ($scope, $routeParams, getUserInfo, $location, pushUserStuffFactory) {
+app.controller("userGroupSubmission", function ($scope, $routeParams, getUserInfo, $location, pushUserStuffFactory, $route) {
 
     $scope.title = "Submit This Group Project";
     $scope.adminTitle = "Score this Project";
@@ -34,6 +34,7 @@ app.controller("userGroupSubmission", function ($scope, $routeParams, getUserInf
 
     $scope.submitGroup = ()=>{
         pushUserStuffFactory.updateGroupStu($scope.groupSubmit);
+        $route.reload();
     };
     
 });
