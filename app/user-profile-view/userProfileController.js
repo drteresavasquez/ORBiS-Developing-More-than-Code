@@ -1,8 +1,23 @@
 "use strict";
 
-app.controller("userProfileController", function ($scope, $window, gitHubFactory, authFactory, getUserInfo, $http, FBCreds, $q, pushUserStuffFactory, $route, $routeParams, theDeleteFactory, groupingPointsFactory) {
+app.controller("userProfileController", function ($scope, gitHubFactory, authFactory, getUserInfo, pushUserStuffFactory, theDeleteFactory, groupingPointsFactory) {
 
     let currentUser = authFactory.getCurrentUser();
+
+    // console.log("getUserInfo.getUserHouse(currentUser)", getUserInfo.getUserHouse(currentUser));
+
+    // $scope.houseStuffInfo = function(){
+    //     // $scope.userHouse = 
+    //     console.log("getUserInfo.getUserHouse(currentUser)", getUserInfo.getUserHouse(currentUser));
+    //     // getUserInfo.getUserHouse(currentUser);
+    //     // .then((house)=>{
+    //     //     // $scope.userHouse = house;
+    //     //     console.log("house", house);
+    //     // });
+    //     console.log("$scope.userHouse", $scope.userHouse);
+    // };
+
+    // $scope.houseStuffInfo();
 
     $scope.milestones = () => {
         gitHubFactory.getMilestones()
@@ -31,6 +46,12 @@ app.controller("userProfileController", function ($scope, $window, gitHubFactory
         .then((exercises) => {
             $scope.exerciseDeets = getUserInfo.showUserExercises(exercises);
         });
+    
+    $scope.userExercises = (currentUser)=>{
+            getUserInfo.userExerciseCount(currentUser);
+        };
+
+        $scope.userExercises(currentUser);
 
     getUserInfo.getUserDetails(currentUser)
     .then((userDeets)=>{
@@ -89,12 +110,13 @@ app.controller("userProfileController", function ($scope, $window, gitHubFactory
     };
 
     $scope.getAllHousePoints = function(){
-        groupingPointsFactory.getHousePoints("Monkeys");
-        groupingPointsFactory.getHousePoints("Deer");
-        groupingPointsFactory.getHousePoints("Bears");
-        groupingPointsFactory.getHousePoints("Owls");
+        groupingPointsFactory.getHousePoints("Ventum");
+        groupingPointsFactory.getHousePoints("Aqua");
+        groupingPointsFactory.getHousePoints("Ignis");
+        groupingPointsFactory.getHousePoints("Terra");
         groupingPointsFactory.getCohortPoints(19);
     };
+
 
     $scope.getAllHousePoints();
     $scope.milestones();

@@ -1,6 +1,6 @@
 "use strict";
 
-app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route, groupingPointsFactory) {
+app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route, groupingPointsFactory, pushUserStuffFactory) {
 
     const getUserDetails = function (currentUser) {
         return $q((resolve, reject) => {
@@ -12,13 +12,27 @@ app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route, gr
         });
     };
 
+    const getUserHouse = function(currentUser){
+        let userHouse = [];
+        getUserDetails(currentUser)
+        .then((userDeets)=>{
+            let keys = Object.keys(userDeets);
+            keys.forEach((item)=>{
+                userHouse.push(userDeets[item].house);
+            });
+            console.log("userDeets", userHouse);
+            return(userHouse);
+            
+        });
+    };
+
     const showUserDetails = function (userDeets) {
         var userProfileStuff = [];
         var details = Object.keys(userDeets);
         details.forEach((item) => {
             userProfileStuff.push(userDeets[item]);
         });
-        // console.log("userProfileStuff", userProfileStuff);
+        console.log("userProfileStuff", userProfileStuff);
         return (userProfileStuff);
     };
 
@@ -40,6 +54,24 @@ app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route, gr
             userExerciseStuff.push(allUserExercises[item]);
         });
         return (userExerciseStuff);
+    };
+
+    const userExerciseCount = (currentUser)=>{
+        getUserExercises(currentUser)
+        .then((results)=>{
+            let doneEx = [];
+            let keys = Object.keys(results);
+            keys.forEach((item)=>{
+               if(results[item].status == "Scored"){
+                   doneEx.push(results[item]);
+               };
+            });
+            console.log("doneEx.length", doneEx.length);
+            let exercisesCompleted ={
+                exercisesCompleted: doneEx.length
+                };
+            pushUserStuffFactory.pushExerciseCount(exercisesCompleted);
+        });
     };
 
     const showUserEvents = function (allUserEvents) {
@@ -202,10 +234,10 @@ app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route, gr
                     .then(() => {
                         let pointsArray = [];
                         console.log("Points are updated");
-                        groupingPointsFactory.getHousePoints("Monkeys");
-                        groupingPointsFactory.getHousePoints("Deer");
-                        groupingPointsFactory.getHousePoints("Bears");
-                        groupingPointsFactory.getHousePoints("Owls");
+                        groupingPointsFactory.getHousePoints("Ventum");
+                        groupingPointsFactory.getHousePoints("Aqua");
+                        groupingPointsFactory.getHousePoints("Ignis");
+                        groupingPointsFactory.getHousePoints("Terra");
                     });
             });
 
@@ -267,8 +299,9 @@ app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route, gr
         getAllGroupProjs,
         getBIGSubmittedEvent,
         getBIGSubmittedGroup,
-        // pushPointsArray,
         pushPoints,
-        mySexyPoints
+        mySexyPoints,
+        getUserHouse,
+        userExerciseCount
     };
 });

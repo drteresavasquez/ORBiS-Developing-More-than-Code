@@ -1,17 +1,18 @@
 <div>
-    <div class="row" ng-repeat="item in deets">
+    <div class="row pageTitle" ng-repeat="item in deets">
         <div class="col">
-            <img ng-src="{{item.profileImg}}"><br>
+            <img class="profileImage" ng-src="{{item.profileImg}}"><br>
         </div>
         <div class="col">
             <h3>Hello, {{item.first_name}}! <a href="#!/edit-profile"><i class="fa fa-pencil" aria-hidden="true"></i></a></h3>
-            <b>Cohort:</b> {{item.cohort}}
+            <b>Exercises Done:</b> {{item.exercisesCompleted}}
+            <br> <b>Cohort:</b> {{item.cohort}}
             <br> <b>House:</b> {{item.house}}
-            <br> <b>Points:</b> {{item.points}}<br>
+            <br> <h3><b>Points:</b> {{item.points}}</h3>
             <a href="{{item.gitHubLink}}" target="_blank"><i class="fa fa-github fa-2x" aria-hidden="true"></i></a>
         </div>
         <div class="col">
-            Possible House Crest/Animal
+            <img ng-src="app/assets/images/{{item.house}}.png">
         </div>
     </div>
     <div>
@@ -30,6 +31,7 @@
             </li>
         </ul>
     </div>
+    
 
      <!-- TAB 2 -->
      <div ng-show="isSet(1)">
@@ -131,7 +133,7 @@
                     <th>Date</th>
                     <th>Event Name</th>
                     <th>Location</th>
-                    <th>Details</th>
+                    <th><i class="fa fa-info-circle" aria-hidden="true"></i></th>
                 </tr>
             </thead>
             <tbody ng-repeat="item in allEvents | filter:queryEvents | orderBy: 'begDate'">
@@ -156,6 +158,7 @@
             <div class="col-4">
                 Filter by Cohort: 
                 <select class="custom-select" ng-model="cohort">
+                    <option value="">View All</option>
                     <option value=19>Cohort 19</option>
                     <option value=20>Cohort 20</option>
                     <option value=21>Cohort 21</option>

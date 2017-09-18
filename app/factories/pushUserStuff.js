@@ -4,6 +4,37 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
 
     let currentUser = authFactory.getCurrentUser();
 
+    const getAllHousePoints = ()=>{
+        groupingPointsFactory.getHousePoints("Ignis");
+        groupingPointsFactory.getHousePoints("Terra");
+        groupingPointsFactory.getHousePoints("Aqua");
+        // groupingPointsFactory.getHousePoints("Monkeys");
+         groupingPointsFactory.getHousePoints("Ventum");
+    };
+
+    const pushExerciseCount = (obj)=>{
+        return $q((resolve, reject) => {
+            $http.get(`${FBCreds.databaseURL}/users.json?orderBy="uid"&equalTo="${currentUser}"`)
+                .then((results) => {
+                    let resultID = Object.keys(results.data);
+                    // console.log(resultID);
+                    return (resultID);
+                })
+                .then((resultID)=>{
+                let newObj = JSON.stringify(obj);
+                $http.patch(`${FBCreds.databaseURL}/users/${resultID}.json`, newObj)
+                    .then((data) => {
+                        console.log("data", data);
+                        return data;
+                    }, (error) => {
+                        let errorCode = error.code;
+                        let errorMessage = error.message;
+                        console.log("error", errorCode, errorMessage);
+                    });
+                });
+            });
+    };
+
     const updateExerciseStu = (obj)=>{
         console.log("PUSHING OBJECT", obj);
         let exerciseID = $routeParams.itemId;
@@ -12,9 +43,7 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
         $http.patch(`${FBCreds.databaseURL}/user-exercises/${exerciseID}.json`, newObj)
         .then((data) => {
             console.log("data", data);
-            groupingPointsFactory.getBearPoints();
-            groupingPointsFactory.getDeerPoints();
-            groupingPointsFactory.getOwlPoints();
+            getAllHousePoints();
             return data;
         }, (error) => {
             let errorCode = error.code;
@@ -31,9 +60,7 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
         $http.patch(`${FBCreds.databaseURL}/user-events/${eventID}.json`, newObj)
         .then((data) => {
             console.log("data", data);
-            groupingPointsFactory.getBearPoints();
-            groupingPointsFactory.getDeerPoints();
-            groupingPointsFactory.getOwlPoints();
+            getAllHousePoints();
             return data;
         }, (error) => {
             let errorCode = error.code;
@@ -50,9 +77,7 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
         $http.patch(`${FBCreds.databaseURL}/user-group-projects/${groupID}.json`, newObj)
         .then((data) => {
             console.log("data", data);
-            groupingPointsFactory.getBearPoints();
-            groupingPointsFactory.getDeerPoints();
-            groupingPointsFactory.getOwlPoints();
+            getAllHousePoints();
             return data;
         }, (error) => {
             let errorCode = error.code;
@@ -115,7 +140,7 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
                             .then((data) => {
                                 console.log("data", data);
                                 $location.url("#/");
-                                $route.reload();
+                                // $route.reload();
                                 return data;
                             }, (error) => {
                                 let errorCode = error.code;
@@ -189,7 +214,7 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
                             .then((data) => {
                                 console.log("data", data);
                                 $location.url("#/");
-                                $route.reload();
+                                // $route.reload();
                                 return data;
                             }, (error) => {
                                 let errorCode = error.code;
@@ -258,7 +283,7 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
                             .then((data) => {
                                 console.log("data", data);
                                 $location.url("#/");
-                                $route.reload();
+                                // $route.reload();
                                 return data;
                             }, (error) => {
                                 let errorCode = error.code;
@@ -273,5 +298,5 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
         });
     };
 
-    return{addUserExercise, updateExerciseStu, addUserEvent, addUserGroupProject, updateEventStu, updateGroupStu};
+    return{addUserExercise, updateExerciseStu, addUserEvent, addUserGroupProject, updateEventStu, updateGroupStu, pushExerciseCount};
 });
