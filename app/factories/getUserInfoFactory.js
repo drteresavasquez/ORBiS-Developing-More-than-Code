@@ -59,9 +59,16 @@ app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route, gr
     const userExerciseCount = (currentUser)=>{
         getUserExercises(currentUser)
         .then((results)=>{
+            let doneEx = [];
             let keys = Object.keys(results);
+            keys.forEach((item)=>{
+               if(results[item].status == "Scored"){
+                   doneEx.push(results[item]);
+               };
+            });
+            console.log("doneEx.length", doneEx.length);
             let exercisesCompleted ={
-                exercisesCompleted: keys.length
+                exercisesCompleted: doneEx.length
                 };
             pushUserStuffFactory.pushExerciseCount(exercisesCompleted);
         });

@@ -140,7 +140,7 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
                             .then((data) => {
                                 console.log("data", data);
                                 $location.url("#/");
-                                $route.reload();
+                                // $route.reload();
                                 return data;
                             }, (error) => {
                                 let errorCode = error.code;
@@ -214,7 +214,7 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
                             .then((data) => {
                                 console.log("data", data);
                                 $location.url("#/");
-                                $route.reload();
+                                // $route.reload();
                                 return data;
                             }, (error) => {
                                 let errorCode = error.code;
@@ -283,7 +283,7 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
                             .then((data) => {
                                 console.log("data", data);
                                 $location.url("#/");
-                                $route.reload();
+                                // $route.reload();
                                 return data;
                             }, (error) => {
                                 let errorCode = error.code;
