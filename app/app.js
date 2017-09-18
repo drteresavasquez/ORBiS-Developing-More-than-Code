@@ -100,11 +100,31 @@ app.config(($routeProvider) => {
             controller: 'groupPointsController',
             resolve: {isAuth}
             })
-        .when('/achievements', {
-            templateUrl: 'app/achievements-view/achievements.html',
-            controller: 'achievementsController',
+        .when('/leaderboard/house/Ignis', {
+            templateUrl: 'app/group-view/ignis.html',
+            controller: 'groupsMembersController',
             resolve: {isAuth}
             })
+        .when('/leaderboard/house/Ventum', {
+            templateUrl: 'app/group-view/ventum.html',
+            controller: 'groupsMembersController',
+            resolve: {isAuth}
+            })
+        .when('/leaderboard/house/Terra', {
+            templateUrl: 'app/group-view/terra.html',
+            controller: 'groupsMembersController',
+            resolve: {isAuth}
+            })
+        .when('/leaderboard/house/Aqua', {
+            templateUrl: 'app/group-view/terra.html',
+            controller: 'groupsMembersController',
+            resolve: {isAuth}
+            })
+        // .when('/achievements', {
+        //     templateUrl: 'app/achievements-view/achievements.html',
+        //     controller: 'achievementsController',
+        //     resolve: {isAuth}
+        //     })
         .otherwise('/');
 });
 
