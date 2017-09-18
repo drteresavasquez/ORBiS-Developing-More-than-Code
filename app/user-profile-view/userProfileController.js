@@ -4,6 +4,19 @@ app.controller("userProfileController", function ($scope, $window, gitHubFactory
 
     let currentUser = authFactory.getCurrentUser();
 
+    $scope.houseStuffInfo = function(){
+        // $scope.userHouse = 
+        console.log("getUserInfo.getUserHouse(currentUser)", getUserInfo.getUserHouse(currentUser));
+        // getUserInfo.getUserHouse(currentUser);
+        // .then((house)=>{
+        //     // $scope.userHouse = house;
+        //     console.log("house", house);
+        // });
+        console.log("$scope.userHouse", $scope.userHouse);
+    };
+
+    $scope.houseStuffInfo();
+
     $scope.milestones = () => {
         gitHubFactory.getMilestones()
             .then((allExercises) => {
@@ -95,6 +108,7 @@ app.controller("userProfileController", function ($scope, $window, gitHubFactory
         groupingPointsFactory.getHousePoints("Owls");
         groupingPointsFactory.getCohortPoints(19);
     };
+
 
     $scope.getAllHousePoints();
     $scope.milestones();

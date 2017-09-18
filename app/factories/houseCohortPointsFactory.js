@@ -2,6 +2,20 @@
 
 app.factory("groupingPointsFactory", function ($q, $http, FBCreds) {
 
+    const showHouseStuff = function(){
+        let showThem = [];
+        return $q((resolve, reject) => {
+        $http.get(`${FBCreds.databaseURL}/houses.json`)
+        .then((results)=>{
+            let keys = Object.keys(results.data);
+            keys.forEach((item)=>{
+                showThem.push(results.data[item]);
+            });
+            resolve(showThem);
+        });
+    });
+};
+
     const getHousePoints = function (house) {
         let housePoints = [0];
 
@@ -15,9 +29,9 @@ app.factory("groupingPointsFactory", function ($q, $http, FBCreds) {
                     });
                     let housePointsTotal = parseInt((housePoints.reduce((a, b) => a + b)) / students);
                     let tempObj = {
-                        id: `${house}`,
                         points: housePointsTotal,
-                        students: students
+                        students: students,
+                        crest: `app/assets/images/${house}.png`
                     };
                     let newObj = JSON.stringify(tempObj);
                     return $http.patch(`${FBCreds.databaseURL}/houses/${house}.json`, newObj)
@@ -46,7 +60,8 @@ app.factory("groupingPointsFactory", function ($q, $http, FBCreds) {
                     let cohortStuff = {
                         points: cohortPointsTotal,
                         students: students,
-                        cohort: `Cohort ${cohort}`
+                        cohort: `Cohort ${cohort}`,
+                        crest: `app/assets/images/${cohort}.png`
                     };
                     // cohortInfo.push(cohortStuff);
                     // console.log(cohortInfo);
@@ -57,6 +72,7 @@ app.factory("groupingPointsFactory", function ($q, $http, FBCreds) {
 
     return {
         getHousePoints,
-        getCohortPoints
+        getCohortPoints,
+        showHouseStuff
     };
 });

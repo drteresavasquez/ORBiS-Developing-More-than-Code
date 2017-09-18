@@ -4,6 +4,13 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
 
     let currentUser = authFactory.getCurrentUser();
 
+    const getAllHousePoints = ()=>{
+        groupingPointsFactory.getHousePoints("Bears");
+        groupingPointsFactory.getHousePoints("Owls");
+        groupingPointsFactory.getHousePoints("Deer");
+        groupingPointsFactory.getHousePoints("Monkeys");
+    };
+
     const updateExerciseStu = (obj)=>{
         console.log("PUSHING OBJECT", obj);
         let exerciseID = $routeParams.itemId;
@@ -12,9 +19,7 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
         $http.patch(`${FBCreds.databaseURL}/user-exercises/${exerciseID}.json`, newObj)
         .then((data) => {
             console.log("data", data);
-            groupingPointsFactory.getBearPoints();
-            groupingPointsFactory.getDeerPoints();
-            groupingPointsFactory.getOwlPoints();
+            getAllHousePoints();
             return data;
         }, (error) => {
             let errorCode = error.code;
@@ -31,9 +36,7 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
         $http.patch(`${FBCreds.databaseURL}/user-events/${eventID}.json`, newObj)
         .then((data) => {
             console.log("data", data);
-            groupingPointsFactory.getBearPoints();
-            groupingPointsFactory.getDeerPoints();
-            groupingPointsFactory.getOwlPoints();
+            getAllHousePoints();
             return data;
         }, (error) => {
             let errorCode = error.code;
@@ -50,9 +53,7 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
         $http.patch(`${FBCreds.databaseURL}/user-group-projects/${groupID}.json`, newObj)
         .then((data) => {
             console.log("data", data);
-            groupingPointsFactory.getBearPoints();
-            groupingPointsFactory.getDeerPoints();
-            groupingPointsFactory.getOwlPoints();
+            getAllHousePoints();
             return data;
         }, (error) => {
             let errorCode = error.code;

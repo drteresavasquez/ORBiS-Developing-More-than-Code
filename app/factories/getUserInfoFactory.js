@@ -12,13 +12,27 @@ app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route, gr
         });
     };
 
+    const getUserHouse = function(currentUser){
+        let userHouse = [];
+        getUserDetails(currentUser)
+        .then((userDeets)=>{
+            let keys = Object.keys(userDeets);
+            keys.forEach((item)=>{
+                userHouse.push(userDeets[item].house);
+            });
+            console.log("userDeets", userHouse);
+            return(userHouse);
+            
+        });
+    };
+
     const showUserDetails = function (userDeets) {
         var userProfileStuff = [];
         var details = Object.keys(userDeets);
         details.forEach((item) => {
             userProfileStuff.push(userDeets[item]);
         });
-        // console.log("userProfileStuff", userProfileStuff);
+        console.log("userProfileStuff", userProfileStuff);
         return (userProfileStuff);
     };
 
@@ -269,6 +283,7 @@ app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route, gr
         getBIGSubmittedGroup,
         // pushPointsArray,
         pushPoints,
-        mySexyPoints
+        mySexyPoints,
+        getUserHouse
     };
 });
