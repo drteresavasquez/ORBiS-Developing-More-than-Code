@@ -64,7 +64,7 @@ app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route, gr
             keys.forEach((item)=>{
                if(results[item].status == "Scored"){
                    doneEx.push(results[item]);
-               };
+               }
             });
             console.log("doneEx.length", doneEx.length);
             let exercisesCompleted ={

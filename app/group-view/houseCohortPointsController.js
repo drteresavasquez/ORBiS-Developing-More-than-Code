@@ -2,31 +2,6 @@
 
 app.controller("groupPointsController", function ($scope, groupingPointsFactory) {
 
-    // $scope.houseCalls = function () {
-    //     let houseBeasts = [];
-    //     groupingPointsFactory.getHousePoints("Monkeys")
-    //         .then((results) => {
-    //             houseBeasts.push(results);
-    //         });
-
-    //     groupingPointsFactory.getHousePoints("Terra")
-    //         .then((results) => {
-    //             houseBeasts.push(results);
-    //         });
-
-    //     groupingPointsFactory.getHousePoints("Deer")
-    //         .then((results) => {
-    //             houseBeasts.push(results);
-    //         });
-
-    //     groupingPointsFactory.getHousePoints("Bears")
-    //         .then((results) => {
-    //             houseBeasts.push(results);
-    //         });
-    //     $scope.bearsAreTheBest = houseBeasts;
-    //     console.log("bearsAreTheBest", $scope.bearsAreTheBest);
-    // };
-
     $scope.cohortCalls = function () {
         let cohortGroup = [];
 

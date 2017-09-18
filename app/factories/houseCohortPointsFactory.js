@@ -2,6 +2,22 @@
 
 app.factory("groupingPointsFactory", function ($q, $http, FBCreds) {
 
+    const leaderboardHouseCall = function(house){
+        let houseMembers = [];
+
+        return $q((resolve, reject) => {
+            $http.get(`${FBCreds.databaseURL}/users.json?orderBy="house"&equalTo="${house}"`)
+                .then((results) => {
+                    let keys = Object.keys(results.data);
+                    keys.forEach((student)=>{
+                        houseMembers.push(results.data[student]);
+                    });
+                    resolve(houseMembers);
+                    });
+    });
+};
+    
+    
     const showHouseStuff = function(){
         let showThem = [];
         return $q((resolve, reject) => {
@@ -73,6 +89,7 @@ app.factory("groupingPointsFactory", function ($q, $http, FBCreds) {
     return {
         getHousePoints,
         getCohortPoints,
-        showHouseStuff
+        showHouseStuff,
+        leaderboardHouseCall
     };
 });
