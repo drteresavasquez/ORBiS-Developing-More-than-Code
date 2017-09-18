@@ -100,6 +100,11 @@ app.config(($routeProvider) => {
             controller: 'groupPointsController',
             resolve: {isAuth}
             })
+        .when('/achievements', {
+            templateUrl: 'app/achievements-view/achievements.html',
+            controller: 'achievementsController',
+            resolve: {isAuth}
+            })
         .otherwise('/');
 });
 

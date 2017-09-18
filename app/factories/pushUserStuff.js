@@ -5,10 +5,34 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
     let currentUser = authFactory.getCurrentUser();
 
     const getAllHousePoints = ()=>{
-        groupingPointsFactory.getHousePoints("Bears");
-        groupingPointsFactory.getHousePoints("Owls");
-        groupingPointsFactory.getHousePoints("Deer");
-        groupingPointsFactory.getHousePoints("Monkeys");
+        groupingPointsFactory.getHousePoints("Ignis");
+        groupingPointsFactory.getHousePoints("Terra");
+        groupingPointsFactory.getHousePoints("Aqua");
+        // groupingPointsFactory.getHousePoints("Monkeys");
+         groupingPointsFactory.getHousePoints("Ventum");
+    };
+
+    const pushExerciseCount = (obj)=>{
+        return $q((resolve, reject) => {
+            $http.get(`${FBCreds.databaseURL}/users.json?orderBy="uid"&equalTo="${currentUser}"`)
+                .then((results) => {
+                    let resultID = Object.keys(results.data);
+                    // console.log(resultID);
+                    return (resultID);
+                })
+                .then((resultID)=>{
+                let newObj = JSON.stringify(obj);
+                $http.patch(`${FBCreds.databaseURL}/users/${resultID}.json`, newObj)
+                    .then((data) => {
+                        console.log("data", data);
+                        return data;
+                    }, (error) => {
+                        let errorCode = error.code;
+                        let errorMessage = error.message;
+                        console.log("error", errorCode, errorMessage);
+                    });
+                });
+            });
     };
 
     const updateExerciseStu = (obj)=>{
@@ -274,5 +298,5 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
         });
     };
 
-    return{addUserExercise, updateExerciseStu, addUserEvent, addUserGroupProject, updateEventStu, updateGroupStu};
+    return{addUserExercise, updateExerciseStu, addUserEvent, addUserGroupProject, updateEventStu, updateGroupStu, pushExerciseCount};
 });

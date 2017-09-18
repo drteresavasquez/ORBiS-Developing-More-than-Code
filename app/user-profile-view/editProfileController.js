@@ -63,10 +63,10 @@ app.controller("editProfileController", function ($scope, $routeParams, $locatio
             let value1 = $('input[name="speed"]:checked').val();
             let value2 = $('input[name="focus"]:checked').val();
             let animalKingdomObj = {
-                "04": "Bears",
-                "21": "Deer",
-                "24": "Owls",
-                "01": "Monkeys"
+                "04": "Ignis",
+                "21": "Aqua",
+                "24": "Terra",
+                "01": "Ventum"
             };
             for (let num in animalKingdomObj){
                 num = value1 + value2;

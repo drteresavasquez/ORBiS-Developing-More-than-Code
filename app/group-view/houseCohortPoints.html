@@ -1,8 +1,11 @@
-<div class="row">
+<div class="pageTitle">
+    <h1>Leader Board</h1>
+</div>
+<div class="row no-gutters">
     <div class="col">
         <div ng-repeat="item in cohortCombined |  orderBy:'-points'">
-            <div class="card" style="width: 20rem;">
-                    <center><h1>Cohort</h1></center>
+            <div class="card rank" style="width: 20rem;">
+                    <center><h2>Cohort</h2></center>
                 <img class="card-img-top" ng-src="{{item.crest}}" alt="Card image cap">
                 <div class="card-body">
                     <center>
@@ -13,24 +16,66 @@
         </div>
     </div>
     <div class="col">
-            <div ng-repeat="item in houseCalls |  orderBy:'-points'">
+            <div>
                 <div class="card" style="width: 20rem;">
-                        <center><h1>{{item.id}}</h1></center>
-                    <img class="card-img-top" ng-src="{{item.crest}}" alt="Card image cap">
+                        <!-- <center><h1>Place</h1></center> -->
+                    <img class="card-img-top" src="app/assets/images/1.png" alt="Card image cap">
                     <div class="card-body">
-                        <center>
-                           Points: {{item.points}}
-                        </center>
-                        <p class="card-text"></p>
+                            <!-- <center>
+                                Points
+                                </center> -->
+                        
                     </div>
                 </div>
             </div>
+
+            <div>
+                    <div class="card" style="width: 20rem;">
+                            <!-- <center><h1>Place</h1></center> -->
+                        <img class="card-img-top" src="app/assets/images/2.png" alt="Card image cap">
+                        <div class="card-body">
+                                <!-- <center>
+                                        Points
+                                        </center> -->
+                        </div>
+                    </div>
+                </div>
+                <div>
+                        <div class="card" style="width: 20rem;">
+                                <!-- <center><h1>Place</h1></center> -->
+                            <img class="card-img-top" src="app/assets/images/3.png" alt="Card image cap">
+                            <div class="card-body">
+                                    <!-- <center>
+                                            Points
+                                            </center> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                            <div class="card" style="width: 20rem;">
+                                    <!-- <center><h1>Place</h1></center> -->
+                                <img class="card-img-top" src="app/assets/images/4.png" alt="Card image cap">
+                                <div class="card-body">
+                                        <!-- <center>
+                                                Points
+                                                </center> -->
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+
+
         </div>
+        
 
 <div class="col">
     <div ng-repeat="item in houseCalls |  orderBy:'-points'">
-        <div class="card" style="width: 20rem;">
-                <center><h1>{{item.id}}</h1></center>
+        <div class="card rank" style="width: 20rem;">
+                <center><h2>{{item.id}}</h2></center>
             <img class="card-img-top" ng-src="{{item.crest}}" alt="Card image cap">
             <div class="card-body">
                 <center>
@@ -41,3 +86,4 @@
         </div>
     </div>
 </div>
+<div>NOTE: Points are calulated based team average</div>

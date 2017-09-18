@@ -9,7 +9,7 @@ app.controller("groupPointsController", function ($scope, groupingPointsFactory)
     //             houseBeasts.push(results);
     //         });
 
-    //     groupingPointsFactory.getHousePoints("Owls")
+    //     groupingPointsFactory.getHousePoints("Terra")
     //         .then((results) => {
     //             houseBeasts.push(results);
     //         });

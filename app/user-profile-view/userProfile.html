@@ -1,17 +1,18 @@
 <div>
-    <div class="row" ng-repeat="item in deets">
+    <div class="row pageTitle" ng-repeat="item in deets">
         <div class="col">
-            <img ng-src="{{item.profileImg}}"><br>
+            <img class="profileImage" ng-src="{{item.profileImg}}"><br>
         </div>
         <div class="col">
             <h3>Hello, {{item.first_name}}! <a href="#!/edit-profile"><i class="fa fa-pencil" aria-hidden="true"></i></a></h3>
-            <b>Cohort:</b> {{item.cohort}}
+            <b>Exercises Done:</b> {{item.exercisesCompleted}}
+            <br> <b>Cohort:</b> {{item.cohort}}
             <br> <b>House:</b> {{item.house}}
-            <br> <b>Points:</b> {{item.points}}<br>
+            <br> <h3><b>Points:</b> {{item.points}}</h3>
             <a href="{{item.gitHubLink}}" target="_blank"><i class="fa fa-github fa-2x" aria-hidden="true"></i></a>
         </div>
         <div class="col">
-            Possible House Crest/Animal
+            <img ng-src="app/assets/images/{{item.house}}.png">
         </div>
     </div>
     <div>
