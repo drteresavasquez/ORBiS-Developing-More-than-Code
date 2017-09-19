@@ -1,6 +1,6 @@
 "use strict";
 
-app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $location, $routeParams, $route, groupingPointsFactory){
+app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $location, $timeout, $window, $routeParams, $route, groupingPointsFactory){
 
     let currentUser = authFactory.getCurrentUser();
 
@@ -44,7 +44,6 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
         .then((data) => {
             console.log("data", data);
             getAllHousePoints();
-            $route.reload();
             return data;
         }, (error) => {
             let errorCode = error.code;
@@ -62,7 +61,6 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
         .then((data) => {
             console.log("data", data);
             getAllHousePoints();
-            $route.reload();
             return data;
         }, (error) => {
             let errorCode = error.code;
@@ -79,14 +77,24 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
         $http.patch(`${FBCreds.databaseURL}/user-group-projects/${groupID}.json`, newObj)
         .then((data) => {
             console.log("data", data);
-            getAllHousePoints();
-            $route.reload();            
+            getAllHousePoints();           
             return data;
         }, (error) => {
             let errorCode = error.code;
             let errorMessage = error.message;
             console.log("error", errorCode, errorMessage);
         });
+    };
+
+    const snackbar = function () {
+        // Get the snackbar DIV
+        var x = document.getElementById("snackbar");
+    
+        // Add the "show" class to DIV
+        x.className = "show";
+    
+        // After 3 seconds, remove the show class from DIV
+        $timeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
     };
 
     const addUserExercise = (exerciseId)=>{
@@ -98,6 +106,7 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
                 if(results.data[item].exerciseId == exerciseId){
                     throwAwayArray.push(results.data[item]);
                     console.log("Already Exists!");
+                    snackbar();
                 }else{
                     console.log( "need to add it");
                 }
@@ -143,7 +152,7 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
                             .then((data) => {
                                 console.log("data", data);
                                 $location.url("#/");
-                                // $route.reload();
+                                $route.reload();
                                 return data;
                             }, (error) => {
                                 let errorCode = error.code;
@@ -169,6 +178,7 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
                 if(results.data[key].eventId == passedId){
                     throwAwayArray.push(results.data[key]);
                     console.log("EVENT Already Exists!");
+                    snackbar();
                 }else{
                     console.log( "need to add EVENT");
                 }
@@ -218,7 +228,7 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
                             .then((data) => {
                                 console.log("data", data);
                                 $location.url("#/");
-                                // $route.reload();
+                                $route.reload();
                                 return data;
                             }, (error) => {
                                 let errorCode = error.code;
@@ -242,6 +252,7 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
                 if(results.data[item].groupId == projectId){
                     throwAwayArray.push(results.data[item]);
                     console.log("Project Already Exists!");
+                    snackbar();
                 }else{
                     console.log( "need to add Project");
                 }
@@ -287,7 +298,7 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
                             .then((data) => {
                                 console.log("data", data);
                                 $location.url("#/");
-                                // $route.reload();
+                                $route.reload();
                                 return data;
                             }, (error) => {
                                 let errorCode = error.code;

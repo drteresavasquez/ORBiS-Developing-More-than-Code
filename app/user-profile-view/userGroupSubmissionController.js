@@ -34,7 +34,6 @@ app.controller("userGroupSubmission", function ($scope, $routeParams, getUserInf
 
     $scope.submitGroup = ()=>{
         pushUserStuffFactory.updateGroupStu($scope.groupSubmit);
-        $route.reload();
     };
     
 });
