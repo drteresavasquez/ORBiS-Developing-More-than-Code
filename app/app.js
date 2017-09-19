@@ -90,6 +90,11 @@ app.config(($routeProvider) => {
             controller: 'userProfileController',
             resolve: {isAuth}
         })
+        .when('/admin/grouphelper', {
+            templateUrl: 'app/admin-view/adminGroupHelper.html',
+            controller: 'adminViews',
+            resolve: {isAuth}
+        })
         .when('/admin', {
             templateUrl: 'app/admin-view/adminDashboard.html',
             controller: 'adminViews',
@@ -140,11 +145,11 @@ app.config(($routeProvider) => {
             controller: 'groups22Studentsfun',
             resolve: {isAuth}
             })
-        // .when('/achievements', {
-        //     templateUrl: 'app/achievements-view/achievements.html',
-        //     controller: 'achievementsController',
-        //     resolve: {isAuth}
-        //     })
+        .when('/achievements', {
+            templateUrl: 'app/achievements-view/achievements.html',
+            controller: 'achievementsController',
+            resolve: {isAuth}
+            })
         .otherwise('/');
 });
 

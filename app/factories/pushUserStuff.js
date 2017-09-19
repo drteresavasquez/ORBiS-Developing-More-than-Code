@@ -1,6 +1,6 @@
 "use strict";
 
-app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $location, $routeParams, $route, groupingPointsFactory){
+app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $location, $timeout, $window, $routeParams, $route, groupingPointsFactory){
 
     let currentUser = authFactory.getCurrentUser();
 
@@ -10,6 +10,75 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
         groupingPointsFactory.getHousePoints("Aqua");
         // groupingPointsFactory.getHousePoints("Monkeys");
          groupingPointsFactory.getHousePoints("Ventum");
+    };
+
+    const achievements = ()=>{
+        return $q((resolve, reject) => {
+            $http.get(`${FBCreds.databaseURL}/users.json?orderBy="uid"&equalTo="${currentUser}"`)
+                .then((results) => {
+                    let key = Object.keys(results.data);
+                    console.log("ACHIEVEMENT RESULTS", results.data[key].points);
+                    let val = results.data[key].points;
+                    if(val <5){
+                        console.log("Newbie");
+                        let achievement0 = {
+                            achievement: "Newbie"
+                        };
+                        let newObj0 = JSON.stringify(achievement0);
+                        $http.patch(`${FBCreds.databaseURL}/users/${key}.json`, newObj0)
+                        .then((results) => {
+                            console.log("results", results);
+                        });
+                    }else if(val >= 5 && val < 50){
+                        console.log("level 1");
+                        let achievement5 = {
+                            achievement: "Level 1"
+                        };
+                        let newObj5 = JSON.stringify(achievement5);
+                        $http.patch(`${FBCreds.databaseURL}/users/${key}.json`, newObj5)
+                        .then((results) => {
+                            console.log("results", results);
+                        });
+                    }else if(val >= 50 && val <150){
+                        console.log("level 2");
+                        let achievement50 = {
+                            achievement: "Level 2"
+                        };
+                        let newObj50 = JSON.stringify(achievement50);
+                        $http.patch(`${FBCreds.databaseURL}/users/${key}.json`, newObj50)
+                        .then((results) => {
+                            console.log("results", results);
+                        });
+                    }else if(val >= 150 && val <300){
+                        let achievement150 = {
+                            achievement: "Level 3"
+                        };
+                        let newObj150 = JSON.stringify(achievement150);
+                        $http.patch(`${FBCreds.databaseURL}/users/${key}.json`, newObj150)
+                        .then((results) => {
+                            console.log("results", results);
+                        });
+                    }else if(val >=300 && val <500){
+                        let achievement300 = {
+                            achievement: "Level 4"
+                        };
+                        let newObj300 = JSON.stringify(achievement300);
+                        $http.patch(`${FBCreds.databaseURL}/users/${key}.json`, newObj300)
+                        .then((results) => {
+                            console.log("results", results);
+                        });
+                    }else if(val >= 500){
+                        let achievement500 = {
+                            achievement: "Super Hero"
+                        };
+                        let newObj500 = JSON.stringify(achievement500);
+                        $http.patch(`${FBCreds.databaseURL}/users/${key}.json`, newObj500)
+                        .then((results) => {
+                            console.log("results", results);
+                        });
+                    }
+                });
+            });  
     };
 
     const pushExerciseCount = (obj)=>{
@@ -44,7 +113,6 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
         .then((data) => {
             console.log("data", data);
             getAllHousePoints();
-            $route.reload();
             return data;
         }, (error) => {
             let errorCode = error.code;
@@ -62,7 +130,6 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
         .then((data) => {
             console.log("data", data);
             getAllHousePoints();
-            $route.reload();
             return data;
         }, (error) => {
             let errorCode = error.code;
@@ -79,14 +146,24 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
         $http.patch(`${FBCreds.databaseURL}/user-group-projects/${groupID}.json`, newObj)
         .then((data) => {
             console.log("data", data);
-            getAllHousePoints();
-            $route.reload();            
+            getAllHousePoints();           
             return data;
         }, (error) => {
             let errorCode = error.code;
             let errorMessage = error.message;
             console.log("error", errorCode, errorMessage);
         });
+    };
+
+    const snackbar = function () {
+        // Get the snackbar DIV
+        var x = document.getElementById("snackbar");
+    
+        // Add the "show" class to DIV
+        x.className = "show";
+    
+        // After 3 seconds, remove the show class from DIV
+        $timeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
     };
 
     const addUserExercise = (exerciseId)=>{
@@ -98,6 +175,7 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
                 if(results.data[item].exerciseId == exerciseId){
                     throwAwayArray.push(results.data[item]);
                     console.log("Already Exists!");
+                    snackbar();
                 }else{
                     console.log( "need to add it");
                 }
@@ -143,7 +221,7 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
                             .then((data) => {
                                 console.log("data", data);
                                 $location.url("#/");
-                                // $route.reload();
+                                $route.reload();
                                 return data;
                             }, (error) => {
                                 let errorCode = error.code;
@@ -169,6 +247,7 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
                 if(results.data[key].eventId == passedId){
                     throwAwayArray.push(results.data[key]);
                     console.log("EVENT Already Exists!");
+                    snackbar();
                 }else{
                     console.log( "need to add EVENT");
                 }
@@ -218,7 +297,7 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
                             .then((data) => {
                                 console.log("data", data);
                                 $location.url("#/");
-                                // $route.reload();
+                                $route.reload();
                                 return data;
                             }, (error) => {
                                 let errorCode = error.code;
@@ -242,6 +321,7 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
                 if(results.data[item].groupId == projectId){
                     throwAwayArray.push(results.data[item]);
                     console.log("Project Already Exists!");
+                    snackbar();
                 }else{
                     console.log( "need to add Project");
                 }
@@ -287,7 +367,7 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
                             .then((data) => {
                                 console.log("data", data);
                                 $location.url("#/");
-                                // $route.reload();
+                                $route.reload();
                                 return data;
                             }, (error) => {
                                 let errorCode = error.code;
@@ -302,5 +382,5 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
         });
     };
 
-    return{addUserExercise, updateExerciseStu, addUserEvent, addUserGroupProject, updateEventStu, updateGroupStu, pushExerciseCount};
+    return{addUserExercise, updateExerciseStu, addUserEvent, addUserGroupProject, updateEventStu, updateGroupStu, pushExerciseCount, achievements};
 });

@@ -9,11 +9,11 @@ app.factory("adminPullFactory", function($q, $http, FBCreds){
                 .then((users) => {
                     let userDeets = users.data;
                     let keys = Object.keys(users.data);
-                    console.log("keys", keys);
+                    // console.log("keys", keys);
                     keys.forEach((item)=>{
                         usersArray.push(users.data[item]);
                     });
-                    // console.log(usersArray);
+                    console.log(usersArray);
                     resolve(usersArray);
                 });
         });

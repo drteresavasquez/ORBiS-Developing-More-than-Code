@@ -4,7 +4,7 @@
             <img class="profileImage" ng-src="{{item.profileImg}}"><br>
         </div>
         <div class="col">
-            <h3>Hello, {{item.first_name}}! <a href="#!/edit-profile"><i class="fa fa-pencil" aria-hidden="true"></i></a></h3>
+            <h3>Hello, {{item.first_name}}! <a href="#!/edit-profile"><i class="fa fa-pencil" aria-hidden="true"></i></a><span class="badge badge-info">{{item.achievement}}</span></h3>
             <b>Exercises Done:</b> {{item.exercisesCompleted}}
             <br> <b>Cohort:</b> {{item.cohort}}
             <br> <b>House:</b> {{item.house}}
@@ -189,3 +189,5 @@
     </div>
 
 </div>
+
+<div id="snackbar">Already in Your List.</div>

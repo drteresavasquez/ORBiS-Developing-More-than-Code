@@ -1,5 +1,5 @@
 "use strict";
-app.controller("userCtrl", function ($scope, $window, authFactory, $location, $http, FBCreds) {
+app.controller("userCtrl", function ($scope, $window, authFactory, $location, $http, FBCreds, pushUserStuffFactory) {
 
     // console.log("Yo! The userCtrl is loaded!");
     $scope.account = {
