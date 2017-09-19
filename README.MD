@@ -53,7 +53,7 @@ Based in years of research, the central theme of Orbis is a sense of belonging i
 
 ![Maslow](https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Maslow%27s_Hierarchy_of_Needs.svg/640px-Maslow%27s_Hierarchy_of_Needs.svg.png)
 
-It is both difficult and unmanageable to foster a learning environment that is warm to EVERY student without the help of EVERY student. Orbis helps facilitate the process by giving students access to people who share their personality style through the use of  “houses," which are made up of other students at NSS so students, new and old, can share their experiences by jumping in and learning to Orbis!
+It is both difficult and unmanageable to foster a learning environment that is warm to EVERY student without the help of EVERY student. Orbis helps facilitate the process by giving students access to people who share their personality style through the use of  “houses," which are made up of other students at NSS so students, new and old, can share their experiences by jumping in and learning through Orbis!
 
 ### My Goals
 Solve a problem with data compilation and visualization
