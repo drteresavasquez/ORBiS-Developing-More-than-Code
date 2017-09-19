@@ -26,12 +26,8 @@ app.controller("adminEditGroup", function ($scope, $location, adminEditFactory, 
                 });
         };
     
-        $scope.submitTask = function () {
-            adminEditFactory.updateGroupAdmin($routeParams.itemId, $scope.group)
-            .then((data)=>{
-                //$location allows to change URL path
-                $location.path("#!/admin/groupsevents");
-            });
+        $scope.submitNewGroup = function () {
+            adminEditFactory.updateGroupAdmin($scope.group);
         };
         showEditGroup();
 

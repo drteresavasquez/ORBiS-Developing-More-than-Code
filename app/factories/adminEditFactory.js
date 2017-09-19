@@ -1,16 +1,15 @@
 "use strict";
 
-app.factory("adminEditFactory", function($q, $http, FBCreds, $routeParams){
+app.factory("adminEditFactory", function($q, $http, FBCreds, $routeParams, $location){
 
-    const updateEventAdmin = (eventID, obj)=>{
+    const updateEventAdmin = (obj)=>{
         console.log("PUSHING OBJECT", obj);
-        // let eventID = $routeParams.itemId;
+        let eventID = $routeParams.itemId;
         console.log("EventAdminIDDDDDDDDD", eventID);
         let newObj = JSON.stringify(obj);
-        $http.patch(`${FBCreds.databaseURL}/user-events/${eventID}.json`, newObj)
+        $http.patch(`${FBCreds.databaseURL}/submitted-events/${eventID}.json`, newObj)
         .then((data) => {
             console.log("data", data);
-            // $location.url("/");
             return data;
         }, (error) => {
             let errorCode = error.code;
@@ -19,15 +18,14 @@ app.factory("adminEditFactory", function($q, $http, FBCreds, $routeParams){
         });
     };
 
-    const updateGroupAdmin = (groupID, obj)=>{
+    const updateGroupAdmin = (obj)=>{
         console.log("PUSHING OBJECT", obj);
-        // let groupID = $routeParams.itemId;
+        let groupID = $routeParams.itemId;
         console.log("EventAdminIDDDDDDDDD", groupID);
         let newObj = JSON.stringify(obj);
         $http.patch(`${FBCreds.databaseURL}/submitted-group-projects/${groupID}.json`, newObj)
         .then((data) => {
             console.log("data", data);
-            // $location.url("/");
             return data;
         }, (error) => {
             let errorCode = error.code;

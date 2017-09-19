@@ -25,15 +25,16 @@ app.controller("adminEditEvents", function ($scope, $location, adminEditFactory,
                     $scope.event.id = $routeParams.itemId;
                 });
         };
-    
-        $scope.submitTask = function () {
-            adminEditFactory.updateEventAdmin($routeParams.itemId, $scope.event)
-            .then((data)=>{
-                //$location allows to change URL path
-                $location.path("#!/admin/groupsevents");
-            });
-        };
         showEditEvent();
+
+        $scope.submitNewEvent = function () {
+            adminEditFactory.updateEventAdmin($scope.event);
+            // .then((data)=>{
+            //     //$location allows to change URL path
+            //     // $location.path("#!/admin/groupsevents");
+            // });
+        };
+        
 
 
 });
