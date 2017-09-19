@@ -178,7 +178,7 @@ app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route, gr
     };
 
     const pushPoints = function (passedData) {
-        let points = [];
+        let points = [0];
         let details = Object.keys(passedData);
         details.forEach((item) => {
             // console.log("USER POINTS", passedData[item].points);

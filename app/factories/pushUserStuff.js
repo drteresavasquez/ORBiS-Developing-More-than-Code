@@ -199,7 +199,7 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
                             eventDate: singleUserEvent[0].begDate,
                             eventLink : singleUserEvent[0].eventLink,
                             eventTitle : singleUserEvent[0].eventTitle,
-                            // eventId : singleUserEvent[0].id,
+                            eventId : singleUserEvent[0].id,
                             points : 0,
                             locationAddy : singleUserEvent[0].locationAddy,
                             locationName: singleUserEvent[0].locationName,
