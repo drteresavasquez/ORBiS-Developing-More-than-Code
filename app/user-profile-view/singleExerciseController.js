@@ -1,6 +1,8 @@
 "use strict";
 
-app.controller("singleExercise", function ($scope, $routeParams, getUserInfo, $location, pushUserStuffFactory, $route) {
+app.controller("singleExercise", function ($scope, $routeParams, getUserInfo, $location, pushUserStuffFactory, $route, authFactory) {
+
+    let currentUser = authFactory.getCurrentUser();    
 
     $scope.title = "Submit Your Exercise";
     $scope.adminTitle = "Score this Exercise";
@@ -36,5 +38,6 @@ app.controller("singleExercise", function ($scope, $routeParams, getUserInfo, $l
 
     $scope.submitExercise = ()=>{
         pushUserStuffFactory.updateExerciseStu($scope.exerciseSubmit);
+        getUserInfo.getUserPoints(currentUser);
     };
 });

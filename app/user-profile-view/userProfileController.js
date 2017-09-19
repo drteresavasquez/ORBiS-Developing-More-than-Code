@@ -1,6 +1,6 @@
 "use strict";
 
-app.controller("userProfileController", function ($scope, gitHubFactory, authFactory, getUserInfo, pushUserStuffFactory, theDeleteFactory, groupingPointsFactory, $route) {
+app.controller("userProfileController", function ($scope, gitHubFactory, authFactory, getUserInfo, pushUserStuffFactory, theDeleteFactory, groupingPointsFactory, $route, useAchieve) {
 
     let currentUser = authFactory.getCurrentUser();
 
@@ -36,11 +36,13 @@ app.controller("userProfileController", function ($scope, gitHubFactory, authFac
             getUserInfo.userExerciseCount(currentUser);
         };
 
-        $scope.userExercises(currentUser);
+    $scope.userExercises(currentUser);
+    
 
     getUserInfo.getUserDetails(currentUser)
     .then((userDeets)=>{
         $scope.deets = getUserInfo.showUserDetails(userDeets);
+       
         // console.log($scope.deets);
     });
   
@@ -48,11 +50,19 @@ app.controller("userProfileController", function ($scope, gitHubFactory, authFac
         .then((allUserEvents) => {
             $scope.userEventDeets = getUserInfo.showUserEvents(allUserEvents);
         });
+    
+
 
     getUserInfo.getUserGroups(currentUser)
         .then((allUserGroups) => {
             $scope.userGroupDeets = getUserInfo.showUserGroups(allUserGroups);
         });
+
+    $scope.showUserAchievements = ()=>{
+        useAchieve.achievements();
+    };
+
+    $scope.showUserAchievements();
 
     $scope.UserPoints = getUserInfo.getUserPoints(currentUser);
     $scope.tab = 1;

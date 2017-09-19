@@ -1,12 +1,13 @@
 "use strict";
 
-app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route, groupingPointsFactory, pushUserStuffFactory) {
+app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route, groupingPointsFactory, pushUserStuffFactory, useAchieve) {
 
     const getUserDetails = function (currentUser) {
         return $q((resolve, reject) => {
             $http.get(`${FBCreds.databaseURL}/users.json?orderBy="uid"&equalTo="${currentUser}"`)
                 .then((userStuff) => {
                     let userDeets = userStuff.data;
+                    useAchieve.achievements();
                     resolve(userDeets);
                 });
         });
@@ -100,7 +101,7 @@ app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route, gr
         return $q((resolve, reject) => {
             $http.get(`${FBCreds.databaseURL}/user-exercises/${itemId}.json`)
                 .then((itemObj) => {
-                    pushUserStuffFactory.achievements();
+                    // pushUserStuffFactory.achievements();
                     resolve(itemObj.data);
 
                 })
@@ -114,7 +115,7 @@ app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route, gr
         return $q((resolve, reject) => {
             $http.get(`${FBCreds.databaseURL}/user-events/${itemId}.json`)
                 .then((itemObj) => {
-                    pushUserStuffFactory.achievements();
+                    // pushUserStuffFactory.achievements();
                     resolve(itemObj.data);
                 })
                 .catch((error) => {
@@ -151,7 +152,7 @@ app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route, gr
         return $q((resolve, reject) => {
             $http.get(`${FBCreds.databaseURL}/user-group-projects/${itemId}.json`)
                 .then((itemObj) => {
-                    pushUserStuffFactory.achievements();
+                    // pushUserStuffFactory.achievements();
                     resolve(itemObj.data);
                 })
                 .catch((error) => {
