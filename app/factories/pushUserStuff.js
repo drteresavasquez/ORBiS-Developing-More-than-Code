@@ -159,13 +159,14 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
     };
 
     const addUserEvent = (passedId)=>{
-        console.log(passedId);
+        console.log("passedId", passedId);
         $http.get(`${FBCreds.databaseURL}/user-events.json?orderBy="uid"&equalTo="${currentUser}"`)
         .then((results)=>{
             let throwAwayArray = [];
             let key = Object.keys(results.data);
+            // console.log("key", key);
             key.forEach((key)=>{
-                if(results.data[key] == passedId){
+                if(results.data[key].eventId == passedId){
                     throwAwayArray.push(results.data[key]);
                     console.log("EVENT Already Exists!");
                 }else{
