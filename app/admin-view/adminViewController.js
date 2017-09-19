@@ -46,8 +46,8 @@ app.controller("adminViews", function($scope, adminPullFactory, FBCreds, groupin
         });
     };
     
-// $scope.showAllUserExercise();
+$scope.showAllUserExercise();
 $scope.showAllUsers();
-// $scope.showAllUserEvents();
-// $scope.showAllGroupings();
+$scope.showAllUserEvents();
+$scope.showAllGroupings();
 });
