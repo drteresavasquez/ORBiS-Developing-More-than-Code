@@ -1,41 +1,90 @@
 "use strict";
 
-app.controller("groupsMembersController", function ($scope, groupingPointsFactory) {
+
+app.controller("groupsIgnisStudentsfun", function($scope, groupingPointsFactory){
+
+    $scope.house = "Ignis";
+
+    groupingPointsFactory.leaderboardHouseCall($scope.house)
+    .then((students) => {
+        $scope.studentList = students;
+    });
+});
+
+app.controller("groupsVentumStudentsfun", function($scope, groupingPointsFactory){
+    
+    $scope.house = "Ventum";
+
+    groupingPointsFactory.leaderboardHouseCall($scope.house)
+    .then((students) => {
+        $scope.studentList = students;
+    });
+
+});
 
 
-    $scope.groupsIgnisStudentsfun = () => {
-        groupingPointsFactory.leaderboardHouseCall("Ignis")
-            .then((students) => {
-                $scope.groupsIgnisStudents = students;
-                console.log("$scope.groupsStudents", $scope.groupsIgnisStudents);
-            });
-    };
-    $scope.groupsIgnisStudentsfun();
+app.controller("groupsTerraStudentsfun", function($scope, groupingPointsFactory){
+    
+    $scope.house = "Terra";
 
-    $scope.groupsVentumStudentsfun = () => {
-        groupingPointsFactory.leaderboardHouseCall("Ventum")
-            .then((students) => {
-                $scope.groupsVentumStudents = students;
-                console.log("$scope.groupsStudents", $scope.groupsVentumStudents);
-            });
-    };
-    $scope.groupsVentumStudentsfun();
+    groupingPointsFactory.leaderboardHouseCall($scope.house)
+    .then((students) => {
+        $scope.studentList = students;
+    });
 
-    $scope.groupsTerraStudentsfun = () => {
-        groupingPointsFactory.leaderboardHouseCall("Terra")
-            .then((students) => {
-                $scope.groupsTerraStudents = students;
-                console.log("$scope.groupsStudents", $scope.groupsTerraStudents);
-            });
-    };
-    $scope.groupsTerraStudentsfun();
+});
 
-    $scope.groupsAquaStudentsfun = () => {
-        groupingPointsFactory.leaderboardHouseCall("Aqua")
-            .then((students) => {
-                $scope.groupsAquaStudents = students;
-                console.log("$scope.groupsStudents", $scope.groupsAquaStudents);
-            });
-    };
-    $scope.groupsAquaStudentsfun();
+app.controller("groupsAquaStudentsfun", function($scope, groupingPointsFactory){
+    
+    $scope.house = "Terra";
+
+    groupingPointsFactory.leaderboardHouseCall($scope.house)
+    .then((students) => {
+        $scope.studentList = students;
+    });
+
+});
+
+app.controller("groups19Studentsfun", function($scope, groupingPointsFactory){
+    
+    $scope.cohort = 19;
+
+    groupingPointsFactory.leaderboardCohortCall($scope.cohort)
+    .then((students) => {
+        $scope.studentList = students;
+    });
+
+});
+
+app.controller("groups20Studentsfun", function($scope, groupingPointsFactory){
+    
+    $scope.cohort = 20;
+
+    groupingPointsFactory.leaderboardCohortCall($scope.cohort)
+    .then((students) => {
+        $scope.studentList = students;
+    });
+
+});
+
+app.controller("groups21Studentsfun", function($scope, groupingPointsFactory){
+    
+    $scope.cohort = 21;
+
+    groupingPointsFactory.leaderboardCohortCall($scope.cohort)
+    .then((students) => {
+        $scope.studentList = students;
+    });
+
+});
+
+app.controller("groups22Studentsfun", function($scope, groupingPointsFactory){
+    
+    $scope.cohort = 22;
+
+    groupingPointsFactory.leaderboardCohortCall($scope.cohort)
+    .then((students) => {
+        $scope.studentList = students;
+    });
+
 });

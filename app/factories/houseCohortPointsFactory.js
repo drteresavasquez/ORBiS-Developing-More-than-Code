@@ -16,6 +16,21 @@ app.factory("groupingPointsFactory", function ($q, $http, FBCreds) {
                     });
     });
 };
+
+const leaderboardCohortCall = function(cohort){
+    let cohortMembers = [];
+
+    return $q((resolve, reject) => {
+        $http.get(`${FBCreds.databaseURL}/users.json?orderBy="cohort"&equalTo="${cohort}"`)
+            .then((results) => {
+                let keys = Object.keys(results.data);
+                keys.forEach((student)=>{
+                    cohortMembers.push(results.data[student]);
+                });
+                resolve(cohortMembers);
+                });
+});
+};
     
     
     const showHouseStuff = function(){
@@ -65,7 +80,7 @@ app.factory("groupingPointsFactory", function ($q, $http, FBCreds) {
         let cohortPoints = [0];
         let cohortInfo = [];
         return $q((resolve, reject) => {
-            $http.get(`${FBCreds.databaseURL}/users.json?orderBy="cohort"&equalTo=${cohort}`)
+            $http.get(`${FBCreds.databaseURL}/users.json?orderBy="cohort"&equalTo="${cohort}"`)
                 .then((results) => {
                     let keys = Object.keys(results.data);
                     let students = keys.length;
@@ -76,7 +91,7 @@ app.factory("groupingPointsFactory", function ($q, $http, FBCreds) {
                     let cohortStuff = {
                         points: cohortPointsTotal,
                         students: students,
-                        cohort: `Cohort ${cohort}`,
+                        cohort: `${cohort}`,
                         crest: `app/assets/images/${cohort}.png`
                     };
                     // cohortInfo.push(cohortStuff);
@@ -90,6 +105,7 @@ app.factory("groupingPointsFactory", function ($q, $http, FBCreds) {
         getHousePoints,
         getCohortPoints,
         showHouseStuff,
-        leaderboardHouseCall
+        leaderboardHouseCall,
+        leaderboardCohortCall
     };
 });
