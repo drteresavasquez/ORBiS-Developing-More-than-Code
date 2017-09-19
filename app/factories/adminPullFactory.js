@@ -13,7 +13,7 @@ app.factory("adminPullFactory", function($q, $http, FBCreds){
                     keys.forEach((item)=>{
                         usersArray.push(users.data[item]);
                     });
-                    console.log(usersArray);
+                    // console.log(usersArray);
                     resolve(usersArray);
                 });
         });
@@ -25,7 +25,7 @@ app.factory("adminPullFactory", function($q, $http, FBCreds){
             $http.get(`${FBCreds.databaseURL}/user-exercises.json`)
                 .then((userStuff) => {
                     let keys = Object.keys(userStuff.data);
-                    console.log("keys", keys);
+                    // console.log("keys", keys);
                     keys.forEach((item)=>{
                         userExercisesArray.push(userStuff.data[item]);
                     });
@@ -41,11 +41,11 @@ app.factory("adminPullFactory", function($q, $http, FBCreds){
             $http.get(`${FBCreds.databaseURL}/user-events.json`)
                 .then((userStuff) => {
                     let keys = Object.keys(userStuff.data);
-                    console.log("keys", keys);
+                    // console.log("keys", keys);
                     keys.forEach((item)=>{
                         userEventsArray.push(userStuff.data[item]);
                     });
-                    console.log("userEventsArray", userEventsArray);
+                    // console.log("userEventsArray", userEventsArray);
                     resolve(userEventsArray);
                 });
         });
@@ -57,11 +57,11 @@ app.factory("adminPullFactory", function($q, $http, FBCreds){
             $http.get(`${FBCreds.databaseURL}/user-group-projects.json`)
                 .then((userStuff) => {
                     let keys = Object.keys(userStuff.data);
-                    console.log("keys", keys);
+                    // console.log("keys", keys);
                     keys.forEach((item)=>{
                         userGroupsArray.push(userStuff.data[item]);
                     });
-                    console.log("userGroupsArray", userGroupsArray);
+                    // console.log("userGroupsArray", userGroupsArray);
                     resolve(userGroupsArray);
                 });
         });

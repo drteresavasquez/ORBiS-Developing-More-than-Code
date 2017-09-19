@@ -8,8 +8,8 @@ app.factory("useAchieve", function($q, $http, FBCreds, authFactory){
             $http.get(`${FBCreds.databaseURL}/users.json?orderBy="uid"&equalTo="${currentUser}"`)
                 .then((results) => {
                     let key = Object.keys(results.data);
-                    console.log("ACHIEVEMENT RESULTS", results.data[key].points);
                     let val = results.data[key].points;
+
                     if(val <5){
                         console.log("Newbie");
                         let achievement0 = {
@@ -38,7 +38,7 @@ app.factory("useAchieve", function($q, $http, FBCreds, authFactory){
                         let newObj50 = JSON.stringify(achievement50);
                         $http.patch(`${FBCreds.databaseURL}/users/${key}.json`, newObj50)
                         .then((results) => {
-                            console.log("results", results);
+                            // console.log("results", results);
                         });
                     }else if(val >= 150 && val <300){
                         let achievement150 = {
@@ -47,7 +47,7 @@ app.factory("useAchieve", function($q, $http, FBCreds, authFactory){
                         let newObj150 = JSON.stringify(achievement150);
                         $http.patch(`${FBCreds.databaseURL}/users/${key}.json`, newObj150)
                         .then((results) => {
-                            console.log("results", results);
+                            // console.log("results", results);
                         });
                     }else if(val >=300 && val <500){
                         let achievement300 = {
@@ -56,7 +56,7 @@ app.factory("useAchieve", function($q, $http, FBCreds, authFactory){
                         let newObj300 = JSON.stringify(achievement300);
                         $http.patch(`${FBCreds.databaseURL}/users/${key}.json`, newObj300)
                         .then((results) => {
-                            console.log("results", results);
+                            // console.log("results", results);
                         });
                     }else if(val >= 500){
                         let achievement500 = {
@@ -65,7 +65,7 @@ app.factory("useAchieve", function($q, $http, FBCreds, authFactory){
                         let newObj500 = JSON.stringify(achievement500);
                         $http.patch(`${FBCreds.databaseURL}/users/${key}.json`, newObj500)
                         .then((results) => {
-                            console.log("results", results);
+                            // console.log("results", results);
                         });
                     }
                 });

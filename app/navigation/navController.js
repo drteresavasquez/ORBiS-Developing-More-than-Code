@@ -22,4 +22,17 @@ app.controller("navCtrl", function($scope, $window, $routeParams, authFactory){
           $window.location.href = "#!/login";
         }
       });
+
+
+      // $scope.isTeacher = false;
+      // console.log("data.uid", data.uid);
+      // $scope.areYouTeach = ()=>{
+      //   console.log("currentUser", currentUser);
+      //   authFactory.areYouAdmin(currentUser);
+      // };
+
+      // $scope.areYouTeach();
+
+
+
 });

@@ -47,6 +47,15 @@ app.factory("authFactory", function ($q, $http, FBCreds, $window, $location) {
             });
     };
 
+    const areYouAdmin = (currentUser)=>{
+        return $q((resolve, reject)=>{
+            $http.get(`${FBCreds.databaseURL}/users.json?orderBy="uid"&equalTo="${currentUser}"`)
+            .then((results)=>{
+                console.log("areYouAdmin", results.data);
+            });
+        });
+    };
+
     const addBrandNewUser = function (addNewUser) {
         let newObj = JSON.stringify(addNewUser);
         return $http.post(`${FBCreds.databaseURL}/users.json`, newObj)
@@ -109,7 +118,8 @@ app.factory("authFactory", function ($q, $http, FBCreds, $window, $location) {
         isAuthenticated,
         addBrandNewUser,
         editUser,
-        getSingleUser
+        getSingleUser,
+        areYouAdmin
     };
 
 });
