@@ -101,23 +101,43 @@ app.config(($routeProvider) => {
             resolve: {isAuth}
             })
         .when('/leaderboard/house/Ignis', {
-            templateUrl: 'app/group-view/ignis.html',
-            controller: 'groupsMembersController',
+            templateUrl: 'app/group-view/houseList.html',
+            controller: 'groupsIgnisStudentsfun',
             resolve: {isAuth}
             })
         .when('/leaderboard/house/Ventum', {
-            templateUrl: 'app/group-view/ventum.html',
-            controller: 'groupsMembersController',
+            templateUrl: 'app/group-view/houseList.html',
+            controller: 'groupsVentumStudentsfun',
             resolve: {isAuth}
             })
         .when('/leaderboard/house/Terra', {
-            templateUrl: 'app/group-view/terra.html',
-            controller: 'groupsMembersController',
+            templateUrl: 'app/group-view/houseList.html',
+            controller: 'groupsTerraStudentsfun',
             resolve: {isAuth}
             })
         .when('/leaderboard/house/Aqua', {
-            templateUrl: 'app/group-view/terra.html',
-            controller: 'groupsMembersController',
+            templateUrl: 'app/group-view/houseList.html',
+            controller: 'groupsAquaStudentsfun',
+            resolve: {isAuth}
+            })
+        .when('/leaderboard/cohort/19', {
+            templateUrl: 'app/group-view/cohortList.html',
+            controller: 'groups19Studentsfun',
+            resolve: {isAuth}
+            })
+        .when('/leaderboard/cohort/20', {
+            templateUrl: 'app/group-view/cohortList.html',
+            controller: 'groups20Studentsfun',
+            resolve: {isAuth}
+            })
+        .when('/leaderboard/cohort/21', {
+            templateUrl: 'app/group-view/cohortList.html',
+            controller: 'groups21Studentsfun',
+            resolve: {isAuth}
+            })
+        .when('/leaderboard/cohort/22', {
+            templateUrl: 'app/group-view/cohortList.html',
+            controller: 'groups22Studentsfun',
             resolve: {isAuth}
             })
         // .when('/achievements', {

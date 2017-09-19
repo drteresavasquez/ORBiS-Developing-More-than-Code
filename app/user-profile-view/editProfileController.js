@@ -12,7 +12,7 @@ app.controller("editProfileController", function ($scope, $routeParams, $locatio
         last_name: "",
         email: "",
         gitHubLink: "",
-        cohort: "",
+        cohort: 0,
         house: "",
         techInterests: "",
         socialInterest: ""

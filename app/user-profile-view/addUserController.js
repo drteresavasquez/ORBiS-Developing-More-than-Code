@@ -16,7 +16,7 @@ app.controller("addUserController", function ($scope, $routeParams, authFactory,
         last_name: "",
         email: "",
         gitHubLink: "",
-        cohort: "",
+        cohort: 0,
         house: "",
         techInterests: "",
         socialInterest: ""
