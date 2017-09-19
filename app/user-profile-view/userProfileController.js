@@ -1,23 +1,8 @@
 "use strict";
 
-app.controller("userProfileController", function ($scope, gitHubFactory, authFactory, getUserInfo, pushUserStuffFactory, theDeleteFactory, groupingPointsFactory) {
+app.controller("userProfileController", function ($scope, gitHubFactory, authFactory, getUserInfo, pushUserStuffFactory, theDeleteFactory, groupingPointsFactory, $route) {
 
     let currentUser = authFactory.getCurrentUser();
-
-    // console.log("getUserInfo.getUserHouse(currentUser)", getUserInfo.getUserHouse(currentUser));
-
-    // $scope.houseStuffInfo = function(){
-    //     // $scope.userHouse = 
-    //     console.log("getUserInfo.getUserHouse(currentUser)", getUserInfo.getUserHouse(currentUser));
-    //     // getUserInfo.getUserHouse(currentUser);
-    //     // .then((house)=>{
-    //     //     // $scope.userHouse = house;
-    //     //     console.log("house", house);
-    //     // });
-    //     console.log("$scope.userHouse", $scope.userHouse);
-    // };
-
-    // $scope.houseStuffInfo();
 
     $scope.milestones = () => {
         gitHubFactory.getMilestones()
@@ -116,7 +101,6 @@ app.controller("userProfileController", function ($scope, gitHubFactory, authFac
         groupingPointsFactory.getHousePoints("Terra");
         groupingPointsFactory.getCohortPoints(19);
     };
-
 
     $scope.getAllHousePoints();
     $scope.milestones();

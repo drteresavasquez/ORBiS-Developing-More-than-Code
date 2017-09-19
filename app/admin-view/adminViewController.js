@@ -1,6 +1,6 @@
 "use strict";
 
-app.controller("adminViews", function($scope, adminPullFactory, FBCreds){
+app.controller("adminViews", function($scope, adminPullFactory, FBCreds, groupingPointsFactory){
 
     $scope.showAllUserExercise = ()=>{
         adminPullFactory.getAllUserExercises()
@@ -9,6 +9,16 @@ app.controller("adminViews", function($scope, adminPullFactory, FBCreds){
             $scope.allUserExercises = data;
         });
     };
+
+    $scope.showCohortMembers = (cohort)=>{
+       groupingPointsFactory.leaderboardCohortCall(cohort)
+       .then((results)=>{
+        $scope.allUsers = results;
+        console.log("$scope.cohortMemberList", results);
+       });
+        
+    };
+        
 
     $scope.showAllUserEvents = ()=>{
         adminPullFactory.getAllUserEvents()
@@ -36,8 +46,8 @@ app.controller("adminViews", function($scope, adminPullFactory, FBCreds){
         });
     };
     
-$scope.showAllUserExercise();
+// $scope.showAllUserExercise();
 $scope.showAllUsers();
-$scope.showAllUserEvents();
-$scope.showAllGroupings();
+// $scope.showAllUserEvents();
+// $scope.showAllGroupings();
 });

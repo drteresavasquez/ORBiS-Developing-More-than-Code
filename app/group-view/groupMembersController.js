@@ -8,6 +8,7 @@ app.controller("groupsIgnisStudentsfun", function($scope, groupingPointsFactory)
     groupingPointsFactory.leaderboardHouseCall($scope.house)
     .then((students) => {
         $scope.studentList = students;
+        console.log($scope.studentList);
     });
 });
 

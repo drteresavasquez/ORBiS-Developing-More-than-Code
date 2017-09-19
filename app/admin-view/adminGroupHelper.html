@@ -1,0 +1,54 @@
+<div class="pageTitle">
+    <h1>Group Helper</h1>
+</div>
+<div class="row">
+    <div class="col-7">
+        <input type="search" ng-model="queryStudents" class="form-control" aria-describedby="search" placeholder="Search Students"
+            autofocus>
+    </div>
+    <div class="col-5">
+    
+            <div class="btn-group mr-2" role="group">
+                <button type="button" class="btn btn-secondary" ng-click="showAllUsers()">All</button>
+                <button type="button" class="btn btn-secondary" ng-click="showCohortMembers(19)">19</button>
+                <button type="button" class="btn btn-secondary" ng-click="showCohortMembers(20)">20</button>
+                <button type="button" class="btn btn-secondary" ng-click="showCohortMembers(21)">21</button>
+                <button type="button" class="btn btn-secondary" ng-click="showCohortMembers(22)">22</button>
+            </div>
+
+
+        <!-- Filter by Status: <select class="custom-select" ng-model="cohort">
+                        <option value="">View All Students</option>
+                        <option value=19>19</option>
+                        <option value=20>20</option>
+                        <option value=21>21</option>
+                        <option value="Scored">Scored</option>
+                        <option value="Going">Going</option>
+                    </select> -->
+    </div>
+</div>
+<br>
+<table class="table table-striped table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Points</th>
+            <th>Name</th>
+            <th>Cohort</th>
+            <th>Exercises</th>
+            <th>House</th>
+            <th>Tech Goal</th>
+            <th>Social Goal</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="item in allUsers | filter:queryStudents | orderBy: '-points'">
+            <th scope="row">{{item.points}}</th>
+            <td>{{item.first_name}} {{item.last_name}}</td>
+            <td>{{item.cohort}}</td>
+            <td>{{item.exercisesCompleted}}</td>
+            <td>{{item.house}}</td>
+            <td>{{item.techInterests}}</td>
+            <td>{{item.socialInterest}}</td>
+        </tr>
+    </tbody>
+</table>

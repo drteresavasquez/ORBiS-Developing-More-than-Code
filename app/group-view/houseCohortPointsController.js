@@ -1,6 +1,6 @@
 "use strict";
 
-app.controller("groupPointsController", function ($scope, groupingPointsFactory) {
+app.controller("groupPointsController", function ($scope, groupingPointsFactory, pushUserStuffFactory) {
 
     $scope.cohortCalls = function () {
         let cohortGroup = [];
@@ -33,7 +33,7 @@ app.controller("groupPointsController", function ($scope, groupingPointsFactory)
             // console.log("$scope.houseCalls", $scope.houseCalls);
         });
     };
-    
+
     $scope.showHouseStuff();
     $scope.cohortCalls();
     // $scope.houseCalls();

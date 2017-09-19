@@ -100,7 +100,9 @@ app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route, gr
         return $q((resolve, reject) => {
             $http.get(`${FBCreds.databaseURL}/user-exercises/${itemId}.json`)
                 .then((itemObj) => {
+                    pushUserStuffFactory.achievements();
                     resolve(itemObj.data);
+
                 })
                 .catch((error) => {
                     reject(error);
@@ -112,6 +114,7 @@ app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route, gr
         return $q((resolve, reject) => {
             $http.get(`${FBCreds.databaseURL}/user-events/${itemId}.json`)
                 .then((itemObj) => {
+                    pushUserStuffFactory.achievements();
                     resolve(itemObj.data);
                 })
                 .catch((error) => {
@@ -148,6 +151,7 @@ app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route, gr
         return $q((resolve, reject) => {
             $http.get(`${FBCreds.databaseURL}/user-group-projects/${itemId}.json`)
                 .then((itemObj) => {
+                    pushUserStuffFactory.achievements();
                     resolve(itemObj.data);
                 })
                 .catch((error) => {

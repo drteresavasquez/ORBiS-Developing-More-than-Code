@@ -37,5 +37,6 @@ app.controller("userEventSubmission", function ($scope, $routeParams, getUserInf
     $scope.submitEvent = ()=>{
         pushUserStuffFactory.updateEventStu($scope.eventSubmit);
     };
+
     
 });
