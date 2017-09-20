@@ -1,0 +1,25 @@
+<div class="pageTitle"><h1>Cohort {{cohortNum}}</h1></div>
+<div class="row card-deck no-gutters">
+        <div class="col-sm-4" ng-repeat="item in studentList  | orderBy:'-points'">
+            <div class="card houses">
+                <div class="card-body">
+                    <img class="card-img-top" ng-src="{{item.profileImg}}" alt="Card image cap">
+                  <center><h3 class="card-title">{{item.first_name}} <span class="badge badge-info">{{item.achievement}}</span></h3></center>
+                  <p class="card-text">
+                      <center><a ng-href="{{item.gitHubLink}}" target="_blank">GitHub Link</a></center>
+                   <!-- <br>Tech Interest:{{item.techInterests}} -->
+                  </p>
+                  
+                  <div class="card-footer">
+                    <center>
+                      <b>Score</b>
+                      <h2>{{item.points}}</h2>
+                    </center>
+                      </div>
+                </div>
+              </div>
+        </div>
+
+
+
+      </div>

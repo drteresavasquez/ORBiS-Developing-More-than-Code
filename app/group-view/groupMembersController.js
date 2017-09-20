@@ -90,13 +90,26 @@ app.controller("groups22Studentsfun", function($scope, groupingPointsFactory){
 
 });
 
-app.controller("showMyCohort", function($scope, groupingPointsFactory){
+app.controller("showMyCohort", function($scope, groupingPointsFactory, getUserInfo, authFactory){
 
-    $scope.getMyPeeps =(cohort)=>{
+    $scope.getMyPeeps =()=>{
+    let currentUser = authFactory.getCurrentUser();
+        getUserInfo.getUserDetails(currentUser)
+        .then((results)=>{
+            let key = Object.keys(results);
+            let cohort = results[key].cohort;
+            $scope.cohortNum = cohort;
+            console.log("resultsSSSSSSSS", cohort);
+            return(cohort);
+        })
+        .then((cohort)=>{
         groupingPointsFactory.leaderboardCohortCall(cohort)
-        .then((students) => {
+            .then((students) => {
             $scope.studentList = students;
+            console.log("$scope.studentList", $scope.studentList);
+            });
         });
+        
     };
-
+    $scope.getMyPeeps();
 });
