@@ -2,3 +2,310 @@
     height:400px; 
 }
 
+
+.container{
+    margin-top: 100px;
+    margin-bottom: 150px;
+}
+.pageTitle{
+    margin-bottom: 30px;
+    border-bottom: 1px solid #F5F5F5;
+    padding-bottom: 20px;
+    text-align: center;
+    color: #686767;
+}
+
+.profileImage{
+    border-radius: 10px;
+    width: 200px;
+}
+a:visited, a:active, a:link {
+    color: #F75430 !important;
+}
+.card-deck{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card.user{
+    flex-grow: 2;
+}
+
+.card.houses{
+    border: 1px solid gray;
+    margin-bottom: 20px;
+}
+
+.card-footer{
+    border: 1px solid black;
+}
+
+  a:focus, a:hover, a:active {
+      text-decoration: none;
+  }
+  
+  .text-black {
+      color: #333 !important;
+  }
+  
+  a.text-black:focus, a.text-black:hover {
+      color: #7b7b7b !important;
+  }
+  
+  .list {
+      display: block;
+      background-color: rgba(255,255,255,.8);
+      box-shadow: 0 1px 3px rgba(0,0,0,.12),0 1px 2px rgba(0,0,0,.24);
+      border-radius: 2px;
+      transition: all .2s ease-in-out;
+  }
+  
+  .list-header {
+      display: block;
+      float: left;
+      width: 35%;
+      overflow: hidden;
+      position: relative;
+      border-radius: 2px 0 0 2px;
+  }
+  
+  .list-header img {
+      /* width: 100%; */
+      height:200px;
+      margin-left: -55px;
+  }
+  
+  .list-header .list-header-image:after {
+      display: block;
+      content: '';
+      background-color: rgba(0,0,0,.4);
+      position: absolute;
+      top: 100%;
+      left: 100%;
+      width: 100px;
+      height: 100px;
+      box-shadow: 0 0 200px 100px rgba(0,0,0,.58);
+      z-index: 1;
+      -ms-transform: rotate(45deg);
+      -webkit-transform: rotate(45deg);
+      transform: rotate(45deg);
+      opacity: 0;
+      filter: alpha(opacity=0);
+      transition: all .8s;
+      -moz-transition: all .8s;
+      -webkit-transition: all .8s;
+      -o-transition: all .8s;
+  }
+  
+  .list-content {
+      display: block;
+      margin-left: 35%;
+      padding: 15px;
+      position: relative;
+  }
+  
+  .list-meta {
+      display: block;
+      margin-bottom: 16px;
+      font-size: 13px;
+      line-height: 100%;
+  }
+  
+  .list-meta .list-meta-item {
+      display: inline-block;
+      margin-right: 18px;
+      color: #9A9A9A;
+  }
+  
+  .list:after {
+      display: block;
+      clear: both;
+      content: '';
+  }
+  
+  .list:hover {
+      box-shadow: 0 10px 20px rgba(0,0,0,.19),0 6px 6px rgba(0,0,0,.23);
+  }
+  
+/* --- NAVIGATION ELEMENTS --- */
+.navbar.fixed-top {
+    background: white;
+    display: flex;
+    justify-content: center;
+    border-bottom: 1px solid #F97236;
+    box-shadow: 5px 5px 5px rgba(128, 128, 128, .2);
+    padding-right:50px;
+}
+.navbar.fixed-top img {
+    width: 200px;
+}
+.loginStuff{
+    display: block;
+    background: #e3a000;
+    width: 150%;
+    color: white;
+    cursor: pointer;
+    border-radius: 10px;
+    height: 50px;
+    border: none;
+}
+
+.loginStuff:hover{
+    text-decoration: none;
+    background: #808080;
+}
+
+a.link-block {
+    display: block;
+}
+
+.navbar.fixed-bottom {
+    background: #F75430;
+    border-top: 1px solid #F97236;
+    height: 60px;
+    display: flex;
+    padding: 0px;
+    align-content: center;
+}
+.navbar.fixed-bottom.admin{
+    background: #3AA3DD;
+    border-top:white 1px solid;
+}
+.nav-item {
+    width: 25%;
+    padding: 10px;
+    height: 60px;
+    border-left: 1px solid white;
+    text-align: center;
+}
+
+.nav-item.first {
+    border: none;
+}
+
+.fa-home,
+.fa-users,
+.fa-trophy,
+.fa-book,
+.fa-list-alt {
+    color: white;
+}
+
+.fa-home:hover,
+.fa-users:hover,
+.fa-trophy:hover,
+.fa-book:hover,
+.fa-list-alt:hover {
+    text-decoration: none;
+    color: white;
+}
+
+/* ---LOGIN FORM---- */
+.loginTable{
+    width: 70%;
+    border: 1px solid #F97236;
+    margin: 0 auto;
+    margin-top: 130px;
+    padding: 30px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.loginTable img{
+    padding: 50px;
+}
+
+th, td, tr{
+    text-align: center;
+}
+
+.search{
+    width: 40%;
+    margin-top: 20px;
+}
+.card{
+    border: none;
+}
+.card.rank{
+    border: 2px solid #3AA3DD;
+    padding: 15px;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+/* W3C SNACKBAR */
+#snackbar {
+    visibility: hidden; /* Hidden by default. Visible on click */
+    min-width: 250px; /* Set a default minimum width */
+    margin-left: -125px; /* Divide value of min-width by 2 */
+    background-color:  #F97236;/* Black background color */
+    color: #fff; /* White text color */
+    text-align: center; /* Centered text */
+    border-radius: 10px; /* Rounded borders */
+    padding: 16px; /* Padding */
+    position: fixed; /* Sit on top of the screen */
+    z-index: 1; /* Add a z-index if needed */
+    left: 50%; /* Center the snackbar */
+    bottom: 330px; /* 30px from the bottom */
+}
+
+#snackbar.show {
+    visibility: visible; 
+    -webkit-animation: fadein 1.0s, fadeout 1.0s 2.5s;
+    animation: fadein 1.0s, fadeout 1.0s 2.5s;
+}
+
+@-webkit-keyframes fadein {
+    from {bottom: 0; opacity: 0;} 
+    to {bottom: 330px; opacity: 1;}
+}
+
+@keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 330px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+    from {bottom: 330px; opacity: 1;} 
+    to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+    from {bottom: 330px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+}
+
+/* --- MOBILE/RESPONSIVE ---- */
+@media screen and (max-width: 680px) {
+    .navbar.fixed-bottom {
+        height: 45px;
+    }
+    .loginTable img{
+        padding: 10px;
+        width: 100%;
+    }
+
+    .loginTable{
+        width: 100%;
+        margin: 0 auto;
+        margin-top: 100px;
+        padding: 30px;
+    }
+}
+
+@media only screen and (max-width: 991px) {
+    .list-header {
+      display: block;
+      width: 100%;
+      padding: 0;
+      border-radius: 0;
+    }
+    
+    .list-content {
+      display: block;
+      width: 100%;
+      margin-left: 0;
+      padding: 15px;
+      clear: both;
+    }
+  }
