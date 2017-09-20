@@ -89,3 +89,14 @@ app.controller("groups22Studentsfun", function($scope, groupingPointsFactory){
     });
 
 });
+
+app.controller("showMyCohort", function($scope, groupingPointsFactory){
+
+    $scope.getMyPeeps =(cohort)=>{
+        groupingPointsFactory.leaderboardCohortCall(cohort)
+        .then((students) => {
+            $scope.studentList = students;
+        });
+    };
+
+});

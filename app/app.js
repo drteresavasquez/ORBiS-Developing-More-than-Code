@@ -145,9 +145,19 @@ app.config(($routeProvider) => {
             controller: 'groups22Studentsfun',
             resolve: {isAuth}
             })
-        .when('/achievements', {
-            templateUrl: 'app/achievements-view/achievements.html',
-            controller: 'achievementsController',
+        .when('/mycohort', {
+            templateUrl: 'app/group-view/myCohort.html',
+            controller: 'showMyCohort',
+            resolve: {isAuth}
+            })
+        .when('/admin/learninglibrary', {
+            templateUrl: 'app/learning-library-view/adminview.html',
+            controller: 'LearningLibrary',
+            resolve: {isAuth}
+            })
+        .when('/learninglibrary', {
+            templateUrl: 'app/learning-library-view/studentview.html',
+            controller: 'LearningLibrary',
             resolve: {isAuth}
             })
         .otherwise('/');
