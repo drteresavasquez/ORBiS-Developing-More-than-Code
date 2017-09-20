@@ -2,9 +2,10 @@
 
 // console.log("navcontroller, yo!");
 
-app.controller("navCtrl", function($scope, $window, $routeParams, authFactory){
+app.controller("navCtrl", function($scope, $window, $location, $routeParams, $route, authFactory, getUserInfo){
 
     $scope.isLoggedIn = false;
+    $scope.isTeacher = false;
     
     $scope.logout = () => {
         authFactory.logOut();
@@ -14,7 +15,17 @@ app.controller("navCtrl", function($scope, $window, $routeParams, authFactory){
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
           $scope.isLoggedIn = true;
-          // console.log("currentUser logged in?", user);
+          let uid = user.uid;
+          console.log("currentUser logged in?", user.uid);
+          getUserInfo.getUserDetails(uid)
+          .then((getUser) => {
+            let key = Object.keys(getUser);
+           $scope.isTeacher = getUser[key].isTeacher;
+           console.log("$scope.isTeacher", $scope.isTeacher);
+           if(getUser[key].isTeacher === true){
+            $window.location.href = "#!/admin";
+           }
+        });
           $scope.$apply();
         } else {
           $scope.isLoggedIn = false;
@@ -24,14 +35,19 @@ app.controller("navCtrl", function($scope, $window, $routeParams, authFactory){
       });
 
 
-      // $scope.isTeacher = false;
-      // console.log("data.uid", data.uid);
-      // $scope.areYouTeach = ()=>{
-      //   console.log("currentUser", currentUser);
-      //   authFactory.areYouAdmin(currentUser);
-      // };
-
-      // $scope.areYouTeach();
+      // let currentUser = authFactory.getCurrentUser();
+      
+      //     $scope.isAdmin = (currentUser)=>{
+      //         getUserInfo.getUserDetails(currentUser)
+      //             .then((getUser) => {
+      //                 let key = Object.keys(getUser);
+      //               //  $scope.isTeacher = getUser[key].isTeacher;
+      //                console.log("$scope.isTeacher", getUser[key]);
+      //             });
+      
+          
+      //     };
+      //     $scope.isAdmin();
 
 
 

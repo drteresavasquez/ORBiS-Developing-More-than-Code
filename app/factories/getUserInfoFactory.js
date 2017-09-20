@@ -2,12 +2,13 @@
 
 app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route, groupingPointsFactory, pushUserStuffFactory, useAchieve) {
 
+
     const getUserDetails = function (currentUser) {
         return $q((resolve, reject) => {
             $http.get(`${FBCreds.databaseURL}/users.json?orderBy="uid"&equalTo="${currentUser}"`)
                 .then((userStuff) => {
                     let userDeets = userStuff.data;
-                    useAchieve.achievements();
+                    useAchieve.achievements(currentUser);
                     resolve(userDeets);
                 });
         });

@@ -4,6 +4,18 @@ app.controller("adminViews", function($scope, adminPullFactory, FBCreds, groupin
 
     let currentUser = authFactory.getCurrentUser();
 
+    $scope.isAdmin = ()=>{
+        getUserInfo.getUserDetails(currentUser)
+            .then((getUser) => {
+                let key = Object.keys(getUser);
+               $scope.isTeacher = getUser[key].isTeacher;
+               console.log("$scope.isTeacher", $scope.isTeacher);
+            });
+
+    
+    };
+    $scope.isAdmin();
+
     $scope.findCurrentUser = ()=>{
         let userAdmin = [];
         getUserInfo.getUserDetails(currentUser)
@@ -31,7 +43,7 @@ app.controller("adminViews", function($scope, adminPullFactory, FBCreds, groupin
        groupingPointsFactory.leaderboardCohortCall(cohort)
        .then((results)=>{
         $scope.allUsers = results;
-        console.log("$scope.cohortMemberList", results);
+        // console.log("$scope.cohortMemberList", results);
        });
         
     };

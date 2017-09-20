@@ -59,10 +59,10 @@ app.controller("userProfileController", function ($scope, gitHubFactory, authFac
         });
 
     $scope.showUserAchievements = ()=>{
-        useAchieve.achievements();
+        useAchieve.achievements(currentUser);
     };
 
-    $scope.showUserAchievements();
+    // $scope.showUserAchievements();
 
     $scope.UserPoints = getUserInfo.getUserPoints(currentUser);
     $scope.tab = 1;

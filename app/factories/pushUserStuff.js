@@ -44,8 +44,7 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
         .then((data) => {
             console.log("data", data);
             getAllHousePoints();
-           
-            useAchieve.achievements();
+            useAchieve.achievements(currentUser);
             return data;
         }, (error) => {
             let errorCode = error.code;
@@ -63,7 +62,7 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
         $http.patch(`${FBCreds.databaseURL}/user-events/${eventID}.json`, newObj)
         .then((data) => {
             console.log("data", data);
-            useAchieve.achievements();
+            useAchieve.achievements(currentUser);
             getAllHousePoints();
             return data;
         }, (error) => {
@@ -81,7 +80,7 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
         $http.patch(`${FBCreds.databaseURL}/user-group-projects/${groupID}.json`, newObj)
         .then((data) => {
             console.log("data", data);
-            useAchieve.achievements();
+            useAchieve.achievements(currentUser);
             getAllHousePoints();           
             return data;
         }, (error) => {

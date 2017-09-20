@@ -3,13 +3,13 @@ app.factory("useAchieve", function($q, $http, FBCreds, authFactory){
 
     let currentUser = authFactory.getCurrentUser();
     
-    const achievements = ()=>{
+    const achievements = (currentUser)=>{
         return $q((resolve, reject) => {
             $http.get(`${FBCreds.databaseURL}/users.json?orderBy="uid"&equalTo="${currentUser}"`)
                 .then((results) => {
+                    console.log("RESULTZZZZZ", results);
                     let key = Object.keys(results.data);
                     let val = results.data[key].points;
-
                     if(val <5){
                         console.log("Newbie");
                         let achievement0 = {
