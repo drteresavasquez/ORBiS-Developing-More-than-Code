@@ -69,10 +69,10 @@ app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route, gr
                }
             });
             console.log("doneEx.length", doneEx.length);
-            let exercisesCompleted ={
+            let exercisesDone = {
                 exercisesCompleted: doneEx.length
                 };
-            pushUserStuffFactory.pushExerciseCount(exercisesCompleted);
+            pushUserStuffFactory.pushExerciseCount(currentUser, exercisesDone);
         });
     };
 

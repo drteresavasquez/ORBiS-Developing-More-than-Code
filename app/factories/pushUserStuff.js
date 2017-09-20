@@ -12,17 +12,17 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
          groupingPointsFactory.getHousePoints("Ventum");
     };
 
-    const pushExerciseCount = (obj)=>{
+    const pushExerciseCount = (currentUser, obj)=>{
         return $q((resolve, reject) => {
             $http.get(`${FBCreds.databaseURL}/users.json?orderBy="uid"&equalTo="${currentUser}"`)
                 .then((results) => {
                     let resultID = Object.keys(results.data);
-                    // console.log(resultID);
+                    console.log("resultIDDDDDDDD", resultID);
                     return (resultID);
                 })
                 .then((resultID)=>{
                 let newObj = JSON.stringify(obj);
-                $http.patch(`${FBCreds.databaseURL}/users/${resultID}.json`, newObj)
+                return $http.patch(`${FBCreds.databaseURL}/users/${resultID}.json`, newObj)
                     .then((data) => {
                         console.log("data", data);
                         return data;
@@ -44,7 +44,7 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
         .then((data) => {
             console.log("data", data);
             getAllHousePoints();
-            useAchieve.achievements(currentUser);
+            // useAchieve.achievements(currentUser);
             return data;
         }, (error) => {
             let errorCode = error.code;
@@ -62,7 +62,7 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
         $http.patch(`${FBCreds.databaseURL}/user-events/${eventID}.json`, newObj)
         .then((data) => {
             console.log("data", data);
-            useAchieve.achievements(currentUser);
+            // useAchieve.achievements(currentUser);
             getAllHousePoints();
             return data;
         }, (error) => {
@@ -80,7 +80,7 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
         $http.patch(`${FBCreds.databaseURL}/user-group-projects/${groupID}.json`, newObj)
         .then((data) => {
             console.log("data", data);
-            useAchieve.achievements(currentUser);
+            // useAchieve.achievements(currentUser);
             getAllHousePoints();           
             return data;
         }, (error) => {
