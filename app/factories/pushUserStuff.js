@@ -102,6 +102,7 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
     };
 
     const addUserExercise = (exerciseId)=>{
+        let currentUser = authFactory.getCurrentUser();
         $http.get(`${FBCreds.databaseURL}/user-exercises.json?orderBy="uid"&equalTo="${currentUser}"`)
         .then((results)=>{
             let throwAwayArray = [];
@@ -172,6 +173,7 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
     };
 
     const addUserEvent = (passedId)=>{
+        let currentUser = authFactory.getCurrentUser();
         console.log("passedId", passedId);
         $http.get(`${FBCreds.databaseURL}/user-events.json?orderBy="uid"&equalTo="${currentUser}"`)
         .then((results)=>{
@@ -248,6 +250,7 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
     };
 
     const addUserGroupProject = (projectId)=>{
+        let currentUser = authFactory.getCurrentUser();
         $http.get(`${FBCreds.databaseURL}/user-group-projects.json?orderBy="uid"&equalTo="${currentUser}"`)
         .then((results)=>{
             let throwAwayArray = [];
