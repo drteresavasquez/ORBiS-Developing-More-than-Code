@@ -4,7 +4,9 @@
             <div class="card houses">
                 <div class="card-body">
                     <img class="card-img-top" ng-src="{{item.profileImg}}" alt="Card image cap">
-                  <center><h3 class="card-title">{{item.first_name}} <span class="badge badge-info">{{item.achievement}}</span></h3></center>
+                  <center><h3 class="card-title">{{item.first_name}} <span class="badge badge-info">{{item.achievement}}</span></h3>
+                    <p><b>House:</b> {{item.house}}</p>
+                  </center>
                   <p class="card-text">
                       <center><a ng-href="{{item.gitHubLink}}" target="_blank">GitHub Link</a></center>
                    <!-- <br>Tech Interest:{{item.techInterests}} -->

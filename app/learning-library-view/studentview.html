@@ -1,1 +1,26 @@
-HTML for you! Student!
+<div class="pageTitle"><h1>Learning Library</h1></div>
+<div class="row">
+        <div class="col-8">
+            <input type="search" ng-model="queryLL" class="form-control " aria-describedby="search" placeholder="Search the Library" autofocus>
+        </div>
+        <div class="col-4">
+                <!-- <a ng-href="#!/admin/addEvent"><i class="fa fa-plus-circle fa-2x" aria-hidden="true"></i></a> Add An Item -->
+        </div>
+    </div>
+    <br>
+        <div class="row">
+            <div class="col-sm-12 col-xs-12" ng-repeat="item in LearningLib | filter:queryLL">
+                <div class="learningLibrary mb-2">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/u0BFS34zKpc?rel=0" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <div class="learningLibrary-content">
+                        <h2><a href="#" class="text-black">{{item.title}}</a></h2> 
+                        <span class="learningLibrary-meta">
+                            <span class="learningLibrary-meta-item"><i class="fa fa-clock-o"></i> {{item.topic}}</span> 
+                            <a ng-href="{{item.fileLink}}" class="learningLibrary-meta-item"><i class="fa fa-star"></i> {{item.filename}}</a>
+                        </span>
+                        <p>{{item.description}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
