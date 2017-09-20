@@ -3,7 +3,8 @@ app.factory("useAchieve", function($q, $http, FBCreds, authFactory){
 
     let currentUser = authFactory.getCurrentUser();
     
-    const achievements = (currentUser)=>{
+    const achievements = ()=>{
+        let currentUser = authFactory.getCurrentUser();
         return $q((resolve, reject) => {
             $http.get(`${FBCreds.databaseURL}/users.json?orderBy="uid"&equalTo="${currentUser}"`)
                 .then((results) => {
