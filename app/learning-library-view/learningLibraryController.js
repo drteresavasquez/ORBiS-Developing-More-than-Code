@@ -1,6 +1,6 @@
 "use strict";
 
-app.controller("LearningLibrary", function($scope, learningLibFactory){
+app.controller("LearningLibrary", function($scope, $route, learningLibFactory, theDeleteFactory){
 
    $scope.getThem = ()=>{
     learningLibFactory.getLearningLibrary()
@@ -14,6 +14,13 @@ app.controller("LearningLibrary", function($scope, learningLibFactory){
             console.log("$scope.LearningLib", llItem);
         });
    };
+
+   $scope.deleteSingleLibItem = function (id) {
+    theDeleteFactory.deleteLibraryItem(id)
+        .then((data) => {
+            $route.reload();
+        });
+};
 
    $scope.getThem();
 });

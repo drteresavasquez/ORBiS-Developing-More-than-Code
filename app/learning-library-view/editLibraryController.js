@@ -1,6 +1,6 @@
 "use strict";
 
-app.controller("EditLibraryItem", function ($scope, $location, adminAddFactory, authFactory, adminEditFactory, $routeParams) {
+app.controller("EditLibraryItem", function ($scope, $location, adminAddFactory, authFactory, adminEditFactory, $routeParams, theDeleteFactory, $route) {
     
         $scope.newLLTitle = "Edit Learning Library Item";
         $scope.submitButtonText = "Edit Item";

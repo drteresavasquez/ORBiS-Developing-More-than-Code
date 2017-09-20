@@ -2,17 +2,23 @@
     <h1>Learning Library</h1>
 </div>
 <div class="row">
-    <div class="col-8">
+    <div class="col-7">
         <input type="search" ng-model="queryLL" class="form-control " aria-describedby="search" placeholder="Search the Library"
             autofocus>
     </div>
-    <div class="col-4">
-        <!-- <a ng-href="#!/admin/addEvent"><i class="fa fa-plus-circle fa-2x" aria-hidden="true"></i></a> Add An Item -->
+    <div class="col-5">
+            Filter by Topic: <select class="custom-select" ng-model="topic">
+                   <option value="">View All Topics</option>
+                    <option value="Communication">Communication</option>
+                    <option value="Conflict Management">Conflict Management</option>
+                    <option value="Teamwork">Teamwork</option>
+                    <option value="Personality Styles">Personality Styles</option>
+                  </select>
     </div>
 </div>
 <br>
 <div class="row">
-        <div class="col-sm-6 col-xs-6" ng-repeat="item in LearningLib | filter:queryLL">
+        <div class="col-sm-6 col-xs-6" ng-repeat="item in LearningLib | filter:queryLL | filter:topic">
                 <div class="list mb-2">
                     <div class="list-header">
                         <a ng-href="{{item.videoURL}}"  target="_blank" class="list-header-image">
@@ -20,11 +26,11 @@
                         </a>
                     </div>
                     <div class="list-content">
-                        <h2><a ng-href="{{item.videoURL}}"  target="_blank" class="text-black">{{item.title}}</a></h2>
-                        <span class="list-meta">
-                        <span class="list-meta-item"><i class="fa fa-clock-o"></i> {{item.topic}}</span>
-                        <a ng-href="{{item.fileLink}}" class="list-meta-item"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> {{item.filename}}</a>
-                        </span>
-                        <p>{{item.description}}</p>
+                            <h4><a ng-href="{{item.videoURL}}" target="_blank" class="text-black">{{item.title}}</a></h4>
+                            <span class="list-meta">
+                                        <span class="list-meta-item"><i class="fa fa-tag" aria-hidden="true"></i> {{item.topic}}</span>
+                            <a ng-href="{{item.fileLink}}" class="list-meta-item"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> {{item.filename}}</a>
+                            </span>
+                        <small>{{item.description}}</small>
                     </div>
                 </div>
