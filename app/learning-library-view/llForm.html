@@ -1,0 +1,67 @@
+<h2>{{newLLTitle}}</h2>
+<form>
+    <div class="form-group">
+        <label for="title">Group Project Title</label>
+        <input type="text" ng-model="librarySubmission.title" class="form-control" id="title" placeholder="Add A Title">
+    </div>
+    <div class="form-group">
+            <label for="title">Thumbnail URL</label>
+            <input type="text" ng-model="librarySubmission.thumbnailURL" class="form-control" id="title" placeholder="Link to thumbnail image">
+        </div>
+
+        <div class="form-group">
+                <label for="title">Video URL</label>
+                <input type="text" ng-model="librarySubmission.videoURL" class="form-control" id="title" placeholder="Link to video or external item (links the thumbnail)">
+            </div>
+
+    <div class="form-group">
+        <label for="title">Topic</label>
+        <select class="custom-select" ng-model="librarySubmission.topic">
+                <option selected>Select One</option>
+                <option value="Communication">Communication</option>
+                <option value="Conflict Management">Conflict Management</option>
+                <option value="Teamwork">Teamwork</option>
+                <option value="Personality Styles">Personality Styles</option>
+              </select>
+    </div>
+
+    <div class="form-group">
+        <label for="title">Share details about this item</label>
+        <textarea class="form-control" ng-model="librarySubmission.description" id="title" rows="10"></textarea>
+    </div>
+
+    <div class="form-group">
+        <label for="title">File Name</label>
+        <input type="text" ng-model="librarySubmission.filename" class="form-control" id="title" placeholder="Name/Title for file or external resource">
+    </div>
+
+    <div class="form-group">
+            <label for="title">File Link</label>
+            <input type="text" ng-model="librarySubmission.fileLink" class="form-control" id="title" placeholder="Link to external file or resource">
+        </div>
+
+    <div class="text-center">
+        <button class="btn btn-default" ng-click="submitNewLibraryItem()" onclick="myFunction()">{{submitButtonText}}</button>
+    </div><br>
+    <div class="text-center">
+            <a ng-href="#!/admin/learninglibrary" >Back to List</a>
+        </div>
+</form>
+
+
+<div id="snackbar">Your Library Item Has Been Updated</div>
+
+<script>
+    function myFunction() {
+        // Get the snackbar DIV
+        var x = document.getElementById("snackbar")
+
+        // Add the "show" class to DIV
+        x.className = "show";
+
+        // After 3 seconds, remove the show class from DIV
+        setTimeout(function () {
+            x.className = x.className.replace("show", "");
+        }, 3000);
+    }
+</script>

@@ -29,6 +29,21 @@ app.factory("adminAddFactory", function($q, $http, FBCreds){
     };
 
 
-return{addSubmittedEvent, addSubmittedGroup};
+    const addtoLearningLibrary = function (obj) {
+        let newObj = JSON.stringify(obj);
+        return $http.post(`${FBCreds.databaseURL}/learning-library.json`, newObj)
+            .then((data) => {
+                console.log("data", data.data.name);
+                let UglyId = data.data.name;
+                let libID = {
+                    libId: UglyId
+                };
+                let secondnewObj = JSON.stringify(libID);
+                return $http.patch(`${FBCreds.databaseURL}/learning-library/${UglyId}.json`, secondnewObj);
+            });
+    };
+
+
+return{addSubmittedEvent, addSubmittedGroup, addtoLearningLibrary};
 
 });

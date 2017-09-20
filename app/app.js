@@ -80,6 +80,16 @@ app.config(($routeProvider) => {
             controller: 'adminAddGroup',
             resolve: {isAuth}
         })
+        .when('/admin/addtolibrary', {
+            templateUrl: 'app/learning-library-view/llForm.html',
+            controller: 'AddtoLibrary',
+            resolve: {isAuth}
+        })
+        .when('/admin/addtolibrary/:itemId', {
+            templateUrl: 'app/learning-library-view/llForm.html',
+            controller: 'EditLibraryItem',
+            resolve: {isAuth}
+        })
         .when('/admin/addGroup/:itemId', {
             templateUrl: 'app/admin-view/adminAddGroupForm.html',
             controller: 'adminEditGroup',
