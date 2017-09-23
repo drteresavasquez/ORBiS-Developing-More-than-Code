@@ -39,5 +39,6 @@ app.controller("singleExercise", function ($scope, $routeParams, getUserInfo, $l
     $scope.submitExercise = ()=>{
         pushUserStuffFactory.updateExerciseStu($scope.exerciseSubmit);
         getUserInfo.getUserPoints(currentUser);
+        $route.reload();
     };
 });

@@ -1,14 +1,15 @@
 "use strict";
 
 app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route, groupingPointsFactory, pushUserStuffFactory, useAchieve) {
-
+   
+    let currentUser = authFactory.getCurrentUser();
+    useAchieve.achievements(currentUser);
 
     const getUserDetails = function (currentUser) {
         return $q((resolve, reject) => {
             $http.get(`${FBCreds.databaseURL}/users.json?orderBy="uid"&equalTo="${currentUser}"`)
                 .then((userStuff) => {
                     let userDeets = userStuff.data;
-                    useAchieve.achievements(currentUser);
                     resolve(userDeets);
                 });
         });
@@ -240,6 +241,7 @@ app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route, gr
                     .then(() => {
                         let pointsArray = [];
                         console.log("Points are updated");
+                        useAchieve.achievements(currentUser);
                         groupingPointsFactory.getHousePoints("Ventum");
                         groupingPointsFactory.getHousePoints("Aqua");
                         groupingPointsFactory.getHousePoints("Ignis");

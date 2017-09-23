@@ -37,22 +37,12 @@ app.controller("userProfileController", function ($scope, gitHubFactory, authFac
         };
 
     $scope.userExercises(currentUser);
-    
-
-    getUserInfo.getUserDetails(currentUser)
-    .then((userDeets)=>{
-        $scope.deets = getUserInfo.showUserDetails(userDeets);
-       
-        // console.log($scope.deets);
-    });
   
     getUserInfo.getUserEvents(currentUser)
         .then((allUserEvents) => {
             $scope.userEventDeets = getUserInfo.showUserEvents(allUserEvents);
         });
     
-
-
     getUserInfo.getUserGroups(currentUser)
         .then((allUserGroups) => {
             $scope.userGroupDeets = getUserInfo.showUserGroups(allUserGroups);
@@ -62,7 +52,7 @@ app.controller("userProfileController", function ($scope, gitHubFactory, authFac
         useAchieve.achievements(currentUser);
     };
 
-    // $scope.showUserAchievements();
+    $scope.showUserAchievements();
 
     $scope.UserPoints = getUserInfo.getUserPoints(currentUser);
     $scope.tab = 1;
@@ -88,6 +78,13 @@ app.controller("userProfileController", function ($scope, gitHubFactory, authFac
         pushUserStuffFactory.addUserGroupProject(projectId);
         // console.log(projectId);
     };
+
+    getUserInfo.getUserDetails(currentUser)
+    .then((userDeets)=>{
+        $scope.deets = getUserInfo.showUserDetails(userDeets);
+       
+        // console.log($scope.deets);
+    });
 
 ///////////START DELETING//////////////
     $scope.deleteSingleEvent = function (id) {

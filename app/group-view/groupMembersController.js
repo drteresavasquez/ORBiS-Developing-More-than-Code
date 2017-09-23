@@ -90,14 +90,17 @@ app.controller("groups22Studentsfun", function($scope, groupingPointsFactory){
 
 });
 
-app.controller("showMyCohort", function($scope, groupingPointsFactory, getUserInfo, authFactory){
+app.controller("showMyCohort", function($scope, groupingPointsFactory, getUserInfo, authFactory, useAchieve){
 
     $scope.getMyPeeps =()=>{
     let currentUser = authFactory.getCurrentUser();
+    let cohort;
+        getUserInfo.getUserPoints(currentUser);
+        useAchieve.achievements(currentUser);
         getUserInfo.getUserDetails(currentUser)
         .then((results)=>{
             let key = Object.keys(results);
-            let cohort = results[key].cohort;
+            cohort = results[key].cohort;
             $scope.cohortNum = cohort;
             console.log("resultsSSSSSSSS", cohort);
             return(cohort);
