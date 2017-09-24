@@ -19,8 +19,9 @@
             <button type="button" class="btn btn-primary btn-sm" ng-click="setTab(2); allMilestones()">Available Exercises</button>
             <button type="button" class="btn btn-primary btn-sm" ng-click="setTab(3)">Upcoming Events</button>
             <button type="button" class="btn btn-primary btn-sm" ng-click="setTab(4)">Group Projects</button>
+            <button type="button" class="btn btn-primary btn-sm" ng-click="setTab(5)">Archived Items</button>
         </div>
-        <br>
+        <hr>
 
 
         <div ng-show="isSet(1)">
@@ -37,6 +38,7 @@
                         <option value="Submitted">Submitted</option>
                         <option value="Scored">Scored</option>
                         <option value="Going">Going</option>
+                        <option value="Archived">Archived</option>
                     </select>
                 </div>
             </div>
@@ -49,6 +51,7 @@
                         <th>Type</th>
                         <th>Status</th>
                         <th>Points</th>
+                        <th>Archive</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -58,21 +61,26 @@
                         <td>{{item.type}}</td>
                         <td>{{item.status}}</td>
                         <td>{{item.points}}</td>
+                        <td><a href ng-click="archiveExercise(item.id)"><i class="fa fa-archive" aria-hidden="true"></i></a></td>
                     </tr>
                     <tr ng-repeat="item in userEventDeets | filter:queryMine | filter:status">
+
                         <td scope="row"><a ng-href="#!/event/{{item.id}}">{{item.eventTitle}} | {{item.eventDate}} | {{item.startTime}}</a></td>
                         <td>Location: {{item.locationName}}</td>
                         <td>{{item.type}}</td>
                         <td>{{item.status}}</td>
                         <td>{{item.points}}</td>
+                        <td><a href ng-click="archiveEvent(item.id)"><i class="fa fa-archive" aria-hidden="true"></i></a></td>
                     </tr>
                     <tr ng-repeat="item in userGroupDeets | filter:queryMine | filter:status">
+
                         <td scope="row"><a ng-href="#!/groups/{{item.id}}">{{item.projectName}}</a></td>
                         </td>
                         <td><a ng-href="{{item.linktoRepo}}">Repo Link</a></td>
                         <td>{{item.type}}</td>
                         <td>{{item.status}}</td>
                         <td>{{item.points}}</td>
+                        <td><a href ng-click="archiveGroup(item.id)"><i class="fa fa-archive" aria-hidden="true"></i></a></td>
                     </tr>
                 </tbody>
             </table>
@@ -88,7 +96,8 @@
                 </div>
                 <div class="col-4">
 
-                        Milestone:  <div class="btn-group mr-2" role="group">
+                    <small>Milestone:</small>
+                    <div class="btn-group mr-2" role="group">
                         <button type="button" class="btn btn-secondary" ng-click="allMilestones()">All</button>
                         <button type="button" class="btn btn-secondary" ng-click="milestones(1)">1</button>
                         <button type="button" class="btn btn-secondary" ng-click="milestones(2)">2</button>
@@ -103,20 +112,20 @@
                 <thead>
                     <tr>
                         <th>
-                        <center><i class="fa fa-plus-square" aria-hidden="true"></i></center>
+                            <center><i class="fa fa-plus-square" aria-hidden="true"></i></center>
                         </th>
                         <th>Exercise Name</th>
                         <th>Milestone</th>
                         <th><i class="fa fa-info-circle" aria-hidden="true"></i></th>
                     </tr>
                 </thead>
-    <tbody ng-repeat="item in milestonesShow | filter:queryAllEx | orderBy:'milestone'">
-                <tr>
-                    <th scope="row"><a href ng-click="addExercise(item.sha)"><i class="fa fa-plus-square" aria-hidden="true"></i></a></th>
-                    <td>{{item.name}}</td>
-                    <td>{{item.milestone}}</td>
-                    <td><a href="{{item.html_url}}" target="_blank">Details</a></td>
-                </tr>
+                <tbody ng-repeat="item in milestonesShow | filter:queryAllEx | orderBy:'milestone'">
+                    <tr>
+                        <th scope="row"><a href ng-click="addExercise(item.sha)"><i class="fa fa-plus-square" aria-hidden="true"></i></a></th>
+                        <td>{{item.name}}</td>
+                        <td>{{item.milestone}}</td>
+                        <td><a href="{{item.html_url}}" target="_blank">Details</a></td>
+                    </tr>
                 </tbody>
             </table>
         </div>
@@ -197,6 +206,60 @@
             </table>
         </div>
 
+    <!-- SET 5 -->
+        <div ng-show="isSet(5)">
+            <h2>Archived Items</h2>
+            <div class="row">
+                <div class="col-8">
+                    <input type="search" ng-model="queryArchive" class="form-control" aria-describedby="search" placeholder="Search Group Projects"
+                        autofocus>
+                </div>
+                <div class="col-4">
+                </div>
+            </div>
+            <br>
+            <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Item Name</th>
+                            <th>Info</th>
+                            <th>Type</th>
+                            <th>Status</th>
+                            <th>Points</th>
+                            <th>Archive</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in archivesExer | filter:queryMine | filter:status | orderBy: 'milestone'">
+                            <td scope="row"><a ng-href="#!/exercise/{{item.id}}">{{item.exName}}</a></td>
+                            <td>Milestone {{item.milestone}}</td>
+                            <td>{{item.type}}</td>
+                            <td>{{item.status}}</td>
+                            <td>{{item.points}}</td>
+                            <td><a href ng-click="archiveExercise(item.id)"><i class="fa fa-archive" aria-hidden="true"></i></a></td>
+                        </tr>
+                        <tr ng-repeat="item in archivesEve | filter:queryMine | filter:status">
+    
+                            <td scope="row"><a ng-href="#!/event/{{item.id}}">{{item.eventTitle}} | {{item.eventDate}} | {{item.startTime}}</a></td>
+                            <td>Location: {{item.locationName}}</td>
+                            <td>{{item.type}}</td>
+                            <td>{{item.status}}</td>
+                            <td>{{item.points}}</td>
+                            <td><a href ng-click="archiveEvent(item.id)"><i class="fa fa-archive" aria-hidden="true"></i></a></td>
+                        </tr>
+                        <tr ng-repeat="item in archivesGro | filter:queryMine | filter:status">
+    
+                            <td scope="row"><a ng-href="#!/groups/{{item.id}}">{{item.projectName}}</a></td>
+                            </td>
+                            <td><a ng-href="{{item.linktoRepo}}">Repo Link</a></td>
+                            <td>{{item.type}}</td>
+                            <td>{{item.status}}</td>
+                            <td>{{item.points}}</td>
+                            <td><a href ng-click="archiveGroup(item.id)"><i class="fa fa-archive" aria-hidden="true"></i></a></td>
+                        </tr>
+                    </tbody>
+                </table>
+        </div>
     </div>
 </div>
 

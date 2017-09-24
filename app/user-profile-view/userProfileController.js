@@ -59,7 +59,21 @@ app.controller("userProfileController", function ($scope, gitHubFactory, authFac
 
     getUserInfo.getUserExercises(currentUser)
         .then((exercises) => {
-            $scope.exerciseDeets = getUserInfo.showUserExercises(exercises);
+            let archivesEx = [];
+            let showTheseEx = [];
+            let keys = Object.keys(exercises);
+            keys.forEach((item)=>{
+                if(exercises[item].status === "Archived"){
+                    console.log("exercises[item].status", exercises[item].status);
+                    archivesEx.push(exercises[item]);
+                }else{
+                    showTheseEx.push(exercises[item]);
+                }
+            });
+            // console.log("keysSSSSSSSSS", archivesEx);
+            $scope.exerciseDeets = showTheseEx;
+            $scope.archivesExer = archivesEx;
+        
         });
     
     $scope.userExercises = (currentUser)=>{
@@ -70,12 +84,39 @@ app.controller("userProfileController", function ($scope, gitHubFactory, authFac
   
     getUserInfo.getUserEvents(currentUser)
         .then((allUserEvents) => {
-            $scope.userEventDeets = getUserInfo.showUserEvents(allUserEvents);
+            let archivesEve = [];
+            let showTheseEve = [];
+            let keys = Object.keys(allUserEvents);
+            keys.forEach((item)=>{
+                if(allUserEvents[item].status === "Archived"){
+                    archivesEve.push(allUserEvents[item]);
+                }else{
+                    showTheseEve.push(allUserEvents[item]);
+                }
+            });
+            console.log("KEYYYSSSSSS", showTheseEve);
+            $scope.userEventDeets = showTheseEve;
+            $scope.archivesEve = archivesEve;
         });
     
     getUserInfo.getUserGroups(currentUser)
         .then((allUserGroups) => {
-            $scope.userGroupDeets = getUserInfo.showUserGroups(allUserGroups);
+            let archivesGro = [];
+            let showTheseGro = [];
+            let keys = Object.keys(allUserGroups);
+            keys.forEach((item)=>{
+                if(allUserGroups[item].status === "Archived"){
+                    console.log("projects[item].status", allUserGroups[item].status);
+                    archivesGro.push(allUserGroups[item]);
+                }else{
+                    showTheseGro.push(allUserGroups[item]);
+                }
+            });
+            console.log("KEYYYSSSSSS", showTheseGro);
+            
+            $scope.userGroupDeets = showTheseGro;
+            $scope.archivesGro = archivesGro;
+            // $scope.userGroupDeets = getUserInfo.showUserGroups(allUserGroups);
         });
 
     $scope.showUserAchievements = ()=>{
@@ -116,6 +157,20 @@ app.controller("userProfileController", function ($scope, gitHubFactory, authFac
         // console.log($scope.deets);
     });
 
+    $scope.archiveExercise = (exerciseId)=>{
+        pushUserStuffFactory.archiveExercises(exerciseId);
+        // console.log("archiveExercise", exerciseId);
+    };
+
+    $scope.archiveEvent = (eventId)=>{
+        pushUserStuffFactory.archiveEvents(eventId);
+        console.log("archiveEvent");
+    };
+
+    $scope.archiveGroup = (groupId)=>{
+        pushUserStuffFactory.archiveGroup(groupId);
+        console.log("archiveGroup");
+    };
 ///////////START DELETING//////////////
     $scope.deleteSingleEvent = function (id) {
         theDeleteFactory.deleteEvent(id)
