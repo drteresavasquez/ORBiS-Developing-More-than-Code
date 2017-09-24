@@ -1,14 +1,44 @@
 "use strict";
 
-app.controller("userProfileController", function ($scope, gitHubFactory, authFactory, getUserInfo, pushUserStuffFactory, theDeleteFactory, groupingPointsFactory, $route, useAchieve) {
+app.controller("userProfileController", function ($scope, gitHubFactory, authFactory, getUserInfo, pushUserStuffFactory, theDeleteFactory, groupingPointsFactory, $route, useAchieve, $window) {
+
+   
 
     let currentUser = authFactory.getCurrentUser();
 
-    $scope.milestones = () => {
+    
+    $scope.milestones = (userInput) => {
         gitHubFactory.getMilestones()
             .then((allExercises) => {
-                $scope.allExercises = allExercises;
+                let currentMilestone = [];
+                let keys = Object.keys(allExercises);
+                keys.forEach((item)=>{
+                    if(allExercises[item].milestone == userInput){
+                        currentMilestone.push(allExercises[item]);
+                    }
+                });
+                $scope.milestonesShow = currentMilestone;
+            //    console.log("currentMilestone", currentMilestone);
             });
+    };
+
+    $scope.allMilestones = () => {
+        gitHubFactory.getMilestones()
+            .then((allExercises) => {
+                let currentMilestone = [];
+                let keys = Object.keys(allExercises);
+                keys.forEach((item)=>{
+                        currentMilestone.push(allExercises[item]);
+                });
+                $scope.milestonesShow = currentMilestone;
+               console.log("$scope.allMilestones currentMilestone", currentMilestone);
+            });
+    };
+
+    $scope.allMilestones();
+
+    $scope.getUserDetailsRefresh = ()=>{
+        getUserInfo.getUserDetails();
     };
 
     $scope.showAllEvents = function () {
