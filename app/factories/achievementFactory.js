@@ -71,6 +71,7 @@ app.factory("useAchieve", function($q, $http, FBCreds, authFactory){
                         });
                     }
                 });
+              
             });  
     };
 

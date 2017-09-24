@@ -319,6 +319,41 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
         });
     };
 
+    const archiveExercises = (exerciseId)=>{
+        let archiveIt = {
+            status: "Archived"
+        };
+        let newObj = JSON.stringify(archiveIt);
+        $http.patch(`${FBCreds.databaseURL}/user-exercises/${exerciseId}.json`, newObj)
+        .then((results)=>{
+            console.log("archivestuff", results);
+            $route.reload();
+        });
+    };
 
-    return{addUserExercise, updateExerciseStu, addUserEvent, addUserGroupProject, updateEventStu, updateGroupStu, pushExerciseCount};
+    const archiveEvents = (eventId)=>{
+        let archiveIt = {
+            status: "Archived"
+        };
+        let newObj = JSON.stringify(archiveIt);
+        $http.patch(`${FBCreds.databaseURL}/user-events/${eventId}.json`, newObj)
+        .then((results)=>{
+            console.log("archivestuff", results);
+            $route.reload();
+        });
+    };
+
+    const archiveGroup = (groupId)=>{
+        let archiveIt = {
+            status: "Archived"
+        };
+        let newObj = JSON.stringify(archiveIt);
+        $http.patch(`${FBCreds.databaseURL}/user-group-projects/${groupId}.json`, newObj)
+        .then((results)=>{
+            console.log("archivestuff", results);
+            $route.reload();
+        });
+    };
+
+    return{addUserExercise, updateExerciseStu, addUserEvent, addUserGroupProject, updateEventStu, updateGroupStu, pushExerciseCount, archiveExercises, archiveEvents, archiveGroup};
 });
