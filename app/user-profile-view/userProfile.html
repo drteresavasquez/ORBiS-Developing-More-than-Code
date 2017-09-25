@@ -1,4 +1,22 @@
-<div>
+<div class="row align-items-start">
+        <div class="col-3 profile" ng-repeat="item in deets">
+            <img class="profileImage" ng-src="{{item.profileImg}}"><br>
+            <h4><span class="badge badge-info">{{item.achievement}}
+                </span></h4>
+            <h4>Hello, {{item.first_name}}! <a href="#!/edit-profile"><i class="fa fa-pencil" aria-hidden="true"></i></a></h4>
+    
+            <b>Exercises Done:</b> {{item.exercisesCompleted}}
+            <br> <b>Cohort:</b> {{item.cohort}}
+            <br> <b>House:</b> {{item.house}}
+            <br>
+            <h3><b>Points:</b> {{item.points}}</h3>
+            <a href="{{item.gitHubLink}}" target="_blank"><i class="fa fa-github fa-2x" aria-hidden="true"></i></a>
+            <a ng-href="#!/leaderboard/house/{{item.house}}"><img ng-src="app/assets/images/{{item.house}}.png"></a>
+        </div>
+
+
+
+<!-- <div>
     <div class="row" ng-repeat="item in deets">
         <div class="col">
             <img class="profileImage" ng-src="{{item.profileImg}}"><br>
@@ -14,8 +32,9 @@
         <div class="col">
             <a ng-href="#!/leaderboard/house/{{item.house}}"><img ng-src="app/assets/images/{{item.house}}.png"></a>
         </div>
-    </div>
-    <div>
+    </div> -->
+
+    <!-- <div>
         <ul class="nav nav-tabs">
             <li class="nav-item" ng-class="{ active: isSet(1) }">
                 <a class="nav-link active" href ng-click="setTab(1)">My Stuff</a>
@@ -30,7 +49,17 @@
                 <a class="nav-link" href ng-click="setTab(4)">Group Projects</a>
             </li>
         </ul>
-    </div>
+    </div> -->
+
+    <div class="col-9">
+            <div>
+                <button type="button" class="btn btn-primary btn-sm" ng-click="setTab(1)">My Stuff</button>
+                <button type="button" class="btn btn-primary btn-sm" ng-click="setTab(2); allMilestones()">Available Exercises</button>
+                <button type="button" class="btn btn-primary btn-sm" ng-click="setTab(3)">Upcoming Events</button>
+                <button type="button" class="btn btn-primary btn-sm" ng-click="setTab(4)">Group Projects</button>
+                <button type="button" class="btn btn-primary btn-sm" ng-click="setTab(5)">Archived Items</button>
+            </div>
+            <hr>
     
 
      <!-- TAB 2 -->
