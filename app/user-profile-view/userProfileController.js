@@ -30,11 +30,13 @@ app.controller("userProfileController", function ($scope, gitHubFactory, authFac
     getUserInfo.getUserExercises(currentUser)
         .then((exercises) => {
             $scope.exerciseDeets = getUserInfo.showUserExercises(exercises);
+            console.log("$$$$$exercises.status", $scope.exerciseDeets);
         });
     
     $scope.userExercises = (currentUser)=>{
             getUserInfo.userExerciseCount(currentUser);
         };
+
 
     $scope.userExercises(currentUser);
     

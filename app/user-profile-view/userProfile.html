@@ -39,10 +39,10 @@
             </tbody>
         </table>
 
-        <h4 class="header">Your Upcoming Events</h4>
+        <h4 class="header">My Upcoming Events</h4>
         <table class="table table-sm profile">
                 <tbody>
-                    <tr ng-repeat="item in userEventDeets | filter:queryMine | filter:status">
+                    <tr ng-repeat="item in userEventDeets | filter:queryMine | filter:status | limitTo:4">
                         <th scope="row" class="profTable"><a ng-href="#!/event/{{item.id}}">{{item.eventTitle}}</a></th>
                         <td class="profTableDeet">{{item.eventDate}}</td>
                     </tr>
@@ -89,18 +89,18 @@
         </ul>
     </div> -->
 
-    <div class="col-9">
+    <div class="col-9 stuffDiv">
         <div>
-            <button type="button" class="btn btn-primary btn-sm" ng-click="setTab(1)">My Stuff</button>
+            <button type="button" class="btn btn-primary btn-sm" ng-click="setTab(1)">My To Do List</button>
             <button type="button" class="btn btn-primary btn-sm" ng-click="setTab(2); allMilestones()">Available Exercises</button>
             <button type="button" class="btn btn-primary btn-sm" ng-click="setTab(3)">Upcoming Events</button>
             <button type="button" class="btn btn-primary btn-sm" ng-click="setTab(4)">Group Projects</button>
-            <button type="button" class="btn btn-primary btn-sm" ng-click="setTab(5)">Archived Items</button>
+            <button type="button" class="btn btn-primary btn-sm" ng-click="setTab(5)">My Archived Items</button>
         </div>
         <hr>
 
 
-        <!-- TAB 2 -->
+        <!-- TAB 1 -->
         <div ng-show="isSet(1)">
             <div class="row">
                 <div class="col-9">
@@ -129,7 +129,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="item in exerciseDeets | filter:queryMine | filter:status | orderBy: 'milestone'">
+                    <tr ng-repeat="item in exerciseDeets | filter:queryMine | filter:status | orderBy: 'milestone' | filter : !{status: Archived}">
                         <td scope="row"><a ng-href="#!/exercise/{{item.id}}">{{item.exName}}</a></td>
                         <td>Milestone {{item.milestone}}</td>
                         <td>{{item.type}}</td>
@@ -155,7 +155,7 @@
             </table>
         </div>
 
-        <!-- TAB 1 -->
+        <!-- TAB 2 -->
         <div ng-show="isSet(2)">
             <div class="row">
                 <div class="col-8">
@@ -256,6 +256,61 @@
                 </tbody>
             </table>
         </div>
+
+        <!-- TAB 5 -->
+        <div ng-show="isSet(5)">
+                <div class="row">
+                    <div class="col-9">
+                        <input type="search" ng-model="queryMine" class="form-control" aria-describedby="search" placeholder="Search My Stuff" autofocus>
+                    </div>
+                    <div class="col-3">
+                        <select class="custom-select" ng-model="status">
+                            <option value="">View All</option>
+                            <option value="Come See Us">Come See Us</option>
+                            <option value="In Progress">In Progress</option>
+                            <option value="Submitted">Submitted</option>
+                            <option value="Scored">Scored</option>
+                            <option value="Going">Going</option>
+                        </select>
+                    </div>
+                </div>
+                <br>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Item Name</th>
+                            <th>Info</th>
+                            <th>Type</th>
+                            <th>Status</th>
+                            <th>Points</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in exerciseDeets | filter:queryMine | filter:status | orderBy: 'milestone' | filter:{ status: 'Archived' }">
+                            <td scope="row"><a ng-href="#!/exercise/{{item.id}}">{{item.exName}}</a></td>
+                            <td>Milestone {{item.milestone}}</td>
+                            <td>{{item.type}}</td>
+                            <td>{{item.status}}</td>
+                            <td>{{item.points}}</td>
+                        </tr>
+                        <tr ng-repeat="item in userEventDeets | filter:queryMine | filter:status | filter:{ status: 'Archived' }">
+                            <td scope="row"><a ng-href="#!/event/{{item.id}}">{{item.eventTitle}} | {{item.eventDate}} | {{item.startTime}}</a></td>
+                            <td>Location: {{item.locationName}}</td>
+                            <td>{{item.type}}</td>
+                            <td>{{item.status}}</td>
+                            <td>{{item.points}}</td>
+                        </tr>
+                        <tr ng-repeat="item in userGroupDeets | filter:queryMine | filter:status | filter:{ status: 'Archived' }">
+                            <td scope="row"><a ng-href="#!/groups/{{item.id}}">{{item.projectName}}</a></td>
+                            </td>
+                            <td><a ng-href="{{item.linktoRepo}}">Repo Link</a></td>
+                            <td>{{item.type}}</td>
+                            <td>{{item.status}}</td>
+                            <td>{{item.points}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
 
     </div>
 
