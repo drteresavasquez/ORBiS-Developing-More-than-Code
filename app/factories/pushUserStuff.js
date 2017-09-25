@@ -319,6 +319,7 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
         });
     };
 
+
     // const archiveExercises = (exerciseId)=>{
     //     let archiveIt = {
     //         status: "Archived"
@@ -362,4 +363,3 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
         // archiveEvents, 
         // archiveGroup
     };
-});

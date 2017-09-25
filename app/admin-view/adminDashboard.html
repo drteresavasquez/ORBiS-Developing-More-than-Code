@@ -24,7 +24,9 @@
             <th>Cohort</th>
             <th>Item Name</th>
             <th>Type</th>
+
             <!-- <th>Info</th> -->
+
           </tr>
         </thead>
         <tbody>
@@ -35,6 +37,7 @@
             <td><a ng-href="#!/admin/exercise/{{item.id}}">{{item.exName}}</a></td>
             <td>{{item.type}}</td>
             <!-- <td>Milestone {{item.milestone}}</td> -->
+
           </tr>
 
           <tr ng-repeat="item in allUserEvents | filter: {'status': 'Submitted'} | filter:queryStudents | filter:cohort">
