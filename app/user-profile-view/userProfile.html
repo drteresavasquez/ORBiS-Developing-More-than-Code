@@ -52,43 +52,6 @@
 
     </div>
 
-
-
-    <!-- <div>
-    <div class="row" ng-repeat="item in deets">
-        <div class="col">
-            <img class="profileImage" ng-src="{{item.profileImg}}"><br>
-        </div>
-        <div class="col">
-            <h3>Hello, {{item.first_name}}! <a href="#!/edit-profile"><i class="fa fa-pencil" aria-hidden="true"></i></a><span class="badge badge-info">{{item.achievement}}</span></h3>
-            <b>Exercises Done:</b> {{item.exercisesCompleted}}
-            <br> <b>Cohort:</b> {{item.cohort}}
-            <br> <b>House:</b> {{item.house}}
-            <br> <h3><b>Points:</b> {{item.points}}</h3>
-            <a href="{{item.gitHubLink}}" target="_blank"><i class="fa fa-github fa-2x" aria-hidden="true"></i></a>
-        </div>
-        <div class="col">
-            <a ng-href="#!/leaderboard/house/{{item.house}}"><img ng-src="app/assets/images/{{item.house}}.png"></a>
-        </div>
-    </div> -->
-
-    <!-- <div>
-        <ul class="nav nav-tabs">
-            <li class="nav-item" ng-class="{ active: isSet(1) }">
-                <a class="nav-link active" href ng-click="setTab(1)">My Stuff</a>
-            </li>
-            <li class="nav-item dropdown" ng-class="{ active: isSet(2) }">
-                <a href ng-click="setTab(2)" class="nav-link">Available Exercises</a>
-            </li>
-            <li class="nav-item" ng-class="{ active: isSet(3) }">
-                <a class="nav-link" href ng-click="setTab(3)">Events</a>
-            </li>
-            <li class="nav-item" ng-class="{ active: isSet(4) }">
-                <a class="nav-link" href ng-click="setTab(4)">Group Projects</a>
-            </li>
-        </ul>
-    </div> -->
-
     <div class="col-9 stuffDiv">
         <div>
             <button type="button" class="btn btn-primary btn-sm" ng-click="setTab(1)">My To Do List</button>
@@ -164,6 +127,7 @@
                 </div>
                 <div class="col-4"></div>
             </div>
+            <br>
             <table class="table table-hover">
                 <thead>
                     <tr>
@@ -195,6 +159,7 @@
                 <div class="col-4">
                 </div>
             </div>
+            <br>
             <table class="table table-hover">
                 <thead>
                     <tr>
@@ -235,6 +200,7 @@
                 </select>
                 </div>
             </div>
+            <br>
             <table class="table table-hover">
                 <thead>
                     <tr>
@@ -264,14 +230,6 @@
                         <input type="search" ng-model="queryMine" class="form-control" aria-describedby="search" placeholder="Search My Stuff" autofocus>
                     </div>
                     <div class="col-3">
-                        <select class="custom-select" ng-model="status">
-                            <option value="">View All</option>
-                            <option value="Come See Us">Come See Us</option>
-                            <option value="In Progress">In Progress</option>
-                            <option value="Submitted">Submitted</option>
-                            <option value="Scored">Scored</option>
-                            <option value="Going">Going</option>
-                        </select>
                     </div>
                 </div>
                 <br>
@@ -281,7 +239,6 @@
                             <th>Item Name</th>
                             <th>Info</th>
                             <th>Type</th>
-                            <th>Status</th>
                             <th>Points</th>
                         </tr>
                     </thead>
@@ -290,14 +247,14 @@
                             <td scope="row"><a ng-href="#!/exercise/{{item.id}}">{{item.exName}}</a></td>
                             <td>Milestone {{item.milestone}}</td>
                             <td>{{item.type}}</td>
-                            <td>{{item.status}}</td>
+                          
                             <td>{{item.points}}</td>
                         </tr>
                         <tr ng-repeat="item in userEventDeets | filter:queryMine | filter:status | filter:{ archive: true }">
                             <td scope="row"><a ng-href="#!/event/{{item.id}}">{{item.eventTitle}} | {{item.eventDate}} | {{item.startTime}}</a></td>
                             <td>Location: {{item.locationName}}</td>
                             <td>{{item.type}}</td>
-                            <td>{{item.status}}</td>
+                           
                             <td>{{item.points}}</td>
                         </tr>
                         <tr ng-repeat="item in userGroupDeets | filter:queryMine | filter:status | filter:{ archive: true }">
@@ -305,7 +262,7 @@
                             </td>
                             <td><a ng-href="{{item.linktoRepo}}">Repo Link</a></td>
                             <td>{{item.type}}</td>
-                            <td>{{item.status}}</td>
+                      
                             <td>{{item.points}}</td>
                         </tr>
                     </tbody>
