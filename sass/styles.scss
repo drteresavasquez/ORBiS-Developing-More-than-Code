@@ -1,10 +1,6 @@
-.navbar.fixed-bottom{
-    height:400px; 
-}
-
 
 .container{
-    margin-top: 100px;
+    margin-top: 30px;
     margin-bottom: 150px;
 }
 .pageTitle{
@@ -15,10 +11,26 @@
     color: #686767;
 }
 
-.profileImage{
-    border-radius: 10px;
-    width: 200px;
+.col-3.profile{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:center;
 }
+button{
+    cursor: pointer;
+}
+.profileImage{
+    border-radius: 100%;
+    width: 70%;
+    margin-bottom:-50px;
+}
+
+.badge.badge-info{
+    font-size: .7em;
+    /* width: 110%; */
+}
+
 a:visited, a:active, a:link {
     color: #F75430 !important;
 }
@@ -68,10 +80,41 @@ a:visited, a:active, a:link {
       position: relative;
       border-radius: 2px 0 0 2px;
   }
-  
+  /* .navigationElements{
+      display: flex;
+  }
+  .navbar{
+      height: 50px;
+  }
+  .navPic{
+      display: flex;
+      width: 50px;
+      height: 50px;
+      justify-content: center;
+      margin-right:15px;
+  }
+  .navProfileImg{
+      border-radius: 100%;
+      padding:5px;
+      height: 100%;
+  }
+  .nameStuff{
+      display: flex;
+      flex-direction: column;
+      margin-right: 10px;
+      color: white;
+  }
+  .nameStuff p{
+      margin-top:5px;
+      margin-bottom: 0px;
+  } */
+
+
   .list-header img {
       /* width: 100%; */
       height:200px;
+      overflow: hidden;
+      display: block;
       margin-left: -55px;
   }
   
@@ -162,9 +205,11 @@ a.link-block {
 .navbar.fixed-bottom {
     background: #F75430;
     border-top: 1px solid #F97236;
-    height: 60px;
+    height: 50px;
     display: flex;
     padding: 0px;
+    padding-top:20px;
+    padding-bottom: 10px;
     align-content: center;
 }
 .navbar.fixed-bottom.admin{
@@ -172,7 +217,7 @@ a.link-block {
     border-top:white 1px solid;
 }
 .nav-item {
-    width: 25%;
+    width: 20%;
     padding: 10px;
     height: 60px;
     border-left: 1px solid white;
@@ -187,7 +232,8 @@ a.link-block {
 .fa-users,
 .fa-trophy,
 .fa-book,
-.fa-list-alt {
+.fa-list-alt,
+.fa-sign-out {
     color: white;
 }
 
@@ -195,7 +241,8 @@ a.link-block {
 .fa-users:hover,
 .fa-trophy:hover,
 .fa-book:hover,
-.fa-list-alt:hover {
+.fa-list-alt:hover
+.fa-sign-out:hover {
     text-decoration: none;
     color: white;
 }
@@ -290,6 +337,11 @@ th, td, tr{
         margin: 0 auto;
         margin-top: 100px;
         padding: 30px;
+    }
+    .list-header img {
+        overflow: hidden;
+        display: block;
+        margin: 0 auto;
     }
 }
 
