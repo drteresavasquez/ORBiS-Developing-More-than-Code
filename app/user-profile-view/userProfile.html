@@ -129,21 +129,21 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="item in exerciseDeets | filter:queryMine | filter:status | orderBy: 'milestone' | filter : !{status: Archived}">
+                    <tr ng-repeat="item in exerciseDeets | filter:queryMine | filter:status | orderBy: 'milestone' | filter: {archive:false}">
                         <td scope="row"><a ng-href="#!/exercise/{{item.id}}">{{item.exName}}</a></td>
                         <td>Milestone {{item.milestone}}</td>
                         <td>{{item.type}}</td>
                         <td>{{item.status}}</td>
                         <td>{{item.points}}</td>
                     </tr>
-                    <tr ng-repeat="item in userEventDeets | filter:queryMine | filter:status">
+                    <tr ng-repeat="item in userEventDeets | filter:queryMine | filter:status | filter: {archive:false}">
                         <td scope="row"><a ng-href="#!/event/{{item.id}}">{{item.eventTitle}} | {{item.eventDate}} | {{item.startTime}}</a></td>
                         <td>Location: {{item.locationName}}</td>
                         <td>{{item.type}}</td>
                         <td>{{item.status}}</td>
                         <td>{{item.points}}</td>
                     </tr>
-                    <tr ng-repeat="item in userGroupDeets | filter:queryMine | filter:status">
+                    <tr ng-repeat="item in userGroupDeets | filter:queryMine | filter:status | filter: {archive:false}">
                         <td scope="row"><a ng-href="#!/groups/{{item.id}}">{{item.projectName}}</a></td>
                         </td>
                         <td><a ng-href="{{item.linktoRepo}}">Repo Link</a></td>
@@ -286,21 +286,21 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="item in exerciseDeets | filter:queryMine | filter:status | orderBy: 'milestone' | filter:{ status: 'Archived' }">
+                        <tr ng-repeat="item in exerciseDeets | filter:queryMine | filter:status | orderBy: 'milestone' | filter:{ archive: true }">
                             <td scope="row"><a ng-href="#!/exercise/{{item.id}}">{{item.exName}}</a></td>
                             <td>Milestone {{item.milestone}}</td>
                             <td>{{item.type}}</td>
                             <td>{{item.status}}</td>
                             <td>{{item.points}}</td>
                         </tr>
-                        <tr ng-repeat="item in userEventDeets | filter:queryMine | filter:status | filter:{ status: 'Archived' }">
+                        <tr ng-repeat="item in userEventDeets | filter:queryMine | filter:status | filter:{ archive: true }">
                             <td scope="row"><a ng-href="#!/event/{{item.id}}">{{item.eventTitle}} | {{item.eventDate}} | {{item.startTime}}</a></td>
                             <td>Location: {{item.locationName}}</td>
                             <td>{{item.type}}</td>
                             <td>{{item.status}}</td>
                             <td>{{item.points}}</td>
                         </tr>
-                        <tr ng-repeat="item in userGroupDeets | filter:queryMine | filter:status | filter:{ status: 'Archived' }">
+                        <tr ng-repeat="item in userGroupDeets | filter:queryMine | filter:status | filter:{ archive: true }">
                             <td scope="row"><a ng-href="#!/groups/{{item.id}}">{{item.projectName}}</a></td>
                             </td>
                             <td><a ng-href="{{item.linktoRepo}}">Repo Link</a></td>

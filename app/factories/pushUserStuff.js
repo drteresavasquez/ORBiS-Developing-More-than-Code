@@ -132,6 +132,7 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
                         console.log(singleUserExercise);
                         let newExercise = {
                             userName:"",
+                            archive:false,
                             cohort:"",
                             dateScored : "",
                             exName : singleUserExercise[0].name,
@@ -208,6 +209,7 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
                         // console.log(singleUserEvent[0].id);
                         let newEvent = {
                             userName: "",
+                            archive:false,
                             type:"Event",
                             cohort:"",
                             dateScored : "",
@@ -284,6 +286,7 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
                         let newGroupProject = {
                             userName:"",
                             type:"Group Project",
+                            archive:false,
                             cohort:"",
                             dateScored : "",
                             linktoRepo: singleGroupProject[0].linktoRepo,
@@ -319,47 +322,6 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
         });
     };
 
-    // const archiveExercises = (exerciseId)=>{
-    //     let archiveIt = {
-    //         status: "Archived"
-    //     };
-    //     let newObj = JSON.stringify(archiveIt);
-    //     $http.patch(`${FBCreds.databaseURL}/user-exercises/${exerciseId}.json`, newObj)
-    //     .then((results)=>{
-    //         console.log("archivestuff", results);
-    //         $route.reload();
-    //     });
-    // };
-
-    // const archiveEvents = (eventId)=>{
-    //     let archiveIt = {
-    //         status: "Archived"
-    //     };
-    //     let newObj = JSON.stringify(archiveIt);
-    //     $http.patch(`${FBCreds.databaseURL}/user-events/${eventId}.json`, newObj)
-    //     .then((results)=>{
-    //         console.log("archivestuff", results);
-    //         $route.reload();
-    //     });
-    // };
-
-    // const archiveGroup = (groupId)=>{
-    //     let archiveIt = {
-    //         status: "Archived"
-    //     };
-    //     let newObj = JSON.stringify(archiveIt);
-    //     $http.patch(`${FBCreds.databaseURL}/user-group-projects/${groupId}.json`, newObj)
-    //     .then((results)=>{
-    //         console.log("archivestuff", results);
-    //         $route.reload();
-    //     });
-    // };
-
-
-
-    return{addUserExercise, updateExerciseStu, addUserEvent, addUserGroupProject, updateEventStu, updateGroupStu, pushExerciseCount 
-        // archiveExercises, 
-        // archiveEvents, 
-        // archiveGroup
+    return{addUserExercise, updateExerciseStu, addUserEvent, addUserGroupProject, updateEventStu, updateGroupStu, pushExerciseCount
     };
 });

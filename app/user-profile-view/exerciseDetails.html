@@ -1,4 +1,21 @@
 <h3>{{title}}</h3>
+<h4>Archive Exercise?</h4>
+<div class="form-check">
+        <label class="form-check-label">
+            <input class="form-check-input" type="radio" name="teacherStatus" ng-model="eventSubmit.archive" id="teacherStatus3" value="true" checked>
+            Archive it!
+        </label>
+    </div>
+<div class="form-check">
+    <label class="form-check-label">
+        <input class="form-check-input" type="radio" name="teacherStatus" ng-model="eventSubmit.archive" id="teacherStatus1" value="false" checked>
+        Keep it in my to-do list
+    </label>
+</div>
+<div>
+        <button class="btn btn-default" ng-click="submitEvent()">Save</button>
+    </div>
+    <hr>
 <form>
     <div class="form-group row">
         <div class="col-sm-12">
@@ -37,7 +54,6 @@
             <option selected>Open this select menu</option>
             <option value="In Progress">In Progress</option>
             <option value="Submitted">Submitted</option>
-            <option value="Archived">Archive</option>
           </select>
         </div>
     </div>
