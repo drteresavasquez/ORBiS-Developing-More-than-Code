@@ -1,11 +1,12 @@
 "use strict";
 app.factory("useAchieve", function($q, $http, FBCreds, authFactory){
 
-    let currentUser = authFactory.getCurrentUser();
+    // let currentUser = authFactory.getCurrentUser();
     
     const achievements = ()=>{
-        let currentUser = authFactory.getCurrentUser();
+        // let currentUser = authFactory.getCurrentUser();
         return $q((resolve, reject) => {
+            let currentUser = authFactory.getCurrentUser();
             $http.get(`${FBCreds.databaseURL}/users.json?orderBy="uid"&equalTo="${currentUser}"`)
                 .then((results) => {
                     console.log("RESULTZZZZZ", results);
@@ -70,6 +71,7 @@ app.factory("useAchieve", function($q, $http, FBCreds, authFactory){
                         });
                     }
                 });
+              
             });  
     };
 

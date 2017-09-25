@@ -16,12 +16,12 @@ app.controller("navCtrl", function($scope, $window, $location, $routeParams, $ro
         if (user) {
           $scope.isLoggedIn = true;
           let uid = user.uid;
-          console.log("currentUser logged in?", user.uid);
+          // console.log("currentUser logged in?", user.uid);
           getUserInfo.getUserDetails(uid)
           .then((getUser) => {
             let key = Object.keys(getUser);
            $scope.isTeacher = getUser[key].isTeacher;
-           console.log("$scope.isTeacher", $scope.isTeacher);
+          //  console.log("$scope.isTeacher", $scope.isTeacher);
            if(getUser[key].isTeacher === true){
             $window.location.href = "#!/admin";
            }
@@ -33,22 +33,4 @@ app.controller("navCtrl", function($scope, $window, $location, $routeParams, $ro
           $window.location.href = "#!/login";
         }
       });
-
-
-      // let currentUser = authFactory.getCurrentUser();
-      
-      //     $scope.isAdmin = (currentUser)=>{
-      //         getUserInfo.getUserDetails(currentUser)
-      //             .then((getUser) => {
-      //                 let key = Object.keys(getUser);
-      //               //  $scope.isTeacher = getUser[key].isTeacher;
-      //                console.log("$scope.isTeacher", getUser[key]);
-      //             });
-      
-          
-      //     };
-      //     $scope.isAdmin();
-
-
-
 });

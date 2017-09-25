@@ -30,7 +30,7 @@ app.controller("singleExercise", function ($scope, $routeParams, getUserInfo, $l
             .then((data) => {
                 $scope.exerciseSubmit = data;
                 $scope.exerciseSubmit.id = $routeParams.itemId;
-                console.log("$scope.exerciseSubmit", $scope.exerciseSubmit);
+                // console.log("$scope.exerciseSubmit", $scope.exerciseSubmit);
             });
     };
 
@@ -39,5 +39,6 @@ app.controller("singleExercise", function ($scope, $routeParams, getUserInfo, $l
     $scope.submitExercise = ()=>{
         pushUserStuffFactory.updateExerciseStu($scope.exerciseSubmit);
         getUserInfo.getUserPoints(currentUser);
+        $route.reload();
     };
 });
