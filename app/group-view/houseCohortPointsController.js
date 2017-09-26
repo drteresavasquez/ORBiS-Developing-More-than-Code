@@ -23,19 +23,15 @@ app.controller("groupPointsController", function ($scope, groupingPointsFactory,
             });
 
         $scope.cohortCombined = cohortGroup;
-        // console.log("$scope.cohortCombined", $scope.cohortCombined);
     };
 
     $scope.showHouseStuff = function (){
         groupingPointsFactory.showHouseStuff()
         .then((data)=>{
             $scope.houseCalls = data;
-            // console.log("$scope.houseCalls", $scope.houseCalls);
         });
     };
 
     $scope.showHouseStuff();
     $scope.cohortCalls();
-    // $scope.houseCalls();
-
 });
