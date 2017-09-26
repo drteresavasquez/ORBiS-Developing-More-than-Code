@@ -8,7 +8,12 @@ app.controller("userProfileController", function ($scope, gitHubFactory, authFac
         gitHubFactory.getMilestones()
             .then((allExercises) => {
                 $scope.allExercises = allExercises;
-            });
+                });
+            };
+    
+    $scope.milestoneGetIt = (MilestoneNumber)=>{
+        $scope.allExercises = gitHubFactory.milestoneIt(MilestoneNumber);
+        // console.log("YOU GOT THE MILESTONES...");
     };
 
     $scope.showAllEvents = function () {
@@ -30,7 +35,7 @@ app.controller("userProfileController", function ($scope, gitHubFactory, authFac
     getUserInfo.getUserExercises(currentUser)
         .then((exercises) => {
             $scope.exerciseDeets = getUserInfo.showUserExercises(exercises);
-            console.log("$$$$$exercises.status", $scope.exerciseDeets);
+            // console.log("$$$$$exercises.status", $scope.exerciseDeets);
         });
     
     $scope.userExercises = (currentUser)=>{

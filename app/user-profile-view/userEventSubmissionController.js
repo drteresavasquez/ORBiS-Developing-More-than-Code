@@ -34,7 +34,6 @@ app.controller("userEventSubmission", function ($scope, $routeParams, getUserInf
                 // console.log("$scope.eventSubmit", $scope.eventSubmit);
             });
     };
-
     showEvent();
 
     $scope.submitEvent = ()=>{
