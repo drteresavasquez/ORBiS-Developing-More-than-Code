@@ -37,7 +37,7 @@ app.controller("groupsTerraStudentsfun", function($scope, groupingPointsFactory)
 
 app.controller("groupsAquaStudentsfun", function($scope, groupingPointsFactory){
     
-    $scope.house = "Terra";
+    $scope.house = "Aqua";
 
     groupingPointsFactory.leaderboardHouseCall($scope.house)
     .then((students) => {
@@ -90,26 +90,29 @@ app.controller("groups22Studentsfun", function($scope, groupingPointsFactory){
 
 });
 
-app.controller("showMyCohort", function($scope, groupingPointsFactory, getUserInfo, authFactory){
+app.controller("showMyCohort", function($scope, groupingPointsFactory, getUserInfo, authFactory, useAchieve){
 
     $scope.getMyPeeps =()=>{
-    let currentUser = authFactory.getCurrentUser();
-        getUserInfo.getUserDetails(currentUser)
-        .then((results)=>{
-            let key = Object.keys(results);
-            let cohort = results[key].cohort;
-            $scope.cohortNum = cohort;
-            console.log("resultsSSSSSSSS", cohort);
-            return(cohort);
-        })
-        .then((cohort)=>{
-        groupingPointsFactory.leaderboardCohortCall(cohort)
-            .then((students) => {
-            $scope.studentList = students;
-            console.log("$scope.studentList", $scope.studentList);
+        let currentUser = authFactory.getCurrentUser();
+        let cohort;
+            getUserInfo.getUserPoints(currentUser);
+            useAchieve.achievements(currentUser);
+            getUserInfo.getUserDetails(currentUser)
+            .then((results)=>{
+                let key = Object.keys(results);
+                cohort = results[key].cohort;
+                $scope.cohortNum = cohort;
+                // console.log("resultsSSSSSSSS", cohort);
+                return(cohort);
+            })
+            .then((cohort)=>{
+            groupingPointsFactory.leaderboardCohortCall(cohort)
+                .then((students) => {
+                $scope.studentList = students;
+                // console.log("$scope.studentList", $scope.studentList);
+                });
             });
-        });
-        
-    };
-    $scope.getMyPeeps();
+            
+        };
+        $scope.getMyPeeps();
 });

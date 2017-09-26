@@ -1,6 +1,6 @@
 "use strict";
 
-app.controller("groupPointsController", function ($scope, groupingPointsFactory, pushUserStuffFactory) {
+app.controller("groupPointsController", function ($scope, groupingPointsFactory, pushUserStuffFactory, useAchieve) {
 
     $scope.cohortCalls = function () {
         let cohortGroup = [];

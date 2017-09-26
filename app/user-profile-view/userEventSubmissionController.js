@@ -21,7 +21,8 @@ app.controller("userEventSubmission", function ($scope, $routeParams, getUserInf
         studentLinktoProof:"",
         teacherFeedback:"",
         scoredBy: "",
-        teacherStatus:""
+        teacherStatus:"",
+        archive:""
     };
     
     console.log("itemId", $routeParams.itemId);

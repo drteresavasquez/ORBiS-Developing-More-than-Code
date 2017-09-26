@@ -12,6 +12,7 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
          groupingPointsFactory.getHousePoints("Ventum");
     };
 
+    //takes the user exercises object and pushes the total exercies completed to FB.
     const pushExerciseCount = (currentUser, obj)=>{
         return $q((resolve, reject) => {
             $http.get(`${FBCreds.databaseURL}/users.json?orderBy="uid"&equalTo="${currentUser}"`)
@@ -36,6 +37,7 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
     };
 
     const updateExerciseStu = (obj)=>{
+        let currentUser = authFactory.getCurrentUser();
         console.log("PUSHING OBJECT", obj);
         let exerciseID = $routeParams.itemId;
         console.log("exerciseIDDDDDDDDD", exerciseID);
@@ -44,7 +46,7 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
         .then((data) => {
             console.log("data", data);
             getAllHousePoints();
-            // useAchieve.achievements(currentUser);
+            useAchieve.achievements(currentUser);
             return data;
         }, (error) => {
             let errorCode = error.code;
@@ -55,6 +57,7 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
     };
 
     const updateEventStu = (obj)=>{
+        let currentUser = authFactory.getCurrentUser();
         console.log("PUSHING OBJECT", obj);
         let eventID = $routeParams.itemId;
         console.log("eventIDDDDDDDDDD", eventID);
@@ -62,7 +65,7 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
         $http.patch(`${FBCreds.databaseURL}/user-events/${eventID}.json`, newObj)
         .then((data) => {
             console.log("data", data);
-            // useAchieve.achievements(currentUser);
+            useAchieve.achievements(currentUser);
             getAllHousePoints();
             return data;
         }, (error) => {
@@ -73,6 +76,7 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
     };
 
     const updateGroupStu = (obj)=>{
+        let currentUser = authFactory.getCurrentUser();
         console.log("PUSHING OBJECT", obj);
         let groupID = $routeParams.itemId;
         console.log("groupIDDDDDDDDDD", groupID);
@@ -80,7 +84,7 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
         $http.patch(`${FBCreds.databaseURL}/user-group-projects/${groupID}.json`, newObj)
         .then((data) => {
             console.log("data", data);
-            // useAchieve.achievements(currentUser);
+            useAchieve.achievements(currentUser);
             getAllHousePoints();           
             return data;
         }, (error) => {
@@ -91,13 +95,8 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
     };
 
     const snackbar = function () {
-        // Get the snackbar DIV
         var x = document.getElementById("snackbar");
-    
-        // Add the "show" class to DIV
         x.className = "show";
-    
-        // After 3 seconds, remove the show class from DIV
         $timeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
     };
 
@@ -133,6 +132,7 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
                         console.log(singleUserExercise);
                         let newExercise = {
                             userName:"",
+                            archive:false,
                             cohort:"",
                             dateScored : "",
                             exName : singleUserExercise[0].name,
@@ -209,6 +209,7 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
                         // console.log(singleUserEvent[0].id);
                         let newEvent = {
                             userName: "",
+                            archive:false,
                             type:"Event",
                             cohort:"",
                             dateScored : "",
@@ -285,6 +286,7 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
                         let newGroupProject = {
                             userName:"",
                             type:"Group Project",
+                            archive:false,
                             cohort:"",
                             dateScored : "",
                             linktoRepo: singleGroupProject[0].linktoRepo,
@@ -320,6 +322,6 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
         });
     };
 
-
-    return{addUserExercise, updateExerciseStu, addUserEvent, addUserGroupProject, updateEventStu, updateGroupStu, pushExerciseCount};
+    return{addUserExercise, updateExerciseStu, addUserEvent, addUserGroupProject, updateEventStu, updateGroupStu, pushExerciseCount
+    };
 });

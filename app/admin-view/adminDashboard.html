@@ -16,7 +16,7 @@
                     </select>
         </div>
       </div><br>
-<table class="table table-striped">
+<table class="table table-striped table-responsive adminTable">
         <thead>
           <tr>
             <th>Status</th>
@@ -24,7 +24,7 @@
             <th>Cohort</th>
             <th>Item Name</th>
             <th>Type</th>
-            <th>Info</th>
+            <!-- <th>Info</th> -->
           </tr>
         </thead>
         <tbody>
@@ -34,7 +34,7 @@
             <td>{{item.cohort}}</td>
             <td><a ng-href="#!/admin/exercise/{{item.id}}">{{item.exName}}</a></td>
             <td>{{item.type}}</td>
-            <td>Milestone {{item.milestone}}</td>
+            <!-- <td>Milestone {{item.milestone}}</td> -->
           </tr>
 
           <tr ng-repeat="item in allUserEvents | filter: {'status': 'Submitted'} | filter:queryStudents | filter:cohort">
@@ -43,7 +43,7 @@
               <td>{{item.cohort}}</td>
               <td><a ng-href="#!/admin/event/{{item.id}}">{{item.eventTitle}}</a></td>
               <td>{{item.type}}</td>
-              <td>Location: {{item.locationName}}</td>
+              <!-- <td>Location: {{item.locationName}}</td> -->
             </tr>
 
 
@@ -53,7 +53,7 @@
                 <td>{{item.cohort}}</td>
                 <td><a ng-href="#!/admin/groups/{{item.id}}">{{item.projectName}}</a></td>
                 <td>{{item.type}}</td>
-                <td>N/A</td>
+                <!-- <td>N/A</td> -->
               </tr>
         </tbody>
       </table>

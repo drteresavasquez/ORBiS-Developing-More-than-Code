@@ -19,7 +19,8 @@ app.controller("userGroupSubmission", function ($scope, $routeParams, getUserInf
         studentLinktoRepo:"",
         teacherFeedback:"",
         scoredBy: "",
-        teacherStatus:""
+        teacherStatus:"",
+        archive:""
     };
     
     console.log("itemId", $routeParams.itemId);
