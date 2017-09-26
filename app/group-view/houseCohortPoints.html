@@ -1,7 +1,40 @@
 <div class="pageTitle">
     <h1>Leader Board</h1>
 </div>
-<div class="row no-gutters">
+
+<div class="row">
+    <div class="col-9">col-8</div>
+    <div class="col-3">
+        <center><h3>Cohort Standings</h3></center>
+        <table class="table table-sm profile">
+            <tbody>
+                <tr ng-repeat="item in cohortCombined |  orderBy:'-points'">
+                    <th scope="row" class="leader-cohort"> <a ng-href="#!/leaderboard/cohort/{{item.cohort}}"><img class="card-img-top" ng-src="{{item.crest}}" alt="Card image cap"></a></th>
+                    <td style="text-align:left"><small>Points</small>
+                        <br><span class="leader-points">{{item.points}}</span></td>
+                </tr>
+            </tbody>
+        </table>
+        <hr>
+        <center><h3>House Standings</h3></center>
+        <table class="table table-sm profile">
+            <tbody>
+                <tr ng-repeat="item in houseCalls |  orderBy:'-points'">
+                    <th scope="row" class="leader-cohort"> <a ng-href="#!/leaderboard/house/{{item.id}}"><img class="card-img-top" ng-src="{{item.crest}}" alt="Card image cap"></a></th>
+                    <td style="text-align:left">{{item.id}}<br><small>Points</small>
+                        <br><span class="leader-points">{{item.points}}</span></td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+<div>NOTE: Points are calulated based team average</div>
+
+
+
+<!-- <div class="row no-gutters">
     <div class="col">
         <div ng-repeat="item in cohortCombined |  orderBy:'-points'">
             <div class="card rank" style="width: 20rem;">
@@ -20,47 +53,30 @@
     <div class="col">
         <div>
             <div class="card" style="width: 20rem;">
-                <!-- <center><h1>Place</h1></center> -->
                 <img class="card-img-top" src="app/assets/images/1.png" alt="Card image cap">
                 <div class="card-body">
-                    <!-- <center>
-                                Points
-                                </center> -->
-
                 </div>
             </div>
         </div>
 
         <div>
             <div class="card" style="width: 20rem;">
-                <!-- <center><h1>Place</h1></center> -->
                 <img class="card-img-top" src="app/assets/images/2.png" alt="Card image cap">
                 <div class="card-body">
-                    <!-- <center>
-                                        Points
-                                        </center> -->
                 </div>
             </div>
         </div>
         <div>
             <div class="card" style="width: 20rem;">
-                <!-- <center><h1>Place</h1></center> -->
                 <img class="card-img-top" src="app/assets/images/3.png" alt="Card image cap">
                 <div class="card-body">
-                    <!-- <center>
-                                            Points
-                                            </center> -->
                 </div>
             </div>
         </div>
         <div>
             <div class="card" style="width: 20rem;">
-                <!-- <center><h1>Place</h1></center> -->
                 <img class="card-img-top" src="app/assets/images/4.png" alt="Card image cap">
                 <div class="card-body">
-                    <!-- <center>
-                                                Points
-                                                </center> -->
                 </div>
             </div>
         </div>
@@ -83,5 +99,4 @@
             </div>
         </div>
     </div>
-</div>
-<div>NOTE: Points are calulated based team average</div>
+</div> -->
