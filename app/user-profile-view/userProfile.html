@@ -42,7 +42,7 @@
         <h4 class="header">My Upcoming Events</h4>
         <table class="table table-sm profile">
                 <tbody>
-                    <tr ng-repeat="item in userEventDeets | filter:queryMine | filter:status | limitTo:4">
+                    <tr ng-repeat="item in userEventDeets | filter:queryMine | filter:status | filter: {archive:false} | limitTo:4">
                         <th scope="row" class="profTable"><a ng-href="#!/event/{{item.id}}">{{item.eventTitle}}</a></th>
                         <td class="profTableDeet">{{item.eventDate}}</td>
                     </tr>

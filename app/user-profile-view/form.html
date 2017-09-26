@@ -84,9 +84,10 @@
 <div id="id01" class="w3-modal">
     <div class="w3-modal-content">
         <div class="w3-container">
-            <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+            <div class="modal-content">
+                    <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright"><i class="fa fa-times-circle fa-2x" aria-hidden="true"></i></span>
             <h2>Get Sorted</h2>
-            <p>1. When beginning relationships or completing things, do you move quickly, or prefer to take your time and go
+            <div class="questionArea"><p>1. When beginning relationships or completing things, do you move quickly, or prefer to take your time and go
                 more slowly? NOTE: If you are still thinking about this...you should choose <i>"Slowly"</i></p>
             <label class="custom-control custom-radio">
                     <input id="radio1" name="speed" type="radio" value="0" class="custom-control-input">
@@ -98,8 +99,9 @@
                     <span class="custom-control-indicator"></span>
                     <span class="custom-control-description">Slowly</span>
                 </label><br>
+                </div>
             <hr>
-            <p>2. When completing a task, do you prefer to work from a checklist and get stuff done (Task Oriented) or chill
+            <div class="questionArea"><p>2. When completing a task, do you prefer to work from a checklist and get stuff done (Task Oriented) or chill
                 with people while getting it done (People Oriented)?</p>
             <label class="custom-control custom-radio">
                         <input id="radio3" name="focus" type="radio" value="1" class="custom-control-input">
@@ -111,7 +113,7 @@
                         <span class="custom-control-indicator"></span>
                         <span class="custom-control-description">Task Oriented</span>
                     </label>
-
+                </div>
             <div id="House">
                 <center>
                     <h1>{{house}}</h1>
@@ -125,7 +127,7 @@
             </center>
 
             <br><br>
-
+        </div>
         </div>
     </div>
 </div>
