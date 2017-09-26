@@ -37,7 +37,7 @@ app.controller("groupsTerraStudentsfun", function($scope, groupingPointsFactory)
 
 app.controller("groupsAquaStudentsfun", function($scope, groupingPointsFactory){
     
-    $scope.house = "Terra";
+    $scope.house = "Aqua";
 
     groupingPointsFactory.leaderboardHouseCall($scope.house)
     .then((students) => {
