@@ -1,39 +1,75 @@
-
+body{
+    background: #EFEFEF;
+}
 .container{
     margin-top: 30px;
     margin-bottom: 150px;
 }
 .pageTitle{
     margin-bottom: 30px;
-    border-bottom: 1px solid #F5F5F5;
+    border-bottom: 1px solid white;
     padding-bottom: 20px;
     text-align: center;
     color: #686767;
 }
+h4.white{
+    color: white;
+}
 
-.col-3.profile{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items:center;
+h4.header{
+    color: white;
+    font-size: .9em;
+    font-weight: bold;
 }
-button{
-    cursor: pointer;
+
+/* ----- CARDS ON PAGES ----- */
+.card-img-top{
+    /* border-radius: 100%; */
+    width: 100%;
+    overflow: hidden;
+    /* height: 200px; */
 }
-.profileImage{
+.userCards{
+    /* max-height: 400px; */
+    overflow: hidden;
+    text-align: center;
+    margin-bottom: 10px;
+    border: 1px solid #EEEEEE;
+    /* padding-left: 10px; */
+    
+}
+.userCards:hover{
+box-shadow: 0 10px 20px rgba(0,0,0,.19),0 6px 6px rgba(0,0,0,.23);
+}
+.userCards img{
+    margin: 0 auto;
     border-radius: 100%;
-    width: 70%;
-    margin-bottom:-50px;
+    border-bottom: 5px solid orange;
+}
+h3.card-title{
+    font-size: 1.25em;
+}
+.fa-certificate{
+    /* color: white; */
+}
+.userPoints{
+    display: block;
+    width: 60px;
+    margin-top: -260px;
+    margin-bottom: 210px;
+    /* margin-left: -10px; */
+    float: right;
+    background: green;
+    text-align: left;
+    border: 1px solid green;
+}
+.card-footer{
+    cursor: pointer;
+    background: white;
+    border-top: 1px solid gray;
+    color: green;
 }
 
-.badge.badge-info{
-    font-size: .7em;
-    /* width: 110%; */
-}
-
-a:visited, a:active, a:link {
-    color: #F75430 !important;
-}
 .card-deck{
     display: flex;
     flex-wrap: wrap;
@@ -48,8 +84,82 @@ a:visited, a:active, a:link {
     margin-bottom: 20px;
 }
 
-.card-footer{
-    border: 1px solid black;
+/* PROFILE PAGE STUFF */
+.profTableLink{
+    text-align: left;
+    color: white;
+}
+
+.prof-house{
+    width: 28px;
+    margin-left:10px;
+    margin-top:-5px;
+}
+.profTable{
+    text-align: left;
+    color:#B9B9B9;
+    text-transform: uppercase;
+    font-size: .85em;
+}
+.profTableDeet{
+    color: white;
+    text-align: right;
+    text-transform: uppercase;
+    font-size: .85em;
+}
+
+/* ------ MODAL -------- */
+.modal-content{
+    border: none;
+    /* padding-top: 30px; */
+    padding: 50px 10px 0 30px;
+    background: url("../app/assets/images/houses.png") center;
+    
+}
+.questionArea{
+    background: white;
+    padding: 10px;
+    border-radius: 10px;
+
+}
+.adminTable{
+    background: white;
+}
+.stuffDiv{
+    border: 1px solid #4A3952;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    padding: 20px;
+    background: white;
+}
+.col-3.profile{
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    background: #4A3952;
+    padding:30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:center;
+}
+button{
+    cursor: pointer;
+}
+.profileImage{
+    border-radius: 100%;
+    width: 70%;
+    margin-bottom:-50px;
+    border: 2px solid white;
+}
+
+.badge.badge-info{
+    font-size: .7em;
+    /* width: 110%; */
+}
+
+a:visited, a:active, a:link {
+    color: #F75430 !important;
 }
 
   a:focus, a:hover, a:active {
@@ -80,38 +190,8 @@ a:visited, a:active, a:link {
       position: relative;
       border-radius: 2px 0 0 2px;
   }
-  /* .navigationElements{
-      display: flex;
-  }
-  .navbar{
-      height: 50px;
-  }
-  .navPic{
-      display: flex;
-      width: 50px;
-      height: 50px;
-      justify-content: center;
-      margin-right:15px;
-  }
-  .navProfileImg{
-      border-radius: 100%;
-      padding:5px;
-      height: 100%;
-  }
-  .nameStuff{
-      display: flex;
-      flex-direction: column;
-      margin-right: 10px;
-      color: white;
-  }
-  .nameStuff p{
-      margin-top:5px;
-      margin-bottom: 0px;
-  } */
-
 
   .list-header img {
-      /* width: 100%; */
       height:200px;
       overflow: hidden;
       display: block;

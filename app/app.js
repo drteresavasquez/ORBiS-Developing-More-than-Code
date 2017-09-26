@@ -156,7 +156,7 @@ app.config(($routeProvider) => {
             resolve: {isAuth}
             })
         .when('/mycohort', {
-            templateUrl: 'app/group-view/myCohort.html',
+            templateUrl: 'app/group-view/cohortList.html',
             controller: 'showMyCohort',
             resolve: {isAuth}
             })

@@ -1,7 +1,67 @@
-<div class="pageTitle"><h1>Cohort {{cohort}}</h1></div>
+<div class="pageTitle"><h1>Cohort {{cohortNum}}{{cohort}}</h1></div>
 
-<div class="row card-deck no-gutters">
-        <div class="col-sm-4" ng-repeat="item in studentList  | orderBy:'-points'">
+<div class="row no-gutters">
+    <div class="card-group no-gutters">
+      <div class="col-sm-3 userCards no-gutters" ng-repeat="item in studentList  | orderBy:'-points'">
+        <div class="card">
+           
+            <img class="card-img-top" ng-src="{{item.profileImg}}" alt="Card image cap">
+           
+  
+            <button type="button" class="btn btn-primary btn-sm userPoints">
+                <i class="fa fa-star" aria-hidden="true"></i> {{item.points}}
+              </button>
+           
+  
+          <div class="card-body no-gutters">
+              <center>
+            <h4 class="card-title">{{item.first_name}} <span class="badge badge-info">{{item.achievement}}</span></h4>
+            <table><tbody>
+                <tr>
+                    <td> 
+                        <a href="{{item.gitHubLink}}" target="_blank"><i class="fa fa-github fa-2x" aria-hidden="true"></i></a> 
+                    </td>
+                    <td> 
+                         <a ng-href="#!/leaderboard/house/{{item.house}}"><img class="prof-house" ng-src="app/assets/images/{{item.house}}.png"></a>
+                    </td>
+                </tr>
+                </tbody></table>
+            <hr>
+            <table><tbody>
+                <tr>
+                    <td colspan="2"> 
+                        <small><b>Tech Focus:</b> </small> 
+                    </td>
+                </tr> 
+                <tr>
+                    <td colspan="2"> 
+                        <small> {{item.techInterests}}</small>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2"> 
+                        <small><b> Social Focus: </b></small> 
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="2"> 
+                        <small> {{item.socialInterest}}</small>
+                    </td>
+                </tr>
+            </tbody></table>
+          </div>
+          <div class="card-footer">
+              
+              <i class="fa fa-plus" aria-hidden="true"></i>
+            FOLLOW
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- <div class="row card-deck">
+        <div class="col-sm-3" ng-repeat="item in studentList  | orderBy:'-points'">
             <div class="card houses">
                 <div class="card-body">
                     <img class="card-img-top" ng-src="{{item.profileImg}}" alt="Card image cap">
@@ -10,7 +70,7 @@
                   </center>
                   <p class="card-text">
                       <center><a ng-href="{{item.gitHubLink}}" target="_blank">GitHub Link</a></center>
-                   <!-- <br>Tech Interest:{{item.techInterests}} -->
+                   <br>Tech Interest:{{item.techInterests}}
                   </p>
                   
                   <div class="card-footer">
@@ -25,4 +85,4 @@
 
 
 
-      </div>
+      </div> -->
