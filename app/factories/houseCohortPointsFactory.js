@@ -101,11 +101,93 @@ const leaderboardCohortCall = function(cohort){
         });
     };
 
+
+    const leaderboardScroll = ()=>{
+        let leaderBoardScrolling = [];
+        let throwAwayGarb = [];
+        return $q((resolve, reject) => {
+            $http.get(`${FBCreds.databaseURL}/user-events.json`)
+            .then((results)=>{
+                let eventKeys = Object.keys(results.data);
+                eventKeys.forEach((item)=>{
+                    if(results.data[item].dateScored == "null" || results.data[item].dateScored === ""){
+                        console.log("not going anywhere");
+                    }else{
+                        leaderBoardScrolling.push(results.data[item]);
+                    }
+                });
+                resolve(leaderBoardScrolling);
+                });
+            })
+            .then((leaderBoardScrolling)=>{
+                return $q((resolve, reject) => {
+                    $http.get(`${FBCreds.databaseURL}/user-exercises.json`)
+                    .then((results)=>{
+                        let exerciseKeys = Object.keys(results.data);
+                        exerciseKeys.forEach((item)=>{
+                            if(results.data[item].dateScored == "null" || results.data[item].dateScored === ""){
+                                console.log("not going anywhere");
+                            }else{
+                                leaderBoardScrolling.push(results.data[item]);
+                            }
+                        });                        
+                        resolve(leaderBoardScrolling);
+                     });
+                });
+            })
+            .then((leaderBoardScrolling)=>{
+                return $q((resolve, reject) => {
+                    $http.get(`${FBCreds.databaseURL}/user-group-projects.json`)
+                    .then((results)=>{
+                        let groupKeys = Object.keys(results.data);
+                        groupKeys.forEach((item)=>{
+                            if(results.data[item].dateScored == "null" || results.data[item].dateScored === ""){
+                                console.log("not going anywhere");
+                            }else{
+                                leaderBoardScrolling.push(results.data[item]);
+                            }
+                        });
+                     });
+                     resolve(leaderBoardScrolling);
+                });
+            })
+    .then((leaderBoardScrolling)=>{
+        return $q((resolve, reject) => {
+            $http.get(`${FBCreds.databaseURL}/users.json`)
+            .then((users)=>{
+                // console.log("leaderboard$$$$$$$$", leaderBoardScrolling);
+                // console.log("users$$$$$$$$", users.data);
+                let userKeys = Object.keys(users.data);
+                userKeys.forEach((item)=>{
+                    Object.keys(leaderBoardScrolling).forEach((thing)=>{
+                        if(leaderBoardScrolling[thing].uid == users.data[item].uid){
+                            console.log("We've got a match!");
+                            leaderBoardScrolling[thing].avatar = users.data[item].profileImg;
+                            leaderBoardScrolling[thing].house = users.data[item].house;
+                            leaderBoardScrolling[thing].cohort = users.data[item].cohort;
+                        }
+                        
+                    });
+                });
+
+                // console.log("leaderBoardScrolling$$$$$$$$$$", leaderBoardScrolling);
+            });
+            resolve(leaderBoardScrolling);
+    });
+});
+
+
+    };
+
+
+// console.log("leaderBoardScrolling results", leaderBoardScrolling);
+
     return {
         getHousePoints,
         getCohortPoints,
         showHouseStuff,
         leaderboardHouseCall,
-        leaderboardCohortCall
+        leaderboardCohortCall,
+        leaderboardScroll
     };
 });

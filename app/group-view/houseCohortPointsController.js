@@ -32,6 +32,12 @@ app.controller("groupPointsController", function ($scope, groupingPointsFactory,
         });
     };
 
+    $scope.leaderBoardScrollingMachine = ()=>{
+        groupingPointsFactory.leaderboardScroll();
+    };
+
+    $scope.leaderBoardScrollingMachine();
+
     $scope.showHouseStuff();
     $scope.cohortCalls();
 });
