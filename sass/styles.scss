@@ -22,6 +22,17 @@ h4.header{
     font-weight: bold;
 }
 
+/* ------LEADERBOARD------ */
+.leader-cohort{
+    width: 150px;
+}
+.leader-points{
+    text-align: left;
+    vertical-align: middle;
+    font-size: 1.25em;
+    font-weight: bold;
+}
+
 /* ----- CARDS ON PAGES ----- */
 .card-img-top{
     /* border-radius: 100%; */
@@ -70,6 +81,11 @@ h3.card-title{
     color: green;
 }
 
+.card-footer:hover{
+    background: green;
+    color: white;
+}
+
 .card-deck{
     display: flex;
     flex-wrap: wrap;
@@ -84,7 +100,7 @@ h3.card-title{
     margin-bottom: 20px;
 }
 
-/* PROFILE PAGE STUFF */
+/* ----PROFILE PAGE STUFF---- */
 .profTableLink{
     text-align: left;
     color: white;
@@ -146,6 +162,8 @@ h3.card-title{
 button{
     cursor: pointer;
 }
+
+/* -------PROFILE PAGE------ */
 .profileImage{
     border-radius: 100%;
     width: 70%;
@@ -174,6 +192,7 @@ a:visited, a:active, a:link {
       color: #7b7b7b !important;
   }
   
+  /* ----LEARNING LIBRARY---- */
   .list {
       display: block;
       background-color: rgba(255,255,255,.8);
@@ -195,7 +214,7 @@ a:visited, a:active, a:link {
       height:200px;
       overflow: hidden;
       display: block;
-      margin-left: -55px;
+      /* margin-left: -55px; */
   }
   
   .list-header .list-header-image:after {
