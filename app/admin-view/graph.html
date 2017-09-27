@@ -1,13 +1,15 @@
 <div class="pageTitle">
     <h1>Admin Graphs</h1>
 </div>
+<a ng-href="#!/admin/grouphelper"><button type="button" class="btn btn-success">Back to Group Helper</button></a>
+<br><br>
 <div class="card-deck">
     <div class="card">
-        <div class="card-header no-gutters">
+        <div class="card-header no-gutters" ng-controller="HouseMakeUp">
                 {{title}}
         </div>
         <div class="card-body no-gutters">
-            <div class="row no-gutters" ng-controller="HouseMakeUp">
+            <div class="row no-gutters">
                 <div class="col-10 no-gutters">
                     <canvas id="doughnut" class="chart chart-doughnut chart-xs" chart-data="data" chart-labels="labels" chart-colors="colors">
                     </canvas>
@@ -34,3 +36,44 @@
         </div>
     </div>
 </div>
+<hr>
+<!-- /////////////COHORT CHARTS/////////// -->
+<!-- <div class="btn-group mr-2" role="group">
+        <button type="button" class="btn btn-secondary" ng-click="cohortBreakdown(19)">19</button>
+        <button type="button" class="btn btn-secondary" ng-click="cohortBreakdown(20)">20</button>
+        <button type="button" class="btn btn-secondary" ng-click="cohortBreakdown(21)">21</button>
+        <button type="button" class="btn btn-secondary" ng-click="cohortBreakdown(22)">22</button>
+    </div>
+<div class="card-deck">
+<div class="card">
+    <div class="card-header no-gutters" ng-controller="CohortCharts">
+            {{cohorttitle}}
+    </div>
+    <div class="card-body no-gutters">
+        <div class="row no-gutters">
+            <div class="col-10 no-gutters">
+                <canvas id="doughnut" class="chart chart-doughnut chart-xs" chart-data="cohortdata" chart-labels="cohortlabels" chart-colors="cohortcolors">
+                </canvas>
+            </div>
+
+            <div class="col-2 no-gutters">
+                <table class="table legend">
+                    <tbody>
+                        <tr ng-repeat="item in cohortlegend">
+                            <td style="background-color:{{item.color}}; color: white">{{item.name}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card" ng-controller="CohortBarCtrl">
+    <div class="card-header">
+       {{title}}
+    </div>
+    <div class="card-body">
+        <canvas id="bar" class="chart chart-bar ng-isolate-scope" chart-data="data" chart-labels="labels" chart-series="series"></canvas>
+    </div>
+</div>
+</div> -->
