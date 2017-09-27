@@ -2,18 +2,20 @@
     <div class="col-3 profile" ng-repeat="item in deets">
         <img class="profileImage" ng-src="{{item.profileImg}}"><br>
         <h4><span class="badge badge-info">{{item.achievement}}
-                </span></h4> 
-            <table><tbody>
+                </span></h4>
+        <table>
+            <tbody>
                 <tr>
-                    <td> 
-                        <a href="{{item.gitHubLink}}" target="_blank"><i class="fa fa-github fa-2x" aria-hidden="true"></i></a> 
+                    <td>
+                        <a href="{{item.gitHubLink}}" target="_blank"><i class="fa fa-github fa-2x" aria-hidden="true"></i></a>
                     </td>
-                    <td> 
-                         <a ng-href="#!/leaderboard/house/{{item.house}}"><img class="prof-house" ng-src="app/assets/images/{{item.house}}.png"></a>
+                    <td>
+                        <a ng-href="#!/leaderboard/house/{{item.house}}"><img class="prof-house" ng-src="app/assets/images/{{item.house}}.png"></a>
                     </td>
                 </tr>
-            </tbody></table>
-           
+            </tbody>
+        </table>
+
         <h4 class="white">Hello, {{item.first_name}}! <a href="#!/edit-profile"><i class="fa fa-pencil" aria-hidden="true"></i></a></h4>
 
         <table class="table table-sm profile">
@@ -41,24 +43,24 @@
 
         <h4 class="header">My Upcoming Events</h4>
         <table class="table table-sm profile">
-                <tbody>
-                    <tr ng-repeat="item in userEventDeets | filter:eventDate | filter: {archive:false} | limitTo:4">
-                        <th scope="row" class="profTable"><a ng-href="#!/event/{{item.id}}">{{item.eventTitle}}</a></th>
-                        <td class="profTableDeet">{{item.eventDate}}</td>
-                    </tr>
-                   
-                </tbody>
-            </table>
+            <tbody>
+                <tr ng-repeat="item in userEventDeets | filter:eventDate | filter: {archive:false} | limitTo:4">
+                    <th scope="row" class="profTable"><a ng-href="#!/event/{{item.id}}">{{item.eventTitle}}</a></th>
+                    <td class="profTableDeet">{{item.eventDate}}</td>
+                </tr>
+
+            </tbody>
+        </table>
 
     </div>
 
     <div class="col-9 stuffDiv">
         <div>
-            <button type="button" class="btn btn-primary btn-sm" ng-click="setTab(1)">My To Do List</button>
-            <button type="button" class="btn btn-primary btn-sm" ng-click="setTab(2); allMilestones()">Available Exercises</button>
-            <button type="button" class="btn btn-primary btn-sm" ng-click="setTab(3)">Upcoming Events</button>
-            <button type="button" class="btn btn-primary btn-sm" ng-click="setTab(4)">Group Projects</button>
-            <button type="button" class="btn btn-primary btn-sm" ng-click="setTab(5)">My Archived Items</button>
+            <button type="button" class="btn btn-success btn-sm" ng-click="setTab(1)">My To Do List</button>
+            <button type="button" class="btn btn-success btn-sm" ng-click="setTab(2); allMilestones()">Available Exercises</button>
+            <button type="button" class="btn btn-success btn-sm" ng-click="setTab(3)">Upcoming Events</button>
+            <button type="button" class="btn btn-success btn-sm" ng-click="setTab(4)">Group Projects</button>
+            <button type="button" class="btn btn-success btn-sm" ng-click="setTab(5)">My Archived Items</button>
         </div>
         <hr>
 
@@ -100,7 +102,7 @@
                         <td>{{item.points}}</td>
                     </tr>
                     <tr ng-repeat="item in userEventDeets | filter:queryMine | filter:status | filter: {archive:false}">
-                        <td scope="row"><a ng-href="#!/event/{{item.id}}">{{item.eventTitle}} | {{item.eventDate}} | {{item.startTime}}</a></td>
+                        <td scope="row"><a ng-href="#!/event/{{item.id}}">{{item.eventTitle}} | {{item.eventDate | date: 'MM/dd/yyyy'}} | {{item.startTime |date:'h:mm a'}}</a></td>   
                         <td>Location: {{item.locationName}}</td>
                         <td>{{item.type}}</td>
                         <td>{{item.status}}</td>
@@ -121,19 +123,28 @@
         <!-- TAB 2 -->
         <div ng-show="isSet(2)">
             <div class="row">
-                <div class="col-8">
+                <div class="col-6">
                     <input type="search" ng-model="queryAllEx" class="form-control" aria-describedby="search" placeholder="Search Exercises"
                         autofocus>
                 </div>
-                <div class="col-4"></div>
+                <div class="col-6">
+                   Milestone: <div class="btn-group mr-2" role="group">
+                        <button type="button" class="btn btn-secondary" ng-click="milestones()">All</button>
+                        <button type="button" class="btn btn-secondary" ng-click="milestoneGetIt(1)">1</button>
+                        <button type="button" class="btn btn-secondary" ng-click="milestoneGetIt(2)">2</button>
+                        <button type="button" class="btn btn-secondary" ng-click="milestoneGetIt(3)">3</button>
+                        <button type="button" class="btn btn-secondary" ng-click="milestoneGetIt(4)">4</button>
+                        <button type="button" class="btn btn-secondary" ng-click="milestoneGetIt(5)">5</button>
+                    </div>
+
+
+                </div>
             </div>
             <br>
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th>
-                            <center><i class="fa fa-plus-square" aria-hidden="true"></i></center>
-                        </th>
+                        <th>Add</th>
                         <th>Exercise Name</th>
                         <th>Milestone</th>
                         <th><i class="fa fa-info-circle" aria-hidden="true"></i></th>
@@ -141,7 +152,7 @@
                 </thead>
                 <tbody ng-repeat="item in allExercises | filter:queryAllEx | orderBy:'milestone'">
                     <tr>
-                        <th scope="row"><a href ng-click="addExercise(item.sha)"><i class="fa fa-plus-square" aria-hidden="true"></i></a></th>
+                        <th scope="row"><a href ng-click="addExercise(item.sha)"><i class="fa fa-plus-circle fa-2x" aria-hidden="true"></i></a></th>
                         <td>{{item.name}}</td>
                         <td>{{item.milestone}}</td>
                         <td><a href="{{item.html_url}}" target="_blank">Details</a></td>
@@ -172,8 +183,8 @@
                 </thead>
                 <tbody ng-repeat="item in allEvents | filter:queryEvents | orderBy: 'begDate'">
                     <tr>
-                        <th scope="row"><a href ng-click="addEvent(item.id)"><i class="fa fa-plus-square" aria-hidden="true"></i></a></th>
-                        <td>{{item.begDate}} | {{item.startTime}}</td>
+                        <th scope="row"><a href ng-click="addEvent(item.id)"><i class="fa fa-plus-circle fa-2x" aria-hidden="true"></i></a></th>
+                        <td>{{item.begDate | date: 'MM/dd/yyyy'}} | {{item.startTime | date:'h:mm a'}}</td>
                         <td>{{item.eventTitle}}</td>
                         <td>{{item.locationName}}: {{item.locationAddy}}</td>
                         <td><a href="{{item.eventLink}}" target="_blank">Details</a></td>
@@ -185,12 +196,12 @@
         <!-- TAB 4 -->
         <div ng-show="isSet(4)">
             <div class="row">
-                <div class="col-8">
+                <div class="col-7">
                     <input type="search" ng-model="queryGroup" class="form-control" aria-describedby="search" placeholder="Search Group Projects"
                         autofocus>
                 </div>
-                <div class="col-4">
-                    Filter by Cohort:
+                <div class="col-5">
+                    Cohort:
                     <select class="custom-select" ng-model="cohort">
                     <option value="">View All</option>
                     <option value=19>Cohort 19</option>
@@ -204,7 +215,7 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th scope="row"><i class="fa fa-plus-square" aria-hidden="true"></i></th>
+                        <th>Add</th>
                         <th>Group Project Name</th>
                         <th>Cohort</th>
                         <th>Repo Link</th>
@@ -213,7 +224,7 @@
                 </thead>
                 <tbody ng-repeat="item in allGroupProjects | filter:queryGroup | filter:cohort | orderBy: 'cohort'">
                     <tr>
-                        <th scope="row"><a href ng-click="addGroupProject(item.id)"><i class="fa fa-plus-square" aria-hidden="true"></i></a></th>
+                        <th scope="row"><a href ng-click="addGroupProject(item.id)"><i class="fa fa-plus-circle fa-2x" aria-hidden="true"></i></a></th>
                         <td>{{item.projectName}}</td>
                         <td>{{item.cohort}}</td>
                         <td><a href="{{item.linktoRepo}}" target="_blank">Link</a></td>
@@ -225,49 +236,49 @@
 
         <!-- TAB 5 -->
         <div ng-show="isSet(5)">
-                <div class="row">
-                    <div class="col-9">
-                        <input type="search" ng-model="queryMine" class="form-control" aria-describedby="search" placeholder="Search My Stuff" autofocus>
-                    </div>
-                    <div class="col-3">
-                    </div>
+            <div class="row">
+                <div class="col-9">
+                    <input type="search" ng-model="queryMine" class="form-control" aria-describedby="search" placeholder="Search My Stuff" autofocus>
                 </div>
-                <br>
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th>Item Name</th>
-                            <th>Info</th>
-                            <th>Type</th>
-                            <th>Points</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr ng-repeat="item in exerciseDeets | filter:queryMine | filter:status | orderBy: 'milestone' | filter:{ archive: true }">
-                            <td scope="row"><a ng-href="#!/exercise/{{item.id}}">{{item.exName}}</a></td>
-                            <td>Milestone {{item.milestone}}</td>
-                            <td>{{item.type}}</td>
-                          
-                            <td>{{item.points}}</td>
-                        </tr>
-                        <tr ng-repeat="item in userEventDeets | filter:queryMine | filter:status | filter:{ archive: true }">
-                            <td scope="row"><a ng-href="#!/event/{{item.id}}">{{item.eventTitle}} | {{item.eventDate}} | {{item.startTime}}</a></td>
-                            <td>Location: {{item.locationName}}</td>
-                            <td>{{item.type}}</td>
-                           
-                            <td>{{item.points}}</td>
-                        </tr>
-                        <tr ng-repeat="item in userGroupDeets | filter:queryMine | filter:status | filter:{ archive: true }">
-                            <td scope="row"><a ng-href="#!/groups/{{item.id}}">{{item.projectName}}</a></td>
-                            </td>
-                            <td><a ng-href="{{item.linktoRepo}}">Repo Link</a></td>
-                            <td>{{item.type}}</td>
-                      
-                            <td>{{item.points}}</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="col-3">
+                </div>
             </div>
+            <br>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Item Name</th>
+                        <th>Info</th>
+                        <th>Type</th>
+                        <th>Points</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="item in exerciseDeets | filter:queryMine | filter:status | orderBy: 'milestone' | filter:{ archive: true }">
+                        <td scope="row"><a ng-href="#!/exercise/{{item.id}}">{{item.exName}}</a></td>
+                        <td>Milestone {{item.milestone}}</td>
+                        <td>{{item.type}}</td>
+
+                        <td>{{item.points}}</td>
+                    </tr>
+                    <tr ng-repeat="item in userEventDeets | filter:queryMine | filter:status | filter:{ archive: true }">
+                        <td scope="row"><a ng-href="#!/event/{{item.id}}">{{item.eventTitle}} | {{item.eventDate}} | {{item.startTime}}</a></td>
+                        <td>Location: {{item.locationName}}</td>
+                        <td>{{item.type}}</td>
+
+                        <td>{{item.points}}</td>
+                    </tr>
+                    <tr ng-repeat="item in userGroupDeets | filter:queryMine | filter:status | filter:{ archive: true }">
+                        <td scope="row"><a ng-href="#!/groups/{{item.id}}">{{item.projectName}}</a></td>
+                        </td>
+                        <td><a ng-href="{{item.linktoRepo}}">Repo Link</a></td>
+                        <td>{{item.type}}</td>
+
+                        <td>{{item.points}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
     </div>
 

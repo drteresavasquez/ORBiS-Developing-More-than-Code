@@ -2,8 +2,26 @@
     <h1>Leader Board</h1>
 </div>
 
+
 <div class="row">
-    <div class="col-9">col-8</div>
+    <div class="col-9">
+            <div class="w3-container">
+                    <ul class="w3-ul w3-card-4" ng-repeat="users in lbUsersRock | orderBy:'-dateScored'">
+                      <li class="w3-bar">
+                        <span class="w3-bar-item w3-button w3-white w3-xlarge w3-right"><small>Point Total:</small><br> {{users.userPoints}}</span>
+                        <img ng-src="{{users.avatar}}" class="w3-bar-item w3-circle w3-hide-small" style="width:85px">
+                        <div class="w3-bar-item">
+                                <b>{{users.userName}}</b>
+                                <div class="lb-deets">
+                                just scored <b>{{users.points}}</b> for <b>Cohort {{users.cohort}}</b> and <b>{{users.house}}</b>! <br>
+                                <div class="lb-skillz">Mad Skillz Aqcuired = {{users.skills}}</div>
+                            </div>
+                        </div>
+                      </li>
+                    
+                    </ul>
+                  </div>
+    </div>
     <div class="col-3">
         <center><h3>Cohort Standings</h3></center>
         <table class="table table-sm profile">

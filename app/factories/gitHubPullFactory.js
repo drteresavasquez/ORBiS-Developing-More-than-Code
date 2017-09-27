@@ -37,6 +37,22 @@ app.factory("gitHubFactory", function($q, $http, authFactory, FBCreds){
         });
     };
 
+    const milestoneIt = (MilestoneNumber)=>{
+        let milestones = [];
+        getMilestones()
+            .then((allExercises) => {
+            let keys = Object.keys(allExercises);
+            // console.log("keys$$$$$$$$$$$$$$", keys);
+            keys.forEach((exercise)=>{
+                if(allExercises[exercise].milestone === MilestoneNumber){
+                    milestones.push(allExercises[exercise]);
+                }
+            });
+        });
+        // console.log("milestone1$$$$$$$$$", milestone1);
+        return(milestones);
+    };
+
     // const getMilestoneTwo = function(){
     //     return $q((resolve, reject) => {
     //         $http.get("https://api.github.com/repos/nashville-software-school/front-end-milestones/contents/2-single-page-applications/exercises")
@@ -77,7 +93,8 @@ app.factory("gitHubFactory", function($q, $http, authFactory, FBCreds){
     // });
     // };
     return{
-        getMilestones
+        getMilestones,
+        milestoneIt
         // getMilestoneTwo,
         // getMilestoneThree,
         // getMilestoneFour,

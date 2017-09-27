@@ -8,13 +8,16 @@ app.controller("userProfileController", function ($scope, gitHubFactory, authFac
         gitHubFactory.getMilestones()
             .then((allExercises) => {
                 $scope.allExercises = allExercises;
-            });
+                });
+            };
+    
+    $scope.milestoneGetIt = (MilestoneNumber)=>{
+        $scope.allExercises = gitHubFactory.milestoneIt(MilestoneNumber);
     };
 
     $scope.showAllEvents = function () {
         getUserInfo.getAllEvents()
             .then((events) => {
-                // console.log("getAllEvents", events);
                 $scope.allEvents = events;
             });
     };
@@ -22,7 +25,6 @@ app.controller("userProfileController", function ($scope, gitHubFactory, authFac
     $scope.showGroupProjects = function () {
         getUserInfo.getAllGroupProjs()
             .then((projects) => {
-                // console.log("getAllGroupProjs", projects);
                 $scope.allGroupProjects = projects;
             });
     };
@@ -30,7 +32,6 @@ app.controller("userProfileController", function ($scope, gitHubFactory, authFac
     getUserInfo.getUserExercises(currentUser)
         .then((exercises) => {
             $scope.exerciseDeets = getUserInfo.showUserExercises(exercises);
-            console.log("$$$$$exercises.status", $scope.exerciseDeets);
         });
     
     $scope.userExercises = (currentUser)=>{
@@ -44,17 +45,13 @@ app.controller("userProfileController", function ($scope, gitHubFactory, authFac
     getUserInfo.getUserDetails(currentUser)
     .then((userDeets)=>{
         $scope.deets = getUserInfo.showUserDetails(userDeets);
-       
-        // console.log($scope.deets);
-    });
+        });
   
     getUserInfo.getUserEvents(currentUser)
         .then((allUserEvents) => {
             $scope.userEventDeets = getUserInfo.showUserEvents(allUserEvents);
         });
     
-
-
     getUserInfo.getUserGroups(currentUser)
         .then((allUserGroups) => {
             $scope.userGroupDeets = getUserInfo.showUserGroups(allUserGroups);
@@ -63,8 +60,6 @@ app.controller("userProfileController", function ($scope, gitHubFactory, authFac
     $scope.showUserAchievements = ()=>{
         useAchieve.achievements(currentUser);
     };
-
-    // $scope.showUserAchievements();
 
     $scope.UserPoints = getUserInfo.getUserPoints(currentUser);
     $scope.tab = 1;
@@ -83,12 +78,10 @@ app.controller("userProfileController", function ($scope, gitHubFactory, authFac
 
     $scope.addEvent = function(eventId){
         pushUserStuffFactory.addUserEvent(eventId);
-        // console.log(eventId);
     };
 
     $scope.addGroupProject = function(projectId){
         pushUserStuffFactory.addUserGroupProject(projectId);
-        // console.log(projectId);
     };
 
 ///////////START DELETING//////////////
