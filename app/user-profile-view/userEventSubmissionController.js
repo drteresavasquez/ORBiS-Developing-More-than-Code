@@ -25,11 +25,12 @@ app.controller("userEventSubmission", function ($scope, $routeParams, getUserInf
         archive:""
     };
     
-    console.log("itemId", $routeParams.itemId);
+    // console.log("itemId", $routeParams.itemId);
     const showEvent = function () {
         getUserInfo.getSingleEvent($routeParams.itemId)
             .then((data) => {
                 $scope.eventSubmit = data;
+                $scope.eventSubmit.dateScored = new Date(data.dateScored);
                 $scope.eventSubmit.id = $routeParams.itemId;
                 // console.log("$scope.eventSubmit", $scope.eventSubmit);
             });

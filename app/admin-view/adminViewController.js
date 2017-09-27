@@ -9,7 +9,7 @@ app.controller("adminViews", function($scope, adminPullFactory, FBCreds, groupin
             .then((getUser) => {
                 let key = Object.keys(getUser);
                $scope.isTeacher = getUser[key].isTeacher;
-               console.log("$scope.isTeacher", $scope.isTeacher);
+            //    console.log("$scope.isTeacher", $scope.isTeacher);
             });
 
     

@@ -20,7 +20,7 @@ app.controller("EditLibraryItem", function ($scope, $location, adminAddFactory, 
         const showEditLibItem = function () {
             adminEditFactory.getBIGLibraryItems($routeParams.itemId)
                 .then((data) => {
-                    console.log("data", data);
+                    // console.log("data", data);
                     $scope.librarySubmission = data;
                     $scope.librarySubmission.id = $routeParams.itemId;
                 });

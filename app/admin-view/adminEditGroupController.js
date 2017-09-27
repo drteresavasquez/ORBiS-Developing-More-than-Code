@@ -7,12 +7,9 @@ app.controller("adminEditGroup", function ($scope, $location, adminEditFactory, 
         let user = authFactory.getCurrentUser();
     
         $scope.group = {
-            eventTitle: "",
-            eventLink: "",
-            begDate: "",
-            locationName: "",
-            startTime: "",
-            locationAddy: "",
+            projectName: "",
+            linktoRepo: "",
+            cohort: "",
             points: "",
             uid: user
         };
@@ -20,7 +17,7 @@ app.controller("adminEditGroup", function ($scope, $location, adminEditFactory, 
         const showEditGroup = function () {
             getUserInfo.getBIGSubmittedGroup($routeParams.itemId)
                 .then((data) => {
-                    console.log("data", data);
+                    // console.log("data", data);
                     $scope.group = data;
                     $scope.group.id = $routeParams.itemId;
                 });

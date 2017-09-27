@@ -46,7 +46,7 @@
             <tbody>
                 <tr ng-repeat="item in userEventDeets | filter:eventDate | filter: {archive:false} | limitTo:4">
                     <th scope="row" class="profTable"><a ng-href="#!/event/{{item.id}}">{{item.eventTitle}}</a></th>
-                    <td class="profTableDeet">{{item.eventDate}}</td>
+                    <td class="profTableDeet">{{item.eventDate | date:'MM/dd/yyyy'}}</td>
                 </tr>
 
             </tbody>

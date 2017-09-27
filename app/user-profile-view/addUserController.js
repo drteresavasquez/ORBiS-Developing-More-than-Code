@@ -5,7 +5,7 @@ app.controller("addUserController", function ($scope, $routeParams, authFactory,
     $scope.title = "Add Your Profile";
     $scope.submitButtonText = "Submit";
     let currentUser = authFactory.getCurrentUser();
-    console.log(currentUser);
+    // console.log(currentUser);
 
     $scope.profile = {
         uid: currentUser,
