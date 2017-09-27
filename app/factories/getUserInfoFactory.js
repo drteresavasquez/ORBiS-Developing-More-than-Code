@@ -3,7 +3,7 @@
 app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route, groupingPointsFactory, pushUserStuffFactory, useAchieve) {
 
     let currentUser = authFactory.getCurrentUser();
-        useAchieve.achievements(currentUser);
+        // useAchieve.achievements(currentUser);
 
     const getUserDetails = function (currentUser) {
         return $q((resolve, reject) => {

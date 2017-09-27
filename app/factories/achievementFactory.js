@@ -1,20 +1,20 @@
 "use strict";
 
-app.factory("useAchieve", function($q, $http, FBCreds, authFactory){
+app.factory("useAchieve", function(authFactory, $q, $http, FBCreds){
 
     let currentUser = authFactory.getCurrentUser();
     // console.log("currentUser$$%%%%", currentUser);
 
     const achievements = (currentUser)=>{
         return $q((resolve, reject) => {
-        console.log("currentUser$$%%%%", currentUser);
+        // console.log("currentUser$$%%%%", currentUser);
             $http.get(`${FBCreds.databaseURL}/users.json?orderBy="uid"&equalTo="${currentUser}"`)
                 .then((results) => {
                     // console.log("RESULTZZZZZ", results);
                     let key = Object.keys(results.data);
-                    let val = results;
-                    console.log("results.data[key].points", results.data[key]);
-                    if(val <5){
+                    let val = results.data[key].points;
+                    // console.log("results.data[key].points", results.data[key]);
+                    if(results.data[key].points <5){
                         // console.log("Newbie");
                         let achievement0 = {
                             achievement: "Newbie"
@@ -24,7 +24,7 @@ app.factory("useAchieve", function($q, $http, FBCreds, authFactory){
                         .then((results) => {
                             // console.log("results", results);
                         });
-                    }else if(val >= 5 && val < 50){
+                    }else if(results.data[key].points >= 5 && val < 50){
                         // console.log("level 1");
                         let achievement5 = {
                             achievement: "Level 1"
@@ -34,7 +34,7 @@ app.factory("useAchieve", function($q, $http, FBCreds, authFactory){
                         .then((results) => {
                             // console.log("results", results);
                         });
-                    }else if(val >= 50 && val <150){
+                    }else if(results.data[key].points >= 50 && results.data[key].points <150){
                         // console.log("level 2");
                         let achievement50 = {
                             achievement: "Level 2"
@@ -44,7 +44,7 @@ app.factory("useAchieve", function($q, $http, FBCreds, authFactory){
                         .then((results) => {
                             // console.log("results", results);
                         });
-                    }else if(val >= 150 && val <300){
+                    }else if(results.data[key].points >= 150 && results.data[key].points <300){
                         let achievement150 = {
                             achievement: "Level 3"
                         };
@@ -53,7 +53,7 @@ app.factory("useAchieve", function($q, $http, FBCreds, authFactory){
                         .then((results) => {
                             // console.log("results", results);
                         });
-                    }else if(val >=300 && val <500){
+                    }else if(results.data[key].points >=300 && results.data[key].points <500){
                         let achievement300 = {
                             achievement: "Level 4"
                         };
@@ -62,7 +62,7 @@ app.factory("useAchieve", function($q, $http, FBCreds, authFactory){
                         .then((results) => {
                             // console.log("results", results);
                         });
-                    }else if(val >= 500){
+                    }else if(results.data[key].points >= 500){
                         let achievement500 = {
                             achievement: "Super Hero"
                         };

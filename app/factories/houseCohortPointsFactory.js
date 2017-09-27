@@ -110,8 +110,8 @@ const leaderboardCohortCall = function(cohort){
             .then((results)=>{
                 let eventKeys = Object.keys(results.data);
                 eventKeys.forEach((item)=>{
-                    if(results.data[item].dateScored == "null" || results.data[item].dateScored === ""){
-                        // console.log("not going anywhere");
+                    if(results.data[item].dateScored == "null" || results.data[item].dateScored === null || results.data[item].dateScored === ""){
+                        console.log("not going anywhere");
                     }else{
                         leaderBoardScrolling.push(results.data[item]);
                     }
@@ -125,7 +125,7 @@ const leaderboardCohortCall = function(cohort){
                     .then((results)=>{
                         let exerciseKeys = Object.keys(results.data);
                         exerciseKeys.forEach((item)=>{
-                            if(results.data[item].dateScored == "null" || results.data[item].dateScored === ""){
+                            if(results.data[item].dateScored == "null" || results.data[item].dateScored === null || results.data[item].dateScored === ""){
                                 // console.log("not going anywhere");
                             }else{
                                 leaderBoardScrolling.push(results.data[item]);
