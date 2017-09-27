@@ -22,6 +22,9 @@
     "popper.js": "^1.12.5"
   },
   "dependencies": {
-    "angular-moment-picker": "^0.10.1"
+    "angular-chart.js": "^1.1.1",
+    "angular-moment-picker": "^0.10.1",
+    "chart.js": "^2.7.0",
+    "tc-angular-chartjs": "^2.1.4"
   }
 }
