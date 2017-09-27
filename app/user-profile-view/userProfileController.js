@@ -8,6 +8,7 @@ app.controller("userProfileController", function ($scope, gitHubFactory, authFac
         gitHubFactory.getMilestones()
             .then((allExercises) => {
                 $scope.allExercises = allExercises;
+                $scope.exerciseLength = allExercises.length;
                 });
             };
     
