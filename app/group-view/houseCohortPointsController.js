@@ -33,9 +33,13 @@ app.controller("groupPointsController", function ($scope, groupingPointsFactory,
     };
 
     $scope.leaderBoardScrollingMachine = ()=>{
-        groupingPointsFactory.leaderboardScroll();
+        groupingPointsFactory.leaderboardScroll()
+        .then((results)=>{
+            $scope.lbUsersRock =  results;
+        });
     };
 
+    // $scope.lbUsersRock = 
     $scope.leaderBoardScrollingMachine();
 
     $scope.showHouseStuff();

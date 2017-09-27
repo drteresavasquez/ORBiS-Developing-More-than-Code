@@ -6,13 +6,16 @@
 <div class="row">
     <div class="col-9">
             <div class="w3-container">
-                    <ul class="w3-ul w3-card-4">
+                    <ul class="w3-ul w3-card-4" ng-repeat="users in lbUsersRock | orderBy:'-dateScored'">
                       <li class="w3-bar">
-                        <!-- <span onclick="this.parentElement.style.display='none'" class="w3-bar-item w3-button w3-white w3-xlarge w3-right">×</span> -->
-                        <img src="img_avatar2.png" class="w3-bar-item w3-circle w3-hide-small" style="width:85px">
+                        <span class="w3-bar-item w3-button w3-white w3-xlarge w3-right"><small>Point Total:</small><br> {{users.userPoints}}</span>
+                        <img ng-src="{{users.avatar}}" class="w3-bar-item w3-circle w3-hide-small" style="width:85px">
                         <div class="w3-bar-item">
-                          <span class="w3-large">Mike</span><br>
-                          <span>Web Designer</span>
+                                <b>{{users.userName}}</b>
+                                <div class="lb-deets">
+                                just scored <b>{{users.points}}</b> for <b>Cohort {{users.cohort}}</b> and <b>{{users.house}}</b>! <br>
+                                <div class="lb-skillz">Mad Skillz Aqcuired = {{users.skills}}</div>
+                            </div>
                         </div>
                       </li>
                     

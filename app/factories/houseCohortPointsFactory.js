@@ -141,7 +141,7 @@ const leaderboardCohortCall = function(cohort){
                     .then((results)=>{
                         let groupKeys = Object.keys(results.data);
                         groupKeys.forEach((item)=>{
-                            if(results.data[item].dateScored == "null" || results.data[item].dateScored === ""){
+                            if(results.data[item].dateScored == "null" ||results.data[item].dateScored === null || results.data[item].dateScored === ""){
                                 console.log("not going anywhere");
                             }else{
                                 leaderBoardScrolling.push(results.data[item]);
@@ -151,33 +151,35 @@ const leaderboardCohortCall = function(cohort){
                      resolve(leaderBoardScrolling);
                 });
             })
-    .then((leaderBoardScrolling)=>{
-        return $q((resolve, reject) => {
-            $http.get(`${FBCreds.databaseURL}/users.json`)
-            .then((users)=>{
-                // console.log("leaderboard$$$$$$$$", leaderBoardScrolling);
-                // console.log("users$$$$$$$$", users.data);
-                let userKeys = Object.keys(users.data);
-                userKeys.forEach((item)=>{
-                    Object.keys(leaderBoardScrolling).forEach((thing)=>{
-                        if(leaderBoardScrolling[thing].uid == users.data[item].uid){
-                            console.log("We've got a match!");
-                            leaderBoardScrolling[thing].avatar = users.data[item].profileImg;
-                            leaderBoardScrolling[thing].house = users.data[item].house;
-                            leaderBoardScrolling[thing].cohort = users.data[item].cohort;
-                        }
+            .then((leaderBoardScrolling)=>{
+                return $q((resolve, reject) => {
+                    $http.get(`${FBCreds.databaseURL}/users.json`)
+                    .then((users)=>{
+                        // console.log("leaderboard$$$$$$$$", leaderBoardScrolling);
+                        // console.log("users$$$$$$$$", users.data);
+                        let userKeys = Object.keys(users.data);
+                        userKeys.forEach((item)=>{
+                            Object.keys(leaderBoardScrolling).forEach((thing)=>{
+                                if(leaderBoardScrolling[thing].uid == users.data[item].uid){
+                                    console.log("We've got a match!");
+                                    leaderBoardScrolling[thing].avatar = users.data[item].profileImg;
+                                    leaderBoardScrolling[thing].points = Number(leaderBoardScrolling[thing].points);
+                                    leaderBoardScrolling[thing].house = users.data[item].house;
+                                    leaderBoardScrolling[thing].cohort = users.data[item].cohort;
+                                    leaderBoardScrolling[thing].skills =  users.data[item].techInterests;
+                                    leaderBoardScrolling[thing].userPoints =  Number(users.data[item].points);
+                                }
+                            
+                            });
+                        });
+
                         
                     });
-                });
-
-                // console.log("leaderBoardScrolling$$$$$$$$$$", leaderBoardScrolling);
+                    console.log("leaderBoardScrolling$$$$$$$$$$", leaderBoardScrolling);
+                    resolve(leaderBoardScrolling);
             });
-            resolve(leaderBoardScrolling);
-    });
-});
-
-
-    };
+        });
+};
 
 
 // console.log("leaderBoardScrolling results", leaderBoardScrolling);
