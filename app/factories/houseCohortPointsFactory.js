@@ -49,6 +49,9 @@ const leaderboardCohortCall = function(cohort){
 
     const getHousePoints = function (house) {
         let housePoints = [0];
+        let exercises = [0];
+        let groupProjects = [0];
+        let events = [0];
 
         return $q((resolve, reject) => {
             $http.get(`${FBCreds.databaseURL}/users.json?orderBy="house"&equalTo="${house}"`)
@@ -57,9 +60,20 @@ const leaderboardCohortCall = function(cohort){
                     let students = keys.length;
                     keys.forEach((item) => {
                         housePoints.push(Number(results.data[item].points));
+                        exercises.push(Number(results.data[item].exercisesCompleted));
+                        groupProjects.push(Number(results.data[item].groupsCompleted));
+                        events.push(Number(results.data[item].eventsCompleted));
                     });
+                    console.log("groupProjectsTotal", groupProjects);
                     let housePointsTotal = parseInt((housePoints.reduce((a, b) => a + b)) / students);
+                    let exercisesTotal = parseInt((exercises.reduce((a, b) => a + b)));
+                    let groupProjectsTotal = parseInt((groupProjects.reduce((a, b) => a + b)));
+                    let eventsTotal = parseInt((events.reduce((a, b) => a + b)));
+                    console.log("groupProjectsTotal", groupProjectsTotal);
                     let tempObj = {
+                        exerciseCount: exercisesTotal,
+                        groupProjectCount: groupProjectsTotal,
+                        eventCount:eventsTotal,
                         points: housePointsTotal,
                         students: students,
                         crest: `app/assets/images/${house}.png`
@@ -78,6 +92,9 @@ const leaderboardCohortCall = function(cohort){
     ///////COHORTS/////////
     const getCohortPoints = function (cohort) {
         let cohortPoints = [0];
+        let exercises = [0];
+        let groupProjects = [0];
+        let events = [0];
         let cohortInfo = [];
         return $q((resolve, reject) => {
             $http.get(`${FBCreds.databaseURL}/users.json?orderBy="cohort"&equalTo="${cohort}"`)
@@ -86,14 +103,28 @@ const leaderboardCohortCall = function(cohort){
                     let students = keys.length;
                     keys.forEach((item) => {
                         cohortPoints.push(Number(results.data[item].points));
+                        exercises.push(Number(results.data[item].exercisesCompleted));
+                        groupProjects.push(Number(results.data[item].groupsCompleted));
+                        events.push(Number(results.data[item].eventsCompleted));
                     });
                     let cohortPointsTotal = parseInt((cohortPoints.reduce((a, b) => a + b)) / students);
+                    let exercisesTotal = parseInt((exercises.reduce((a, b) => a + b)));
+                    let groupProjectsTotal = parseInt((groupProjects.reduce((a, b) => a + b)));
+                    let eventsTotal = parseInt((events.reduce((a, b) => a + b)));
                     let cohortStuff = {
+                        exerciseCount: exercisesTotal,
+                        groupProjectCount: groupProjectsTotal,
+                        eventCount:eventsTotal,
                         points: cohortPointsTotal,
                         students: students,
                         cohort: `${cohort}`,
                         crest: `app/assets/images/${cohort}.png`
                     };
+                    let newObj = JSON.stringify(cohortStuff);
+                    $http.patch(`${FBCreds.databaseURL}/cohorts/${cohort}.json`, newObj)
+                        .then((results) => {
+                            console.log(results);
+                        });
                     // cohortInfo.push(cohortStuff);
                     // console.log(cohortInfo);
                     resolve(cohortStuff);

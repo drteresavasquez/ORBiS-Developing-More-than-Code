@@ -172,7 +172,7 @@ app.config(($routeProvider) => {
             })
         .when('/admin/graph', {
             templateUrl: 'app/admin-view/graph.html',
-            controller: 'BubbleCtrl',
+            controller: 'HouseMakeUp',
             resolve: {isAuth}
             })
         .otherwise('/');

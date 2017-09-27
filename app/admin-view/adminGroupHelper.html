@@ -2,11 +2,11 @@
     <h1>Group Helper</h1>
 </div>
 <div class="row">
-    <div class="col-7">
+    <div class="col-8">
         <input type="search" ng-model="queryStudents" class="form-control" aria-describedby="search" placeholder="Search Students"
             autofocus>
     </div>
-    <div class="col-5">
+    <div class="col-4">
     
             <div class="btn-group mr-2" role="group">
                 <button type="button" class="btn btn-secondary" ng-click="showAllUsers()">All</button>
@@ -15,6 +15,9 @@
                 <button type="button" class="btn btn-secondary" ng-click="showCohortMembers(21)">21</button>
                 <button type="button" class="btn btn-secondary" ng-click="showCohortMembers(22)">22</button>
             </div>
+
+            <a ng-href="#!/admin/graph"><button type="button" class="btn btn-success">Graphs</button></a>
+            
     </div>
 </div>
 <br>
