@@ -18,9 +18,6 @@ Fork project
 -> NPM Install all dependencies
 -> create creds/fb.creds.js with your Firebase credientials
 ```
-## Deployment
-
-Add additional notes about how to deploy this on a live system
 
 ## Built With
 
