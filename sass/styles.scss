@@ -12,6 +12,11 @@ body{
     text-align: center;
     color: #686767;
 }
+.pageTitle h1{
+    font-size:2em;
+    text-transform: uppercase;
+}
+
 h4.white{
     color: white;
 }
@@ -32,22 +37,47 @@ h4.header{
     font-size: 1.25em;
     font-weight: bold;
 }
+.lb-scroll{
+    text-align: left;
+}
+.w3-bar-item{
+    word-wrap: break-word;
+}
+
+.w3-bar{
+    background:white;
+    margin: 0;
+    margin-bottom: 15px;
+}
+/* .lb-deets{
+    width: 80%;
+    display: block;
+
+} */
+/* .w3-ul{
+    display: flex;
+} */
+.lb-skillz{
+    font-weight: bold;
+    font-style: italic;
+    font-size: .8em;
+    margin-top: 10px;
+}
+.w3-container{
+    max-height: 1000px;
+    overflow: scroll;
+}
+.w3-bar-item.w3-button.w3-white.w3-xlarge.w3-right {
+    background: white;
+    cursor: default;
+}
 
 /* ----- CARDS ON PAGES ----- */
-.card-img-top{
-    /* border-radius: 100%; */
-    width: 100%;
-    overflow: hidden;
-    /* height: 200px; */
-}
 .userCards{
-    /* max-height: 400px; */
     overflow: hidden;
     text-align: center;
     margin-bottom: 10px;
     border: 1px solid #EEEEEE;
-    /* padding-left: 10px; */
-    
 }
 .userCards:hover{
 box-shadow: 0 10px 20px rgba(0,0,0,.19),0 6px 6px rgba(0,0,0,.23);
