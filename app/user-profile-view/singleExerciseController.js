@@ -25,11 +25,12 @@ app.controller("singleExercise", function ($scope, $routeParams, getUserInfo, $l
         
     };
     
-    console.log("itemId", $routeParams.itemId);
+    // console.log("itemId", $routeParams.itemId);
     const showExercise = function () {
         getUserInfo.getSingleExercise($routeParams.itemId)
             .then((data) => {
                 $scope.exerciseSubmit = data;
+                $scope.exerciseSubmit.dateScored = new Date(data.dateScored);
                 $scope.exerciseSubmit.id = $routeParams.itemId;
                 // console.log("$scope.exerciseSubmit", $scope.exerciseSubmit);
             });

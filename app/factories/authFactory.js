@@ -3,7 +3,7 @@
 // console.log("authfactory, yo!");
 
 app.factory("authFactory", function ($q, $http, FBCreds, $window, $location) {
-    let currentUser = null;
+    var currentUser = null;
     let currentUserName = null;
 
     const isAuthenticated = function () {
@@ -11,17 +11,13 @@ app.factory("authFactory", function ($q, $http, FBCreds, $window, $location) {
             firebase.auth().onAuthStateChanged((user) => {
                 if (user) {
                     currentUser = user.uid;
-                    console.log("currentUser", currentUser);
+                    // console.log("currentUser", currentUser);
                     resolve(true);
                 } else {
                     resolve(false);
                 }
             });
         });
-    };
-
-    const getCurrentUser = function () {
-        return currentUser;
     };
 
     const logIn = function (userObj) {
@@ -35,7 +31,7 @@ app.factory("authFactory", function ($q, $http, FBCreds, $window, $location) {
                         if (key.length === 0) {
                             $window.location.href = "#!/new-user";
                         } else {
-                            console.log("User already in DB!", results.data);
+                            // console.log("User already in DB!", results.data);
                             $window.location.href = "#!/";
                         }
                     });
@@ -43,7 +39,7 @@ app.factory("authFactory", function ($q, $http, FBCreds, $window, $location) {
             .catch(function (error) {
                 let errorCode = error.code;
                 let errorMessage = error.message;
-                console.log("error", errorCode, errorMessage);
+                // console.log("error", errorCode, errorMessage);
             });
     };
 
@@ -51,7 +47,7 @@ app.factory("authFactory", function ($q, $http, FBCreds, $window, $location) {
         return $q((resolve, reject)=>{
             $http.get(`${FBCreds.databaseURL}/users.json?orderBy="uid"&equalTo="${currentUser}"`)
             .then((results)=>{
-                console.log("areYouAdmin", results.data);
+                // console.log("areYouAdmin", results.data);
             });
         });
     };
@@ -60,14 +56,18 @@ app.factory("authFactory", function ($q, $http, FBCreds, $window, $location) {
         let newObj = JSON.stringify(addNewUser);
         return $http.post(`${FBCreds.databaseURL}/users.json`, newObj)
             .then((data) => {
-                console.log("data", data);
+                // console.log("data", data);
                 $location.url("#/");
                 return data;
             }, (error) => {
                 let errorCode = error.code;
                 let errorMessage = error.message;
-                console.log("error", errorCode, errorMessage);
+                // console.log("error", errorCode, errorMessage);
             });
+    };
+
+    const getCurrentUser = function () {
+        return currentUser;
     };
 
     const editUser = function (obj) {
@@ -107,7 +107,7 @@ app.factory("authFactory", function ($q, $http, FBCreds, $window, $location) {
     };
 
     const logOut = function () {
-        console.log("logoutUser");
+        // console.log("logoutUser");
         return firebase.auth().signOut();
     };
 

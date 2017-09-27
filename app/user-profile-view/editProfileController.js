@@ -30,7 +30,7 @@ app.controller("editProfileController", function ($scope, $routeParams, $locatio
                 .then((resultID) => {
                     authFactory.getSingleUser(resultID)
                         .then((data) => {
-                            console.log("data", data);
+                            // console.log("data", data);
                             $scope.profile = data;
                             $scope.profile.id = resultID;
                         });
@@ -56,7 +56,7 @@ app.controller("editProfileController", function ($scope, $routeParams, $locatio
             details.forEach((item) => {
                 userProfileStuff.push(results[item]);
             });
-            console.log("userProfileStuff", userProfileStuff);
+            // console.log("userProfileStuff", userProfileStuff);
             $scope.deets = userProfileStuff;
         });
 

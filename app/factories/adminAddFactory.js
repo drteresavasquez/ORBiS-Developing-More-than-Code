@@ -6,12 +6,12 @@ app.factory("adminAddFactory", function($q, $http, FBCreds){
         let newObj = JSON.stringify(obj);
         return $http.post(`${FBCreds.databaseURL}/submitted-events.json`, newObj)
             .then((data) => {
-                console.log("data", data);
+                // console.log("data", data);
                 return data;
             }, (error) => {
                 let errorCode = error.code;
                 let errorMessage = error.message;
-                console.log("error", errorCode, errorMessage);
+                // console.log("error", errorCode, errorMessage);
             });
     };
 
@@ -19,12 +19,12 @@ app.factory("adminAddFactory", function($q, $http, FBCreds){
         let newObj = JSON.stringify(obj);
         return $http.post(`${FBCreds.databaseURL}/submitted-group-projects.json`, newObj)
             .then((data) => {
-                console.log("data", data);
+                // console.log("data", data);
                 return data;
             }, (error) => {
                 let errorCode = error.code;
                 let errorMessage = error.message;
-                console.log("error", errorCode, errorMessage);
+                // console.log("error", errorCode, errorMessage);
             });
     };
 
@@ -33,7 +33,7 @@ app.factory("adminAddFactory", function($q, $http, FBCreds){
         let newObj = JSON.stringify(obj);
         return $http.post(`${FBCreds.databaseURL}/learning-library.json`, newObj)
             .then((data) => {
-                console.log("data", data.data.name);
+                // console.log("data", data.data.name);
                 let UglyId = data.data.name;
                 let libID = {
                     libId: UglyId

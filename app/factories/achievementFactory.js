@@ -1,39 +1,41 @@
 "use strict";
+
 app.factory("useAchieve", function($q, $http, FBCreds, authFactory){
 
-    // let currentUser = authFactory.getCurrentUser();
-    
-    const achievements = ()=>{
-        // let currentUser = authFactory.getCurrentUser();
+    let currentUser = authFactory.getCurrentUser();
+    // console.log("currentUser$$%%%%", currentUser);
+
+    const achievements = (currentUser)=>{
         return $q((resolve, reject) => {
-            let currentUser = authFactory.getCurrentUser();
+        console.log("currentUser$$%%%%", currentUser);
             $http.get(`${FBCreds.databaseURL}/users.json?orderBy="uid"&equalTo="${currentUser}"`)
                 .then((results) => {
-                    console.log("RESULTZZZZZ", results);
+                    // console.log("RESULTZZZZZ", results);
                     let key = Object.keys(results.data);
-                    let val = results.data[key].points;
+                    let val = results;
+                    console.log("results.data[key].points", results.data[key]);
                     if(val <5){
-                        console.log("Newbie");
+                        // console.log("Newbie");
                         let achievement0 = {
                             achievement: "Newbie"
                         };
                         let newObj0 = JSON.stringify(achievement0);
                         $http.patch(`${FBCreds.databaseURL}/users/${key}.json`, newObj0)
                         .then((results) => {
-                            console.log("results", results);
+                            // console.log("results", results);
                         });
                     }else if(val >= 5 && val < 50){
-                        console.log("level 1");
+                        // console.log("level 1");
                         let achievement5 = {
                             achievement: "Level 1"
                         };
                         let newObj5 = JSON.stringify(achievement5);
                         $http.patch(`${FBCreds.databaseURL}/users/${key}.json`, newObj5)
                         .then((results) => {
-                            console.log("results", results);
+                            // console.log("results", results);
                         });
                     }else if(val >= 50 && val <150){
-                        console.log("level 2");
+                        // console.log("level 2");
                         let achievement50 = {
                             achievement: "Level 2"
                         };
