@@ -110,13 +110,8 @@ const leaderboardCohortCall = function(cohort){
             .then((results)=>{
                 let eventKeys = Object.keys(results.data);
                 eventKeys.forEach((item)=>{
-<<<<<<< HEAD
                     if(results.data[item].dateScored == "null" || results.data[item].dateScored === null || results.data[item].dateScored === ""){
                         console.log("not going anywhere");
-=======
-                    if(results.data[item].dateScored == "null" || results.data[item].dateScored === ""){
-                        // console.log("not going anywhere");
->>>>>>> b2fe683b1e5f650c1076f359bf17495017c74256
                     }else{
                         leaderBoardScrolling.push(results.data[item]);
                     }
@@ -130,11 +125,7 @@ const leaderboardCohortCall = function(cohort){
                     .then((results)=>{
                         let exerciseKeys = Object.keys(results.data);
                         exerciseKeys.forEach((item)=>{
-<<<<<<< HEAD
                             if(results.data[item].dateScored == "null" || results.data[item].dateScored === null || results.data[item].dateScored === ""){
-=======
-                            if(results.data[item].dateScored == "null" || results.data[item].dateScored === ""){
->>>>>>> b2fe683b1e5f650c1076f359bf17495017c74256
                                 // console.log("not going anywhere");
                             }else{
                                 leaderBoardScrolling.push(results.data[item]);

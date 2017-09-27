@@ -58,7 +58,7 @@ app.controller("userProfileController", function ($scope, gitHubFactory, authFac
             $scope.userGroupDeets = getUserInfo.showUserGroups(allUserGroups);
         });
 
-    $scope.showUserAchievements = ()=>{
+    $scope.showUserAchievements = (currentUser)=>{
         useAchieve.achievements(currentUser);
     };
 
