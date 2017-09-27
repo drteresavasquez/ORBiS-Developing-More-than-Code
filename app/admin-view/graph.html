@@ -1,9 +1,36 @@
-    <canvas id="base" class="chart-bubble" chart-data="data"
-    chart-series="series" >
-  </canvas> 
+<div class="pageTitle">
+    <h1>Admin Graphs</h1>
+</div>
+<div class="card-deck">
+    <div class="card">
+        <div class="card-header no-gutters">
+                {{title}}
+        </div>
+        <div class="card-body no-gutters">
+            <div class="row no-gutters" ng-controller="HouseMakeUp">
+                <div class="col-10 no-gutters">
+                    <canvas id="doughnut" class="chart chart-doughnut chart-xs" chart-data="data" chart-labels="labels" chart-colors="colors">
+                    </canvas>
+                </div>
 
-  <div ng-controller="DoughnutCtrl">
-      <canvas id="doughnut" class="chart chart-doughnut"
-  chart-data="data" chart-labels="labels">
-</canvas> 
+                <div class="col-2 no-gutters">
+                    <table class="table legend">
+                        <tbody>
+                            <tr ng-repeat="item in legend">
+                                <td style="background-color:{{item.color}}; color: white">{{item.name}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card" ng-controller="BarCtrl">
+        <div class="card-header">
+           {{title}}
+        </div>
+        <div class="card-body">
+            <canvas id="bar" class="chart chart-bar ng-isolate-scope" chart-data="data" chart-labels="labels" chart-series="series"></canvas>
+        </div>
+    </div>
 </div>

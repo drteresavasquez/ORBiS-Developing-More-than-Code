@@ -37,6 +37,8 @@ app.controller("userProfileController", function ($scope, gitHubFactory, authFac
     
     $scope.userExercises = (currentUser)=>{
             getUserInfo.userExerciseCount(currentUser);
+            getUserInfo.userEventCount(currentUser);
+            getUserInfo.userGroupCount(currentUser);
         };
 
 

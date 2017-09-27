@@ -50,6 +50,27 @@ app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route, gr
         });
     };
 
+    const getUserEvents = function (currentUser) {
+        return $q((resolve, reject) => {
+            $http.get(`${FBCreds.databaseURL}/user-events.json?orderBy="uid"&equalTo="${currentUser}"`)
+                .then((userEvents) => {
+                    let allUserEvents = userEvents.data;
+                    resolve(allUserEvents);
+                });
+        });
+    };
+
+    const getUserGroups = function (currentUser) {
+        return $q((resolve, reject) => {
+            $http.get(`${FBCreds.databaseURL}/user-group-projects.json?orderBy="uid"&equalTo="${currentUser}"`)
+                .then((userGroups) => {
+                    let allUserGroups = userGroups.data;
+                    resolve(allUserGroups);
+                });
+        });
+        //make call to firebase to get the user's profile info
+    };
+
     const showUserExercises = function (allUserExercises) {
         let userExerciseStuff = [];
         let exDetails = Object.keys(allUserExercises);
@@ -77,6 +98,43 @@ app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route, gr
             pushUserStuffFactory.pushExerciseCount(currentUser, exercisesDone);
         });
     };
+
+    const userEventCount = (currentUser)=>{
+        getUserEvents(currentUser)
+        .then((results)=>{
+            let doneEx = [];
+            let keys = Object.keys(results);
+            keys.forEach((item)=>{
+               if(results[item].status == "Scored"){
+                   doneEx.push(results[item]);
+               }
+            });
+            // console.log("doneEx.length", doneEx.length);
+            let exercisesDone = {
+                eventsCompleted: doneEx.length
+                };
+            pushUserStuffFactory.pushExerciseCount(currentUser, exercisesDone);
+        });
+    };
+
+    const userGroupCount = (currentUser)=>{
+        getUserGroups(currentUser)
+        .then((results)=>{
+            let doneEx = [];
+            let keys = Object.keys(results);
+            keys.forEach((item)=>{
+               if(results[item].status == "Scored"){
+                   doneEx.push(results[item]);
+               }
+            });
+            // console.log("doneEx.length", doneEx.length);
+            let exercisesDone = {
+                groupsCompleted: doneEx.length
+                };
+            pushUserStuffFactory.pushExerciseCount(currentUser, exercisesDone);
+        });
+    };
+
 
     const showUserEvents = function (allUserEvents) {
         let userEventStuff = [];
@@ -162,27 +220,6 @@ app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route, gr
                     reject(error);
                 });
         });
-    };
-
-    const getUserEvents = function (currentUser) {
-        return $q((resolve, reject) => {
-            $http.get(`${FBCreds.databaseURL}/user-events.json?orderBy="uid"&equalTo="${currentUser}"`)
-                .then((userEvents) => {
-                    let allUserEvents = userEvents.data;
-                    resolve(allUserEvents);
-                });
-        });
-    };
-
-    const getUserGroups = function (currentUser) {
-        return $q((resolve, reject) => {
-            $http.get(`${FBCreds.databaseURL}/user-group-projects.json?orderBy="uid"&equalTo="${currentUser}"`)
-                .then((userGroups) => {
-                    let allUserGroups = userGroups.data;
-                    resolve(allUserGroups);
-                });
-        });
-        //make call to firebase to get the user's profile info
     };
 
     const pushPoints = function (passedData) {
@@ -311,6 +348,8 @@ app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route, gr
         pushPoints,
         mySexyPoints,
         getUserHouse,
-        userExerciseCount
+        userExerciseCount,
+        userEventCount,
+        userGroupCount
     };
 });
