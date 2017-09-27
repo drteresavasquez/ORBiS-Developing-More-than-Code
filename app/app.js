@@ -1,7 +1,7 @@
 "use strict";
 // console.log("App, yo!");
 
-const app = angular.module("ReadtheRoom", ["ngRoute"]);
+const app = angular.module("ReadtheRoom", ["ngRoute", "chart.js"]);
 
 let isAuth = (authFactory) => new Promise((resolve, reject) => {
     authFactory.isAuthenticated()
@@ -168,6 +168,11 @@ app.config(($routeProvider) => {
         .when('/learninglibrary', {
             templateUrl: 'app/learning-library-view/studentview.html',
             controller: 'LearningLibrary',
+            resolve: {isAuth}
+            })
+        .when('/admin/graph', {
+            templateUrl: 'app/admin-view/graph.html',
+            controller: 'BubbleCtrl',
             resolve: {isAuth}
             })
         .otherwise('/');
