@@ -23,11 +23,12 @@ app.controller("userGroupSubmission", function ($scope, $routeParams, getUserInf
         archive:""
     };
     
-    console.log("itemId", $routeParams.itemId);
+    // console.log("itemId", $routeParams.itemId);
     const showGroup = function () {
         getUserInfo.getSingleGroup($routeParams.itemId)
             .then((data) => {
                 $scope.groupSubmit = data;
+                $scope.groupSubmit.dateScored = new Date(data.dateScored);
                 $scope.groupSubmit.id = $routeParams.itemId;
                 // console.log("$scope.groupSubmit", $scope.groupSubmit);
             });

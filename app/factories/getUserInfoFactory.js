@@ -24,7 +24,7 @@ app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route, gr
             keys.forEach((item)=>{
                 userHouse.push(userDeets[item].house);
             });
-            console.log("userDeets", userHouse);
+            // console.log("userDeets", userHouse);
             return(userHouse);
             
         });
@@ -36,7 +36,7 @@ app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route, gr
         details.forEach((item) => {
             userProfileStuff.push(userDeets[item]);
         });
-        console.log("userProfileStuff", userProfileStuff);
+        // console.log("userProfileStuff", userProfileStuff);
         return (userProfileStuff);
     };
 
@@ -70,7 +70,7 @@ app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route, gr
                    doneEx.push(results[item]);
                }
             });
-            console.log("doneEx.length", doneEx.length);
+            // console.log("doneEx.length", doneEx.length);
             let exercisesDone = {
                 exercisesCompleted: doneEx.length
                 };
@@ -241,7 +241,7 @@ app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route, gr
                 authFactory.editUser(tempObj)
                     .then(() => {
                         let pointsArray = [];
-                        console.log("Points are updated");
+                        // console.log("Points are updated");
                         useAchieve.achievements(currentUser);
                         groupingPointsFactory.getHousePoints("Ventum");
                         groupingPointsFactory.getHousePoints("Aqua");

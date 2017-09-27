@@ -21,17 +21,17 @@
 <table class="table table-striped table-bordered table-hover adminTable">
     <thead>
         <tr>
-            <th>Points</th>
-            <th>Name</th>
-            <th>Cohort</th>
-            <th>Exercises</th>
-            <th>House</th>
-            <th>Tech Goal</th>
-            <th>Social Goal</th>
+            <th><a href="" ng-click="orderByField='points'; reverseSort = !reverseSort">Points</a></th>
+            <th><a href="" ng-click="orderByField='first_name'; reverseSort = !reverseSort">Name</a></th>
+            <th><a href="" ng-click="orderByField='cohort'; reverseSort = !reverseSort">Cohort</a></th>
+            <th><a href="" ng-click="orderByField='exercisesCompleted'; reverseSort = !reverseSort">Exercises</a></th>
+            <th><a href="" ng-click="orderByField='house'; reverseSort = !reverseSort">House</a></th>
+            <th><a href="" ng-click="orderByField='techInterests'; reverseSort = !reverseSort">Tech Goal</a></th>
+            <th><a href="" ng-click="orderByField='socialInterest'; reverseSort = !reverseSort">Social Goal</a></th>
         </tr>
     </thead>
     <tbody>
-        <tr ng-repeat="item in allUsers | filter:queryStudents | orderBy: '-points'">
+        <tr ng-repeat="item in allUsers | filter:queryStudents | orderBy:orderByField:reverseSort">
             <th scope="row">{{item.points}}</th>
             <td>{{item.first_name}} {{item.last_name}}</td>
             <td>{{item.cohort}}</td>

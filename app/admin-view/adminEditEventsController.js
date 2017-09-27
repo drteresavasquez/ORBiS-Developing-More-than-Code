@@ -20,8 +20,10 @@ app.controller("adminEditEvents", function ($scope, $location, adminEditFactory,
         const showEditEvent = function () {
             getUserInfo.getBIGSubmittedEvent($routeParams.itemId)
                 .then((data) => {
-                    console.log("data", data);
+                    // console.log("data", data);
                     $scope.event = data;
+                    $scope.event.begDate = new Date(data.begDate);
+                    $scope.event.startTime = new Date(data.startTime);
                     $scope.event.id = $routeParams.itemId;
                 });
         };

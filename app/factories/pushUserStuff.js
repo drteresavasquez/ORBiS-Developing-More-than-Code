@@ -18,19 +18,19 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
             $http.get(`${FBCreds.databaseURL}/users.json?orderBy="uid"&equalTo="${currentUser}"`)
                 .then((results) => {
                     let resultID = Object.keys(results.data);
-                    console.log("resultIDDDDDDDD", resultID);
+                    // console.log("resultIDDDDDDDD", resultID);
                     return (resultID);
                 })
                 .then((resultID)=>{
                 let newObj = JSON.stringify(obj);
                 return $http.patch(`${FBCreds.databaseURL}/users/${resultID}.json`, newObj)
                     .then((data) => {
-                        console.log("data", data);
+                        // console.log("data", data);
                         return data;
                     }, (error) => {
                         let errorCode = error.code;
                         let errorMessage = error.message;
-                        console.log("error", errorCode, errorMessage);
+                        // console.log("error", errorCode, errorMessage);
                     });
                 });
             });
@@ -38,59 +38,59 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
 
     const updateExerciseStu = (obj)=>{
         let currentUser = authFactory.getCurrentUser();
-        console.log("PUSHING OBJECT", obj);
+        // console.log("PUSHING OBJECT", obj);
         let exerciseID = $routeParams.itemId;
-        console.log("exerciseIDDDDDDDDD", exerciseID);
+        // console.log("exerciseIDDDDDDDDD", exerciseID);
         let newObj = JSON.stringify(obj);
         $http.patch(`${FBCreds.databaseURL}/user-exercises/${exerciseID}.json`, newObj)
         .then((data) => {
-            console.log("data", data);
+            // console.log("data", data);
             getAllHousePoints();
             useAchieve.achievements(currentUser);
             return data;
         }, (error) => {
             let errorCode = error.code;
             let errorMessage = error.message;
-            console.log("error", errorCode, errorMessage);
+            // console.log("error", errorCode, errorMessage);
         });
        
     };
 
     const updateEventStu = (obj)=>{
         let currentUser = authFactory.getCurrentUser();
-        console.log("PUSHING OBJECT", obj);
+        // console.log("PUSHING OBJECT", obj);
         let eventID = $routeParams.itemId;
-        console.log("eventIDDDDDDDDDD", eventID);
+        // console.log("eventIDDDDDDDDDD", eventID);
         let newObj = JSON.stringify(obj);
         $http.patch(`${FBCreds.databaseURL}/user-events/${eventID}.json`, newObj)
         .then((data) => {
-            console.log("data", data);
+            // console.log("data", data);
             useAchieve.achievements(currentUser);
             getAllHousePoints();
             return data;
         }, (error) => {
             let errorCode = error.code;
             let errorMessage = error.message;
-            console.log("error", errorCode, errorMessage);
+            // console.log("error", errorCode, errorMessage);
         });
     };
 
     const updateGroupStu = (obj)=>{
         let currentUser = authFactory.getCurrentUser();
-        console.log("PUSHING OBJECT", obj);
+        // console.log("PUSHING OBJECT", obj);
         let groupID = $routeParams.itemId;
-        console.log("groupIDDDDDDDDDD", groupID);
+        // console.log("groupIDDDDDDDDDD", groupID);
         let newObj = JSON.stringify(obj);
         $http.patch(`${FBCreds.databaseURL}/user-group-projects/${groupID}.json`, newObj)
         .then((data) => {
-            console.log("data", data);
+            // console.log("data", data);
             useAchieve.achievements(currentUser);
             getAllHousePoints();           
             return data;
         }, (error) => {
             let errorCode = error.code;
             let errorMessage = error.message;
-            console.log("error", errorCode, errorMessage);
+            // console.log("error", errorCode, errorMessage);
         });
     };
 
@@ -109,10 +109,10 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
             key.forEach((item)=>{
                 if(results.data[item].exerciseId == exerciseId){
                     throwAwayArray.push(results.data[item]);
-                    console.log("Already Exists!");
+                    // console.log("Already Exists!");
                     snackbar();
                 }else{
-                    console.log( "need to add it");
+                    // console.log( "need to add it");
                 }
             });
             if(throwAwayArray.length === 0){
@@ -129,7 +129,7 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
                     return(singleUserExercise);
                      })
                      .then((singleUserExercise)=>{
-                        console.log(singleUserExercise);
+                        // console.log(singleUserExercise);
                         let newExercise = {
                             userName:"",
                             archive:false,

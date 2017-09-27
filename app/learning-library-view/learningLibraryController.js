@@ -11,7 +11,7 @@ app.controller("LearningLibrary", function($scope, $route, learningLibFactory, t
                 llItem.push(results[item]);
             });
             $scope.LearningLib = llItem;
-            console.log("$scope.LearningLib", llItem);
+            // console.log("$scope.LearningLib", llItem);
         });
    };
 

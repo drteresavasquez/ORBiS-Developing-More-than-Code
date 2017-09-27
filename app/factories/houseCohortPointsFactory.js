@@ -110,8 +110,13 @@ const leaderboardCohortCall = function(cohort){
             .then((results)=>{
                 let eventKeys = Object.keys(results.data);
                 eventKeys.forEach((item)=>{
+<<<<<<< HEAD
                     if(results.data[item].dateScored == "null" || results.data[item].dateScored === null || results.data[item].dateScored === ""){
                         console.log("not going anywhere");
+=======
+                    if(results.data[item].dateScored == "null" || results.data[item].dateScored === ""){
+                        // console.log("not going anywhere");
+>>>>>>> b2fe683b1e5f650c1076f359bf17495017c74256
                     }else{
                         leaderBoardScrolling.push(results.data[item]);
                     }
@@ -125,7 +130,11 @@ const leaderboardCohortCall = function(cohort){
                     .then((results)=>{
                         let exerciseKeys = Object.keys(results.data);
                         exerciseKeys.forEach((item)=>{
+<<<<<<< HEAD
                             if(results.data[item].dateScored == "null" || results.data[item].dateScored === null || results.data[item].dateScored === ""){
+=======
+                            if(results.data[item].dateScored == "null" || results.data[item].dateScored === ""){
+>>>>>>> b2fe683b1e5f650c1076f359bf17495017c74256
                                 // console.log("not going anywhere");
                             }else{
                                 leaderBoardScrolling.push(results.data[item]);
@@ -142,7 +151,7 @@ const leaderboardCohortCall = function(cohort){
                         let groupKeys = Object.keys(results.data);
                         groupKeys.forEach((item)=>{
                             if(results.data[item].dateScored == "null" ||results.data[item].dateScored === null || results.data[item].dateScored === ""){
-                                console.log("not going anywhere");
+                                // console.log("not going anywhere");
                             }else{
                                 leaderBoardScrolling.push(results.data[item]);
                             }
@@ -161,7 +170,7 @@ const leaderboardCohortCall = function(cohort){
                         userKeys.forEach((item)=>{
                             Object.keys(leaderBoardScrolling).forEach((thing)=>{
                                 if(leaderBoardScrolling[thing].uid == users.data[item].uid){
-                                    console.log("We've got a match!");
+                                    // console.log("We've got a match!");
                                     leaderBoardScrolling[thing].avatar = users.data[item].profileImg;
                                     leaderBoardScrolling[thing].points = Number(leaderBoardScrolling[thing].points);
                                     leaderBoardScrolling[thing].house = users.data[item].house;
