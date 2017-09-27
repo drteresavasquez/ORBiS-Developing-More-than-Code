@@ -34,10 +34,6 @@ Fork project
 
 * **Dr. Teresa Vasquez** - *Initial work* - [Dr. T](https://github.com/drteresavasquez)
 
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
 ## Acknowledgments
 
 * Shout out to Nashville Software School and their awesome learning environment!
