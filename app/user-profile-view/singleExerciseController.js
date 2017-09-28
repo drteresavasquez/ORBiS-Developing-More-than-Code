@@ -38,7 +38,7 @@ app.controller("singleExercise", function ($scope, $routeParams, getUserInfo, $l
             });
     };
 
-    showExercise();
+    
 
     const showCompletedUsers = ()=>{
        getUserInfo.getCompletedUsers($routeParams.itemId)
@@ -47,14 +47,15 @@ app.controller("singleExercise", function ($scope, $routeParams, getUserInfo, $l
                 $scope.showUsersWhoDidIt = results; 
         });
     };
-    
-    showCompletedUsers();
-
- 
 
     $scope.submitExercise = ()=>{
         pushUserStuffFactory.updateExerciseStu($scope.exerciseSubmit);
         getUserInfo.getUserPoints(currentUser);
+        showExercise();
         $route.reload();
+        
     };
+
+    showExercise();
+    showCompletedUsers();
 });
