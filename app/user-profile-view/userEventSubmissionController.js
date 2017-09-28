@@ -22,7 +22,9 @@ app.controller("userEventSubmission", function ($scope, $routeParams, getUserInf
         teacherFeedback:"",
         scoredBy: "",
         teacherStatus:"",
-        archive:""
+        archive:"",
+        assignmentFeedback:"",
+        assignmentRating:""
     };
     
     // console.log("itemId", $routeParams.itemId);
