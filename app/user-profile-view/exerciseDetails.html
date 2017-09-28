@@ -1,6 +1,4 @@
 <h3>{{title}}</h3>
-
-
 <div class="row">
     <div class="col-8">
         <form>
@@ -15,6 +13,7 @@
                     <input type="text" class="form-control" readonly id="staticEmail" value="Milestone: {{exerciseSubmit.milestone}}">
                 </div>
             </div>
+
             <div class="form-group row">
                 <label for="userName" class="col-sm-3 col-form-label"><b>Your Name:</b></label>
                 <div class="col-sm-9">
@@ -45,6 +44,34 @@
           </select>
                 </div>
             </div>
+            <div class="form-group">
+                    <label for="studentFeedback">Your Notes</label>
+                    <textarea class="form-control" ng-model="exerciseSubmit.studentFeedback" id="studentFeedback" rows="5"></textarea>
+                </div>
+                
+                <div class="assignmentFeedbacks">
+                    <div class="row">
+                        <label for="assignmentRating" class="col-sm-3 col-form-label"><b> Rate this Exercise: </b></label>
+                        <div class="col-sm-9">
+                            <select class="custom-select" id="assignmentRating" ng-model="exerciseSubmit.assignmentRating">
+                            <option value="">Rate It!</option>
+                            <option value=1>1</option>
+                            <option value=2>2</option>
+                            <option value=3>3</option>
+                            <option value=4>4</option>
+                            <option value=5>5</option>
+                          </select>
+                        </div>
+                    </div>
+                
+                    <div class="form-group">
+                        <label for="assignmentFeedback">Assignment Feedback</label>
+                        <textarea class="form-control" ng-model="exerciseSubmit.assignmentFeedback" id="assignmentFeedback" rows="3"></textarea>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <button class="btn btn-default" ng-click="submitExercise()" onclick="myFunction()">{{submitButtonText}}</button>
+                </div>
     </div>
     <div class="col-4">
         <div class="topExecute">
@@ -65,39 +92,23 @@
                 <button class="btn btn-default" ng-click="submitExercise()">Save</button>
             </div>
         </div>
-    </div>
-</div>
-
-
-
-<div class="form-group">
-    <label for="studentFeedback">Your Notes</label>
-    <textarea class="form-control" ng-model="exerciseSubmit.studentFeedback" id="studentFeedback" rows="5"></textarea>
-</div>
-
-<div class="assignmentFeedbacks">
-    <div class="row">
-        <label for="assignmentRating" class="col-sm-3 col-form-label"><b> Rate this Exercise: </b></label>
-        <div class="col-sm-9">
-            <select class="custom-select" id="assignmentRating" ng-model="exerciseSubmit.assignmentRating">
-            <option value="">Rate It!</option>
-            <option value=1>1</option>
-            <option value=2>2</option>
-            <option value=3>3</option>
-            <option value=4>4</option>
-            <option value=5>5</option>
-          </select>
+        <div class="classmateWhoRock">
+            <div class="textForm">
+                <h3>Need Help?</h3>
+                <small>Here are classmates who completed this exercise.</small></div>
+                {{notes}}
+            <div class="row no-gutters">
+                <div class="col-3" ng-repeat="user in showUsersWhoDidIt">
+                    <div class="namesCompleted">{{user.first_name}}</div>
+                    <img class="profileImageForms" ng-src="{{user.profileImg}}"><br>
+                    <h4><span class="badge badge-info forms">{{user.achievement}}
+                                </span></h4>
+                </div>
+            </div>
         </div>
     </div>
+</div>
 
-    <div class="form-group">
-        <label for="assignmentFeedback">Assignment Feedback</label>
-        <textarea class="form-control" ng-model="exerciseSubmit.assignmentFeedback" id="assignmentFeedback" rows="3"></textarea>
-    </div>
-</div>
-<div class="text-center">
-    <button class="btn btn-default" ng-click="submitExercise()" onclick="myFunction()">{{submitButtonText}}</button>
-</div>
 <br><br>
 <div class="form-group">
     <label for="teacherFeedback">Teacher Feedback/Notes</label>
