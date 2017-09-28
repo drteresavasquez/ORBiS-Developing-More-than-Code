@@ -338,26 +338,6 @@ app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route, gr
         });
     };
 
-
-    //     const getCompletedUserDetails = (uid) => {
-    //         // console.log("UIDs%%%%", UIDs);
-    //         // UIDs.forEach((uid)=>{
-    //             // return $q((resolve, reject) => {
-    //             $http.get(`${FBCreds.databaseURL}/users.json?orderBy="uid"&equalTo="${uid}"`)
-    //                 .then((userStuff) => {
-    //                     let userDeets = userStuff.data;
-    //                     // console.log("UIDsArray2222%%%%%", userDeets);
-    //                     let keys = Object.keys(userDeets);
-    //                     keys.forEach((item)=>{
-    //                         UIDsArray.push(userDeets[item]);
-    //                     });
-    //                 });
-    //                 // console.log("UIDsArray%%%%%", UIDsArray);
-    //                 return(UIDsArray);
-    //         // });
-    //     // });
-    // };
-
     const getCompletedUsers = (itemId) => {
         let UIDs = [];
         let thoseHeroes = [];

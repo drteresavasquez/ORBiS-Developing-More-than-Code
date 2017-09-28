@@ -44,12 +44,7 @@ app.controller("singleExercise", function ($scope, $routeParams, getUserInfo, $l
        getUserInfo.getCompletedUsers($routeParams.itemId)
         .then((results)=>{
             console.log("resultsYYYYYYYYY", results);
-            if(results.length >= 1){
-                $scope.showUsersWhoDidIt = results;
-            }else{
-                $scope.notes = "Be the first to submit!";
-            }
-           
+                $scope.showUsersWhoDidIt = results; 
         });
     };
     
