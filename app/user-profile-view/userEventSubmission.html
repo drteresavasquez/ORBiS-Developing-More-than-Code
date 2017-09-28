@@ -1,22 +1,7 @@
 <h3>{{title}}</h3>
-<h4>Archive Event?</h4>
-<div class="form-check">
-        <label class="form-check-label">
-            <input class="form-check-input" type="radio" name="teacherStatus" ng-model="eventSubmit.archive" id="teacherStatus3" value="true" checked>
-            Archive it!
-        </label>
-    </div>
-<div class="form-check">
-    <label class="form-check-label">
-        <input class="form-check-input" type="radio" name="teacherStatus" ng-model="eventSubmit.archive" id="teacherStatus1" value="false" checked>
-        Keep it in my to-do list
-    </label>
-</div>
-<div>
-        <button class="btn btn-default" ng-click="submitEvent()">Save</button>
-    </div>
-    <hr>
 
+<div class="row">
+    <div class="col-8">
 <form>
     <div class="form-group row">
         <div class="col-sm-12">
@@ -25,50 +10,98 @@
         </div>
     </div>
     <div class="form-group row">
-            <label for="userName" class="col-sm-3 col-form-label"><b>Your Name:</b></label>
-            <div class="col-sm-9">
-                <input type="text" class="form-control" ng-model="eventSubmit.userName" id="userName" placeholder="Type Your Name">
-            </div>
+        <label for="userName" class="col-sm-3 col-form-label"><b>Your Name:</b></label>
+        <div class="col-sm-9">
+            <input type="text" class="form-control" ng-model="eventSubmit.userName" id="userName" placeholder="Type Your Name">
         </div>
-        <div class="form-group row">
-                <label for="Cohort" class="col-sm-3 col-form-label"><b>Cohort:</b></label>
-                <div class="col-sm-9">
-                    <input type="text" class="form-control" ng-model="eventSubmit.cohort" id="Cohort" placeholder="Cohort #">
-                </div>
-            </div>
+    </div>
     <div class="form-group row">
-        <label for="eventStatus" class="col-sm-3 col-form-label"><b> Change Event Status: </b></label>
+        <label for="Cohort" class="col-sm-3 col-form-label"><b>Cohort:</b></label>
+        <div class="col-sm-9">
+            <input type="text" class="form-control" ng-model="eventSubmit.cohort" id="Cohort" placeholder="Cohort #">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="eventStatus" class="col-sm-3 col-form-label"><b> Event Status: </b></label>
         <div class="col-sm-9">
             <select class="custom-select" id="eventStatus" ng-model="eventSubmit.status">
             <option selected>Open this select menu</option>
             <option value="Going">Going</option>
             <option value="Submitted">Went</option>
-           
+            <option value="Scored">Scored</option>
           </select>
         </div>
     </div>
+</div>
+<div class="col-4">
+        <div class="topExecute">
+                <h4>Archive Event?</h4>
+                <div class="form-check">
+                    <label class="form-check-label">
+                            <input class="form-check-input" type="radio" name="teacherStatus" ng-model="eventSubmit.archive" id="teacherStatus3" value="true" checked>
+                            Archive it!
+                        </label>
+                </div>
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" type="radio" name="teacherStatus" ng-model="eventSubmit.archive" id="teacherStatus1" value="false" checked>
+                        Keep it in my to-do list
+                    </label>
+                </div>
+                <div>
+                    <button class="btn btn-default" ng-click="submitEvent()">Save</button>
+                </div>
+            </div>
+        </div>
+        </div>
+
+
+
 
     <div class="form-group">
         <label for="studentFeedback">Your Feedback/Notes</label>
         <textarea class="form-control" ng-model="eventSubmit.studentFeedback" id="studentFeedback" rows="10"></textarea>
     </div>
     <div class="form-group">
-            <label for="linktoproof">Link to Proof of Attendance</label>
-            <input type="text" class="form-control" ng-model="eventSubmit.studentLinktoProof" id="linktoproof" placeholder="http://photos.google.com">
+        <label for="linktoproof">Link to Proof of Attendance</label>
+        <input type="text" class="form-control" ng-model="eventSubmit.studentLinktoProof" id="linktoproof" placeholder="http://photos.google.com">
+    </div>
+    <div class="assignmentFeedbacks">
+        <div class="row">
+            <label for="assignmentRating" class="col-sm-3 col-form-label"><b> Rate this Event: </b></label>
+            <div class="col-sm-9">
+                <select class="custom-select" id="assignmentRating" ng-model="eventSubmit.assignmentRating">
+                        <option value="">Rate It!</option>
+                        <option value=1>1</option>
+                        <option value=2>2</option>
+                        <option value=3>3</option>
+                        <option value=4>4</option>
+                        <option value=5>5</option>
+                      </select>
+            </div>
         </div>
+
+        <div class="form-group">
+            <label for="assignmentFeedback">Event Feedback</label>
+            <textarea class="form-control" ng-model="eventSubmit.assignmentFeedback" id="assignmentFeedback" rows="3"></textarea>
+        </div>
+    </div>
+    <div class="text-center">
+        <button class="btn btn-default" ng-click="submitEvent()" onclick="myFunction()">{{submitButtonText}}</button>
+    </div>
+    <br><br>
 
     <div class="form-group">
         <label for="teacherFeedback">Teacher Feedback/Notes</label>
         <textarea class="form-control" readonly ng-model="eventSubmit.teacherFeedback" id="teacherFeedback" rows="10"></textarea>
     </div>
     <div class="form-group row">
-            
-            <label for="date" class="col-sm-2 col-form-label"><b>Date Scored:</b></label>
-            <div class="col-sm-10">
-                   <input readonly class="form-control" ng-model="eventSubmit.dateScored" type="text">
-                   <p>Last Date Scored: {{eventSubmit.dateScored | date:'MM/dd/yyyy'}}</p>
-            </div>
-       </div>
+
+        <label for="date" class="col-sm-2 col-form-label"><b>Date Scored:</b></label>
+        <div class="col-sm-10">
+            <input readonly class="form-control" ng-model="eventSubmit.dateScored" type="date">
+        </div>
+    </div>
     <div class="form-group row">
         <label for="techSkills" class="col-sm-2 col-form-label"><b>Skills Aquired:</b></label>
         <div class="col-sm-10">
@@ -82,14 +115,10 @@
         </div>
     </div>
     <div class="form-group row">
-            <label for="scoredBy" class="col-sm-2 col-form-label"><b>Scored By:</b></label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" readonly ng-model="eventSubmit.scoredBy" id="scoredBy" placeholder="The Score Master!">
-            </div>
+        <label for="scoredBy" class="col-sm-2 col-form-label"><b>Scored By:</b></label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" readonly ng-model="eventSubmit.scoredBy" id="scoredBy" placeholder="The Score Master!">
         </div>
-
-    <div class="text-center">
-        <button class="btn btn-default" ng-click="submitEvent()" onclick="myFunction()">{{submitButtonText}}</button>
     </div>
 </form>
 
@@ -97,14 +126,16 @@
 <div id="snackbar">Your Event Has Been Updated</div>
 
 <script>
-   function myFunction() {
-    // Get the snackbar DIV
-    var x = document.getElementById("snackbar")
+    function myFunction() {
+        // Get the snackbar DIV
+        var x = document.getElementById("snackbar")
 
-    // Add the "show" class to DIV
-    x.className = "show";
+        // Add the "show" class to DIV
+        x.className = "show";
 
-    // After 3 seconds, remove the show class from DIV
-    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
-}
+        // After 3 seconds, remove the show class from DIV
+        setTimeout(function () {
+            x.className = x.className.replace("show", "");
+        }, 3000);
+    }
 </script>
