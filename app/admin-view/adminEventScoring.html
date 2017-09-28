@@ -38,20 +38,9 @@
         <div class="form-group row">
                 <label for="Cohort" class="col-sm-3 col-form-label"><b>Cohort:</b></label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" ng-model="eventSubmit.cohort" id="Cohort" placeholder="Cohort #">
+                    <input type="text" class="form-control" ng-model="eventSubmit.cohort" readonly id="Cohort" placeholder="Cohort #">
                 </div>
             </div>
-    <div class="form-group row">
-        <label for="eventStatus" class="col-sm-3 col-form-label"><b> Change Event Status: </b></label>
-        <div class="col-sm-9">
-            <select class="custom-select" id="eventStatus" ng-model="eventSubmit.status">
-                    <option selected>Open this select menu</option>
-                    <option value="Submitted">Submitted</option>
-                    <option value="Come See Us">Come See Us</option>
-                    <option value="Scored">Scored</option>
-          </select>
-        </div>
-    </div>
 
     <div class="form-group">
         <label for="studentFeedback">Student Feedback/Notes</label>
@@ -64,14 +53,24 @@
 
     <div class="form-group">
         <label for="teacherFeedback">Teacher Feedback/Notes</label>
-        <textarea class="form-control" ng-model="eventSubmit.teacherFeedback" id="teacherFeedback" rows="10"></textarea>
+        <textarea class="form-control" ng-model="eventSubmit.teacherFeedback" id="teacherFeedback" rows="5"></textarea>
     </div>
+    <div class="form-group row">
+            <label for="eventStatus" class="col-sm-3 col-form-label"><b> Change Event Status: </b></label>
+            <div class="col-sm-9">
+                <select class="custom-select" id="eventStatus" ng-model="eventSubmit.status">
+                        <option selected>Open this select menu</option>
+                        <option value="Submitted">Submitted</option>
+                        <option value="Come See Us">Come See Us</option>
+                        <option value="Scored">Scored</option>
+              </select>
+            </div>
+        </div>
     <div class="form-group row">
             
             <label for="date" class="col-sm-2 col-form-label"><b>Date Scored:</b></label>
             <div class="col-sm-10">
                    <input class="form-control" ng-model="eventSubmit.dateScored" type="date">
-                   <p>Last Date Scored: {{eventSubmit.dateScored | date:'MM/dd/yyyy'}}</p>
             </div>
        </div>
     <div class="form-group row">

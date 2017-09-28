@@ -20,7 +20,9 @@ app.controller("userGroupSubmission", function ($scope, $routeParams, getUserInf
         teacherFeedback:"",
         scoredBy: "",
         teacherStatus:"",
-        archive:""
+        archive:"",
+        assignmentFeedback:"",
+        assignmentRating:""
     };
     
     // console.log("itemId", $routeParams.itemId);

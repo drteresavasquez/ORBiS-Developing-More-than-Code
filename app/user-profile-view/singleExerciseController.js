@@ -21,7 +21,9 @@ app.controller("singleExercise", function ($scope, $routeParams, getUserInfo, $l
         teacherFeedback:"",
         techSkills:"",
         scoredBy:"",
-        archive:""
+        archive:"",
+        assignmentFeedback:"",
+        assignmentRating:""
         
     };
     

@@ -59,10 +59,34 @@
     </div>
 
     <div class="form-group">
-        <label for="studentFeedback">Your Feedback/Notes</label>
-        <textarea class="form-control" ng-model="exerciseSubmit.studentFeedback" id="studentFeedback" rows="10"></textarea>
+        <label for="studentFeedback">Your Notes</label>
+        <textarea class="form-control" ng-model="exerciseSubmit.studentFeedback" id="studentFeedback" rows="5"></textarea>
     </div>
 
+    <div class="assignmentFeedbacks">
+    <div class="row">
+    <label for="assignmentRating" class="col-sm-3 col-form-label"><b> Rate this Exercise: </b></label>
+    <div class="col-sm-9">
+    <select class="custom-select" id="assignmentRating" ng-model="exerciseSubmit.assignmentRating">
+            <option value="">Rate It!</option>
+            <option value=1>1</option>
+            <option value=2>2</option>
+            <option value=3>3</option>
+            <option value=4>4</option>
+            <option value=5>5</option>
+          </select>
+        </div>
+    </div>
+
+    <div class="form-group">
+            <label for="assignmentFeedback">Assignment Feedback</label>
+            <textarea class="form-control" ng-model="exerciseSubmit.assignmentFeedback" id="assignmentFeedback" rows="3"></textarea>
+        </div>
+    </div>
+    <div class="text-center">
+            <button class="btn btn-default" ng-click="submitExercise()" onclick="myFunction()">{{submitButtonText}}</button>
+        </div>
+        <br><br>
     <div class="form-group">
         <label for="teacherFeedback">Teacher Feedback/Notes</label>
         <textarea class="form-control" readonly ng-model="exerciseSubmit.teacherFeedback" id="teacherFeedback" rows="10"></textarea>
@@ -71,8 +95,7 @@
             
             <label for="date" class="col-sm-2 col-form-label"><b>Date Scored:</b></label>
             <div class="col-sm-10">
-                   <input readonly class="form-control" type="date">
-                   <p>Last Date Scored: {{exerciseSubmit.dateScored | date:'MM/dd/yyyy'}}</p>
+                   <input readonly class="form-control" ng-model="exerciseSubmit.dateScored" type="date">
             </div>
        </div>
     <div class="form-group row">
@@ -93,10 +116,6 @@
                 <input type="text" class="form-control" readonly ng-model="exerciseSubmit.scoredBy" id="scoredBy" placeholder="The Score Master!">
             </div>
         </div>
-
-    <div class="text-center">
-        <button class="btn btn-default" ng-click="submitExercise()" onclick="myFunction()">{{submitButtonText}}</button>
-    </div>
 </form>
 
 
