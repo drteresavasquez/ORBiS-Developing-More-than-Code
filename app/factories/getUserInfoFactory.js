@@ -3,7 +3,8 @@
 app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route, groupingPointsFactory, pushUserStuffFactory, useAchieve) {
 
     let currentUser = authFactory.getCurrentUser();
-        // useAchieve.achievements(currentUser);
+    // useAchieve.achievements(currentUser);
+
 
     const getUserDetails = function (currentUser) {
         return $q((resolve, reject) => {
@@ -16,18 +17,18 @@ app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route, gr
         });
     };
 
-    const getUserHouse = function(currentUser){
+    const getUserHouse = function (currentUser) {
         let userHouse = [];
         getUserDetails(currentUser)
-        .then((userDeets)=>{
-            let keys = Object.keys(userDeets);
-            keys.forEach((item)=>{
-                userHouse.push(userDeets[item].house);
+            .then((userDeets) => {
+                let keys = Object.keys(userDeets);
+                keys.forEach((item) => {
+                    userHouse.push(userDeets[item].house);
+                });
+                // console.log("userDeets", userHouse);
+                return (userHouse);
+
             });
-            // console.log("userDeets", userHouse);
-            return(userHouse);
-            
-        });
     };
 
     const showUserDetails = function (userDeets) {
@@ -81,58 +82,58 @@ app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route, gr
         return (userExerciseStuff);
     };
 
-    const userExerciseCount = (currentUser)=>{
+    const userExerciseCount = (currentUser) => {
         getUserExercises(currentUser)
-        .then((results)=>{
-            let doneEx = [];
-            let keys = Object.keys(results);
-            keys.forEach((item)=>{
-               if(results[item].status == "Scored"){
-                   doneEx.push(results[item]);
-               }
-            });
-            // console.log("doneEx.length", doneEx.length);
-            let exercisesDone = {
-                exercisesCompleted: doneEx.length
+            .then((results) => {
+                let doneEx = [];
+                let keys = Object.keys(results);
+                keys.forEach((item) => {
+                    if (results[item].status == "Scored") {
+                        doneEx.push(results[item]);
+                    }
+                });
+                // console.log("doneEx.length", doneEx.length);
+                let exercisesDone = {
+                    exercisesCompleted: doneEx.length
                 };
-            pushUserStuffFactory.pushExerciseCount(currentUser, exercisesDone);
-        });
+                pushUserStuffFactory.pushExerciseCount(currentUser, exercisesDone);
+            });
     };
 
-    const userEventCount = (currentUser)=>{
+    const userEventCount = (currentUser) => {
         getUserEvents(currentUser)
-        .then((results)=>{
-            let doneEx = [];
-            let keys = Object.keys(results);
-            keys.forEach((item)=>{
-               if(results[item].status == "Scored"){
-                   doneEx.push(results[item]);
-               }
-            });
-            // console.log("doneEx.length", doneEx.length);
-            let exercisesDone = {
-                eventsCompleted: doneEx.length
+            .then((results) => {
+                let doneEx = [];
+                let keys = Object.keys(results);
+                keys.forEach((item) => {
+                    if (results[item].status == "Scored") {
+                        doneEx.push(results[item]);
+                    }
+                });
+                // console.log("doneEx.length", doneEx.length);
+                let exercisesDone = {
+                    eventsCompleted: doneEx.length
                 };
-            pushUserStuffFactory.pushExerciseCount(currentUser, exercisesDone);
-        });
+                pushUserStuffFactory.pushExerciseCount(currentUser, exercisesDone);
+            });
     };
 
-    const userGroupCount = (currentUser)=>{
+    const userGroupCount = (currentUser) => {
         getUserGroups(currentUser)
-        .then((results)=>{
-            let doneEx = [];
-            let keys = Object.keys(results);
-            keys.forEach((item)=>{
-               if(results[item].status == "Scored"){
-                   doneEx.push(results[item]);
-               }
-            });
-            // console.log("doneEx.length", doneEx.length);
-            let exercisesDone = {
-                groupsCompleted: doneEx.length
+            .then((results) => {
+                let doneEx = [];
+                let keys = Object.keys(results);
+                keys.forEach((item) => {
+                    if (results[item].status == "Scored") {
+                        doneEx.push(results[item]);
+                    }
+                });
+                // console.log("doneEx.length", doneEx.length);
+                let exercisesDone = {
+                    groupsCompleted: doneEx.length
                 };
-            pushUserStuffFactory.pushExerciseCount(currentUser, exercisesDone);
-        });
+                pushUserStuffFactory.pushExerciseCount(currentUser, exercisesDone);
+            });
     };
 
 
@@ -328,6 +329,68 @@ app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route, gr
         });
     };
 
+    const getTheExercises = (exerciseId) => {
+        return $q((resolve, reject) => {
+            $http.get(`${FBCreds.databaseURL}/user-exercises.json?orderBy="exerciseId"&equalTo="${exerciseId}"`)
+                .then((results) => {
+                    resolve(results.data);
+                });
+        });
+    };
+
+    const getCompletedUsers = (itemId) => {
+        let UIDs = [];
+        let thoseHeroes = [];
+        let UIDsArray = [];
+        return $q((resolve, reject) => {
+                getSingleExercise(itemId)
+                    .then((results) => {
+                        let exerciseId = results.exerciseId;
+                        resolve(exerciseId);
+                    });
+            })
+            .then((exerciseId) => {
+                return $q((resolve, reject) => {
+                    getTheExercises(exerciseId)
+                        .then((exercises) => {
+                            let exerciseKeys = Object.keys(exercises);
+                            exerciseKeys.forEach((item) => {
+                                if (exercises[item].status == "Scored") {
+                                    UIDs.push(exercises[item].uid);
+                                }
+                            });
+                            // console.log("exercises%%%%1", UIDs);
+                            resolve(UIDs);
+                        });
+                });
+            })
+            .then((stuff) => {
+                return $q((resolve, reject) => {
+                    // let UIDsArray = [];
+                    stuff.forEach((uid) => {
+                        $http.get(`${FBCreds.databaseURL}/users.json?orderBy="uid"&equalTo="${uid}"`)
+                            .then((userStuff) => {
+                                let userDeets = userStuff.data;
+                                // console.log("UIDsArray2222%%%%%", userDeets);
+                                let keys = Object.keys(userDeets);
+                                keys.forEach((item) => {
+                                    UIDsArray.push(userDeets[item]);
+                                });
+                                console.log("UIDsArray%%%%%", UIDsArray);
+                                resolve(UIDsArray);
+                            });
+                    });
+                });
+            })
+            .then((results)=>{
+                return $q((resolve, reject) => {
+                console.log("results######", results);
+                resolve(results);
+                });
+            });
+    };
+
+
     return {
         getUserDetails,
         getUserExercises,
@@ -350,6 +413,9 @@ app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route, gr
         getUserHouse,
         userExerciseCount,
         userEventCount,
-        userGroupCount
+        userGroupCount,
+        getTheExercises,
+        getCompletedUsers
+        // getCompletedUserDetails
     };
 });

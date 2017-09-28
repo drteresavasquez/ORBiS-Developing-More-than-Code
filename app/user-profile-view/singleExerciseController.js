@@ -1,6 +1,6 @@
 "use strict";
 
-app.controller("singleExercise", function ($scope, $routeParams, getUserInfo, $location, pushUserStuffFactory, $route, authFactory) {
+app.controller("singleExercise", function ($scope, $routeParams, getUserInfo, $location, pushUserStuffFactory, $route, authFactory,  $timeout) {
 
     let currentUser = authFactory.getCurrentUser();    
 
@@ -39,6 +39,18 @@ app.controller("singleExercise", function ($scope, $routeParams, getUserInfo, $l
     };
 
     showExercise();
+
+    const showCompletedUsers = ()=>{
+       getUserInfo.getCompletedUsers($routeParams.itemId)
+        .then((results)=>{
+            console.log("resultsYYYYYYYYY", results);
+                $scope.showUsersWhoDidIt = results; 
+        });
+    };
+    
+    showCompletedUsers();
+
+ 
 
     $scope.submitExercise = ()=>{
         pushUserStuffFactory.updateExerciseStu($scope.exerciseSubmit);
