@@ -4,6 +4,7 @@ app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route, gr
 
     let currentUser = authFactory.getCurrentUser();
         // useAchieve.achievements(currentUser);
+        let UIDsArray = [];
 
     const getUserDetails = function (currentUser) {
         return $q((resolve, reject) => {
@@ -328,6 +329,60 @@ app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route, gr
         });
     };
 
+    const getTheExercises = (exerciseId)=>{
+        return $q((resolve, reject)=>{
+            $http.get(`${FBCreds.databaseURL}/user-exercises.json?orderBy="exerciseId"&equalTo="${exerciseId}"`)
+            .then((results)=>{
+                 resolve(results.data);
+            });
+        });
+    };
+
+    let UIDsArray = [];
+    const getCompletedUserDetails = function (uid) {
+        return $q((resolve, reject) => {
+            $http.get(`${FBCreds.databaseURL}/users.json?orderBy="uid"&equalTo="${uid}"`)
+                .then((userStuff) => {
+                    let userDeets = userStuff.data;
+                    console.log("UIDsArray2222%%%%%", userStuff);
+                    UIDsArray.push(userDeets);
+                    console.log("UIDsArray%%%%%", UIDsArray);
+                    resolve(UIDsArray);
+                });
+        });
+    };
+
+    const getCompletedUsers = (itemId)=>{
+        let UIDs = [];
+        let thoseHeroes = [];
+        getSingleExercise(itemId)
+        .then((results) => {
+            let exerciseId = results.exerciseId;
+            return(exerciseId);
+        })
+        .then((exerciseId)=>{
+            getTheExercises(exerciseId)
+            .then((exercises)=>{
+                let exerciseKeys = Object.keys(exercises);
+                exerciseKeys.forEach((item)=>{
+                     UIDs.push(exercises[item].uid);
+                });
+                console.log("exercises%%%%1", UIDs);
+                return(UIDs);
+            })
+            .then((UIDs)=>{
+                console.log("UIDs%%%%", UIDs);
+                UIDs.forEach((item)=>{
+                    getCompletedUserDetails(item)
+                    .then((results)=>{
+                        console.log("results&&&&&&&", results);
+                    });
+                });
+                
+            });  
+        });
+    };
+
     return {
         getUserDetails,
         getUserExercises,
@@ -350,6 +405,8 @@ app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route, gr
         getUserHouse,
         userExerciseCount,
         userEventCount,
-        userGroupCount
+        userGroupCount,
+        getTheExercises,
+        getCompletedUsers
     };
 });

@@ -290,7 +290,7 @@ app.factory("pushUserStuffFactory", function($q, $http, FBCreds, authFactory, $l
                             archive:false,
                             cohort:"",
                             dateScored : "",
-                            pointsPossible: singleUserEvent[0].points,
+                            pointsPossible: singleGroupProject[0].points,
                             linktoRepo: singleGroupProject[0].linktoRepo,
                             groupId : singleGroupProject[0].id,
                             points : 0,

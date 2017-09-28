@@ -40,6 +40,12 @@ app.controller("singleExercise", function ($scope, $routeParams, getUserInfo, $l
 
     showExercise();
 
+    const showCompletedUsers = ()=>{
+        getUserInfo.getCompletedUsers($routeParams.itemId);
+    };
+    
+    showCompletedUsers();
+
     $scope.submitExercise = ()=>{
         pushUserStuffFactory.updateExerciseStu($scope.exerciseSubmit);
         getUserInfo.getUserPoints(currentUser);
