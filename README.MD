@@ -17,6 +17,7 @@ Fork project
 -> lib folder
 -> NPM Install all dependencies
 -> create creds/fb.creds.js with your Firebase credientials
+-> GRUNT to setup file structure and SASS file
 ```
 
 ## Built With
@@ -28,7 +29,7 @@ Fork project
 * HTML/CSS
 * Bootstrap
 * Firebase
-
+* SASS
 
 ## Authors
 

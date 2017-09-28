@@ -26,6 +26,33 @@ h4.header{
     font-size: .9em;
     font-weight: bold;
 }
+/* ----FORMS---- */
+.topExecute{
+    padding: 10px;
+    background: #F75430;
+    color: white;
+    border-radius: 10px;
+    border: 2px solid white;
+}
+.assignmentFeedbacks{
+    border: 2px solid white;
+    padding: 10px;
+    margin-bottom: 15px;
+    background: #4A3952;
+    color: white;
+    border-radius: 10px;
+}
+.btn.btn-default{
+    background: #4A3952;
+    color: white;
+}
+.btn.btn-default:hover{
+    background: #F75430;
+}
+/* -------GRAPHS----- */
+.table.legend{
+    width: 60px;
+}
 
 /* ------LEADERBOARD------ */
 .leader-cohort{
@@ -131,6 +158,16 @@ h3.card-title{
 }
 
 /* ----PROFILE PAGE STUFF---- */
+.col-3.profile{
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    background: #4A3952;
+    padding:30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:center;
+}
 .profTableLink{
     text-align: left;
     color: white;
@@ -153,47 +190,6 @@ h3.card-title{
     text-transform: uppercase;
     font-size: .85em;
 }
-
-/* ------ MODAL -------- */
-.modal-content{
-    border: none;
-    /* padding-top: 30px; */
-    padding: 50px 10px 0 30px;
-    background: url("../app/assets/images/houses.png") center;
-    
-}
-.questionArea{
-    background: white;
-    padding: 10px;
-    border-radius: 10px;
-
-}
-.adminTable{
-    background: white;
-}
-.stuffDiv{
-    border: 1px solid #4A3952;
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
-    border-bottom-left-radius: 10px;
-    padding: 20px;
-    background: white;
-}
-.col-3.profile{
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
-    background: #4A3952;
-    padding:30px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items:center;
-}
-button{
-    cursor: pointer;
-}
-
-/* -------PROFILE PAGE------ */
 .profileImage{
     border-radius: 100%;
     width: 70%;
@@ -221,6 +217,35 @@ a:visited, a:active, a:link {
   a.text-black:focus, a.text-black:hover {
       color: #7b7b7b !important;
   }
+/* ------ MODAL -------- */
+.modal-content{
+    border: none;
+    /* padding-top: 30px; */
+    padding: 50px 10px 0 30px;
+    background: url("../app/assets/images/houses.png") center;
+    
+}
+.questionArea{
+    background: white;
+    padding: 10px;
+    border-radius: 10px;
+
+}
+.adminTable{
+    background: white;
+}
+.stuffDiv{
+    border: 1px solid #4A3952;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    padding: 20px;
+    background: white;
+}
+
+button{
+    cursor: pointer;
+}
   
   /* ----LEARNING LIBRARY---- */
   .list {
