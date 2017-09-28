@@ -1,22 +1,7 @@
 <h3>{{title}}</h3>
-<h4>Archive Event?</h4>
-<div class="form-check">
-    <label class="form-check-label">
-            <input class="form-check-input" type="radio" name="teacherStatus" ng-model="eventSubmit.archive" id="teacherStatus3" value="true" checked>
-            Archive it!
-        </label>
-</div>
-<div class="form-check">
-    <label class="form-check-label">
-        <input class="form-check-input" type="radio" name="teacherStatus" ng-model="eventSubmit.archive" id="teacherStatus1" value="false" checked>
-        Keep it in my to-do list
-    </label>
-</div>
-<div>
-    <button class="btn btn-default" ng-click="submitEvent()">Save</button>
-</div>
-<hr>
 
+<div class="row">
+    <div class="col-8">
 <form>
     <div class="form-group row">
         <div class="col-sm-12">
@@ -37,16 +22,41 @@
         </div>
     </div>
     <div class="form-group row">
-        <label for="eventStatus" class="col-sm-3 col-form-label"><b> Change Event Status: </b></label>
+        <label for="eventStatus" class="col-sm-3 col-form-label"><b> Event Status: </b></label>
         <div class="col-sm-9">
             <select class="custom-select" id="eventStatus" ng-model="eventSubmit.status">
             <option selected>Open this select menu</option>
             <option value="Going">Going</option>
             <option value="Submitted">Went</option>
-           
+            <option value="Scored">Scored</option>
           </select>
         </div>
     </div>
+</div>
+<div class="col-4">
+        <div class="topExecute">
+                <h4>Archive Event?</h4>
+                <div class="form-check">
+                    <label class="form-check-label">
+                            <input class="form-check-input" type="radio" name="teacherStatus" ng-model="eventSubmit.archive" id="teacherStatus3" value="true" checked>
+                            Archive it!
+                        </label>
+                </div>
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" type="radio" name="teacherStatus" ng-model="eventSubmit.archive" id="teacherStatus1" value="false" checked>
+                        Keep it in my to-do list
+                    </label>
+                </div>
+                <div>
+                    <button class="btn btn-default" ng-click="submitEvent()">Save</button>
+                </div>
+            </div>
+        </div>
+        </div>
+
+
+
 
     <div class="form-group">
         <label for="studentFeedback">Your Feedback/Notes</label>
@@ -72,7 +82,7 @@
         </div>
 
         <div class="form-group">
-            <label for="assignmentFeedback">Assignment Feedback</label>
+            <label for="assignmentFeedback">Event Feedback</label>
             <textarea class="form-control" ng-model="eventSubmit.assignmentFeedback" id="assignmentFeedback" rows="3"></textarea>
         </div>
     </div>
