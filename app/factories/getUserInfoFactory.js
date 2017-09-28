@@ -4,7 +4,7 @@ app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route, gr
 
     let currentUser = authFactory.getCurrentUser();
         // useAchieve.achievements(currentUser);
-        let UIDsArray = [];
+    
 
     const getUserDetails = function (currentUser) {
         return $q((resolve, reject) => {
@@ -344,8 +344,11 @@ app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route, gr
             $http.get(`${FBCreds.databaseURL}/users.json?orderBy="uid"&equalTo="${uid}"`)
                 .then((userStuff) => {
                     let userDeets = userStuff.data;
-                    console.log("UIDsArray2222%%%%%", userStuff);
-                    UIDsArray.push(userDeets);
+                    console.log("UIDsArray2222%%%%%", userDeets);
+                    let keys = Object.keys(userDeets);
+                    keys.forEach((item)=>{
+                        UIDsArray.push(userDeets[item]);
+                    });
                     console.log("UIDsArray%%%%%", UIDsArray);
                     resolve(UIDsArray);
                 });
@@ -355,6 +358,7 @@ app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route, gr
     const getCompletedUsers = (itemId)=>{
         let UIDs = [];
         let thoseHeroes = [];
+        UIDsArray = [];
         getSingleExercise(itemId)
         .then((results) => {
             let exerciseId = results.exerciseId;
@@ -365,9 +369,11 @@ app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route, gr
             .then((exercises)=>{
                 let exerciseKeys = Object.keys(exercises);
                 exerciseKeys.forEach((item)=>{
-                     UIDs.push(exercises[item].uid);
+                   if(exercises[item].status == "Scored"){
+                    UIDs.push(exercises[item].uid);
+                   } 
                 });
-                console.log("exercises%%%%1", UIDs);
+                // console.log("exercises%%%%1", UIDs);
                 return(UIDs);
             })
             .then((UIDs)=>{
@@ -375,7 +381,14 @@ app.factory("getUserInfo", function ($q, $http, FBCreds, authFactory, $route, gr
                 UIDs.forEach((item)=>{
                     getCompletedUserDetails(item)
                     .then((results)=>{
-                        console.log("results&&&&&&&", results);
+                        // console.log("results&&&&&&&", results);
+                        let keys = Object.keys(results);
+                        console.log("keys%%%%%%%%%", keys);
+                        keys.forEach((item)=>{
+                            thoseHeroes.push(results[item].first_name);
+                        });
+                        console.log("thoseHeroes%%%%%%", thoseHeroes);
+                        return(thoseHeroes);
                     });
                 });
                 
