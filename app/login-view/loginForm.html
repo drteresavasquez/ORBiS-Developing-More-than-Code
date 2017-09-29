@@ -1,5 +1,5 @@
 <div class="loginTable">
-        <img src="../app/assets/images/readtheroom.png">
+       <img src="../app/assets/images/ORBiS.png">
         <center>
             <div class="form-group">
                 <input class="loginInput form-control form-control-lg" placeholder="Email" type="text" autofocus="true" ng-model="account.email">
@@ -7,9 +7,11 @@
                 <br>
                 <input class="loginInput form-control form-control-lg" placeholder="Type Your Password" type="password" ng-model="account.password">
                 <br>
-                <button ng-click="logIn()" type="button" class="btn btn-primary btn-lg">LOGIN</button> <br>  <br>
+                <div class="buttons">
+                <button ng-click="logIn()" type="button" class="btn btn-outline-success btn-block">LOGIN</button>
 
-                <button ng-click="login()" type="button" class="btn btn-primary btn-lg">REQUEST ACCESS</button>
+                <button ng-click="login()" type="button" class="btn btn-outline-info btn-block">REQUEST ACCESS</button>
+            </div>
             </div>
         </center>
 </div>
