@@ -1,5 +1,7 @@
 "use strict";
 
+//calculates user achievement levels
+
 app.factory("useAchieve", function(authFactory, $q, $http, FBCreds){
 
     let currentUser = authFactory.getCurrentUser();

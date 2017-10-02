@@ -1,5 +1,7 @@
 "use strict";
 
+//allows admin to add items to the database for users to view
+
 app.factory("adminAddFactory", function($q, $http, FBCreds){
 
     const addSubmittedEvent = function (obj) {
