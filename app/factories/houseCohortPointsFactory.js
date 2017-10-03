@@ -143,7 +143,7 @@ const leaderboardCohortCall = function(cohort){
                 eventKeys.forEach((item)=>{
                     if(results.data[item].dateScored == "null" || results.data[item].dateScored === null || results.data[item].dateScored === ""){
                         console.log("not going anywhere");
-                    }else if(results.data[item].points === 0 || results.data[item].points === ""){
+                    }else if(results.data[item].points === 0 || results.data[item].points === "" || results.data[item].points === "0"){
                         console.log("no points...not going anywhere");
                     }else{
                         leaderBoardScrolling.push(results.data[item]);
@@ -160,7 +160,7 @@ const leaderboardCohortCall = function(cohort){
                         exerciseKeys.forEach((item)=>{
                             if(results.data[item].dateScored == "null" || results.data[item].dateScored === null || results.data[item].dateScored === ""){
                                 // console.log("not going anywhere");
-                            }else if(results.data[item].points === 0 || results.data[item].points === ""){
+                            }else if(results.data[item].points === 0 || results.data[item].points === "" || results.data[item].points === "0"){
                                 console.log("no points...not going anywhere");
                             }else{
                                 leaderBoardScrolling.push(results.data[item]);
@@ -178,7 +178,7 @@ const leaderboardCohortCall = function(cohort){
                         groupKeys.forEach((item)=>{
                             if(results.data[item].dateScored == "null" ||results.data[item].dateScored === null || results.data[item].dateScored === ""){
                                 // console.log("not going anywhere");
-                            }else if(results.data[item].points === 0 || results.data[item].points === ""){
+                            }else if(results.data[item].points === 0 || results.data[item].points === "" || results.data[item].points === "0"){
                                 console.log("no points...not going anywhere");
                             }else{
                                 leaderBoardScrolling.push(results.data[item]);
