@@ -50,6 +50,11 @@ app.config(($routeProvider) => {
             controller: 'addUserController',
             resolve: {isAuth}
         })
+        .when('/user-graph', {
+            templateUrl: 'app/user-profile-view/userGraph.html',
+            controller: 'userGraphController',
+            resolve: {isAuth}
+        })
         .when('/admin/exercise/:itemId', {
             templateUrl: 'app/admin-view/exerciseScoring.html',
             controller: 'singleExercise',
