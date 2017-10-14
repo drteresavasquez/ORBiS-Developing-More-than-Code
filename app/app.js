@@ -115,6 +115,11 @@ app.config(($routeProvider) => {
             controller: 'adminViews',
             resolve: {isAuth}
         })
+        .when('/admin/exercise', {
+            templateUrl: 'app/admin-view/adminDashboard.html',
+            controller: 'adminViews',
+            resolve: {isAuth}
+        })
         .when('/leaderboard', {
             templateUrl: 'app/group-view/houseCohortPoints.html',
             controller: 'groupPointsController',
