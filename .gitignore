@@ -1,7 +1,5 @@
 .DS_Store
-css/*
 lib/node_modules
-app/creds/*
 notes
 data/
 app/testPartial.html
