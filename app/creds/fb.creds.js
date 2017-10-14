@@ -9,5 +9,6 @@ app.constant("FBCreds", {
     projectId: "front-end-capstone-ce3ec",
     storageBucket: "front-end-capstone-ce3ec.appspot.com",
     messagingSenderId: "622087774865"
+    
 });
 
