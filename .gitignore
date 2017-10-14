@@ -1,6 +1,5 @@
 .DS_Store
 lib/node_modules
 notes
-data/
 app/testPartial.html
 app/testStuff
