@@ -8,6 +8,8 @@ Orbis helps to facilitate the social/emotional/belonging process by combining al
 
 [Watch a Walk Through of This App](https://youtu.be/EgoEj7eA8Ak)
 
+[See it in Action!](https://drteresavasquez.github.io/FRONT-END-CAPSTONE-ORBIS)
+
 [Get More Details](https://docs.google.com/document/d/1YzUXYjXBc-FAL8U81qMkV7vlJBCFTZ9R31iSgyB_2ao/edit?usp=sharing)
 
 ## Getting Started
