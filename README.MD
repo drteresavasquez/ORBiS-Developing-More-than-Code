@@ -1,6 +1,6 @@
 # Orbis: Developing More Than Code
 
-A great portion of the population believes that knowledge alone is central to success. Over years of research and failures of my own, I have learned that social/emotional/belonging skills are not only the key to success, they are also the key, when combined with knowledge, to SUSTAINABLE success.
+A great portion of the population believes that knowledge alone is central to success. Over years of research and failures of my own, I have learned that social/emotional/belonging skills are not only the keys to success, they are also the keys, when combined with knowledge, to SUSTAINABLE success.
 
 Orbis helps to facilitate the social/emotional/belonging process by combining all four aspects in a natural, fun way so that learners can focus on skill building and admins can learn more about their learners in the process.
 
