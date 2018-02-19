@@ -19,11 +19,32 @@ These instructions will get you a copy of the project up and running on your loc
 ### Installing
 
 ```
-Fork project
--> lib folder
--> NPM Install all dependencies
--> create creds/fb.creds.js with your Firebase credientials
--> GRUNT to setup file structure and SASS file
+git clone https://github.com/drteresavasquez/ORBiS-Developing-More-than-Code.git
+cd lib
+npm install
+GRUNT
+cd app
+mkdir creds
+cd creds
+touch fb.creds.js
+```
+### Add Firebase Creds
+
+Visit [Google's Firebase](https://firebase.google.com) and create a database by following [Google's Instructions](https://firebase.google.com/docs/database/web/start)
+
+Add your configuration to fb.creds.js
+
+Your creds should look like this
+
+```
+app.constant("FBCreds", {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_DOMAIN.firebaseapp.com",
+    databaseURL: "https://YOUR_DOMAIN.firebaseio.com",
+    projectId: "YOUR_PROJECT_ID",
+    storageBucket: "YOUR_STORAGE_BUCKET.appspot.com",
+    messagingSenderId: "YOUR_ID"
+});
 ```
 
 ## Built With
@@ -44,4 +65,4 @@ Fork project
 ## Acknowledgments
 
 * Shout out to Nashville Software School and their awesome learning environment!
-* Special thanks to Casey Reed, Jisie Daniel, and Brenda Long
+* Special thanks to Casey Reed, Jisie David, and Brenda Long
